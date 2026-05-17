@@ -1,0 +1,1919 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="使用Firebird数据库管理系统（DBMS）学习SQL入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/sql-uanianie.html">
+      
+      
+        <link rel="prev" href="firebird-iaoheng.html">
+      
+      
+        <link rel="next" href="sql-iaoahi.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>3. SQL 语言简介 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "使用Firebird数据库管理系统（DBMS）学习SQL入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-sql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-header__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            使用Firebird数据库管理系统（DBMS）学习SQL入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. SQL 语言简介
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-nav__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    使用Firebird数据库管理系统（DBMS）学习SQL入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-iaoheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Firebird 教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. SQL 语言简介
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="sql-uanianie.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. SQL 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-firebird" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Firebird 数据类型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. 创建表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. 删除表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. 填充表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. 查询表
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5. 查询表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.2. 显示满足条件的行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5.3. 按特定顺序显示行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. 从表中删除行
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. 修改表中的内容
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8. 永久更新表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9. 将一行数据从一个表添加到另一个表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#310" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10. 删除表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#311" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11. 修改表的结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#312" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12. 视图
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.12. 视图">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12.1. 创建视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12.2. 更新视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3123" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12.3. 删除视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.13. 使用分组函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#314-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.14. 为 表创建SQL脚本
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-iaoahi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL 表达式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaohiianeuani.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 表之间的关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aoi-sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 高级 SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 管理对数据的并发访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-sql">3. <span style="color: #365f91">SQL 语言简介</span></h1>
+<p>在本章的这一部分，我们将介绍<strong>用于创建</strong>和<strong>操作</strong>单个表的首批 SQL 命令。我们通常提供这些命令的简化版本。其完整语法可在 Firebird 参考指南中查阅（参见<a href="#docfirebird"><u><span style="color: #0563c1">第 2.2</span></u></a> 节）。</p>
+<p>数据库的用户拥有不同的技能水平：</p>
+<ul>
+  <li><b>数据库</b>管理员通常精通 SQL 和数据库。他们负责创建表，因为此操作通常只需执行一次。随着时间的推移，他们可能需要修改表的结构。数据库是由关系链接起来的表的集合。数据库管理员定义这些关系。他们还向数据库的各种用户授予权限。例如，他们可以指定某个用户有权查看表的内容，但无权修改它。
+  </li>
+  <li>数据库用户则是让数据焕发生机的人。根据数据库管理员授予的权限，他们将在数据库的各个表中添加、修改和删除数据。他们还会分析数据，从中提取对业务顺畅运营、行政管理等方面有用的信息。
+  </li>
+</ul>
+
+<p>在<a href="#editeursql"><u><span style="color: #0563c1">第 2.6</span></u></a> 节中，我们介绍了 [IB-Expert] 工具的 SQL 编辑器。这就是我们将要使用的工具。让我们回顾几点内容：</p>
+<ul>
+  <li>可通过 [工具/SQL 编辑器] 菜单选项或按下 [F12] 键访问 SQL 编辑器
+  </li>
+</ul>
+
+<p><img src="images/10000000000001BD0000005547C3D716.png" width="356" height="68" style="width:9.414cm;height:1.797cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BD0000005547C3D716.png" /></p>
+<p>这将打开一个 [SQL 编辑器] 窗口，我们可以在其中输入 SQL 命令：</p>
+<p><img src="images/10000000000001720000006437FB8DFA.png" width="296" height="80" style="width:7.826cm;height:2.115cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001720000006437FB8DFA.png" /></p>
+<p>上图通常用以下文字表示：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
+</code></pre></div>
+<h2 id="31-firebird">3.1. <span style="color: #4f81bd">Firebird 数据类型</span></h2>
+<p>创建表时，必须指定表列可以包含的数据类型。本文将介绍最常见的 Firebird 数据类型。请注意，不同数据库管理系统（DBMS）的数据类型可能有所不同。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>SMALLINT
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[-32768, 32767] 范围内的整数：4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>INTEGER
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[–2,147,483,648, 2,147,483,647] 范围内的整数：-100</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>NUMERIC(n,m)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>DECIMAL(n,m)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">具有 n 位数的实数，其中 m 位为小数</div><div style="margin:0 0 0.5em 0">NUMERIC(5,2)：-100.23、+027.30</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>浮点数
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">四舍五入到7位有效数字的实数：10.4</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>双精度
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">近似到15位有效数字的实数：-100.89</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>CHAR(N)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>CHARACTER(N)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">一个恰好包含 N 个字符的字符串。如果存储的字符串少于 N 个字符，则用空格补足。</div><div style="margin:0 0 0.5em 0">CHAR(10)：&#x27;ANGERS    &#x27;（末尾有 4 个空格）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>VARCHAR(N)
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>CHARACTER VARYING(N)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">最多 N 个字符的字符串</div><div style="margin:0 0 0.5em 0">VARCHAR(10): &#x27;ANGERS&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>DATE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">一个日期：&#x27;2006-01-09&#x27;（YYYY-MM-DD 格式）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>TIME
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">时间：&#x27;16:43:00&#x27;（HH:MM:SS 格式）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>时间戳
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">日期和时间：&#x27;2006-01-09  16:43:00&#x27;（格式  YYYY-MM-DD  HH:MM:SS）</div></td></tr></table>
+
+<p><strong>CAST()</strong> 函数允许您在必要时将一种类型转换为另一种类型。要将声明为类型 T1 的值 V 转换为类型 T2，请编写：CAST(V,T2)。您可以执行以下类型转换：</p>
+<ul>
+  <li><b>数字转字符串</b>。这种类型转换是隐式的，无需使用 CAST 函数。因此，运算 1 + &#x27;3&#x27; 无需对字符 &#x27;3&#x27; 进行转换，其结果为数字 4。
+  </li>
+  <li><b>DATE</b>、<b>TIME</b>、<b>TIMESTAMP</b> 与<b>字符串</b>之间的转换，反之亦然。因此 
+  </li>
+  <li><b>TIMESTAMP</b> 转换为 <b>TIME </b>或 <b>DATE</b>，反之亦然
+  </li>
+</ul>
+
+<p>在表中，行可能包含无值的列。我们称该列的值为 NULL 常量。您可以使用运算符检查该值是否存在 </p>
+<p><strong>IS NULL</strong>    /    <strong>IS NOT NULL</strong></p>
+<h2 id="32">3.2. <span style="color: #4f81bd">创建表</span></h2>
+<p>要了解如何创建表，我们将首先使用 IBExpert 在 [设计] 模式下创建一个表。为此，我们将按照<a href="#createdatabase"><u><span style="color: #0563c1">第 2.3</span></u></a> 节中描述的方法进行操作。这将创建以下表：</p>
+<p><img src="images/10000000000002450000008A601A62B7.png" width="465" height="110" style="width:12.3cm;height:2.923cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002450000008A601A62B7.png" /></p>
+<p>该表将用于记录图书馆购买的书籍。各字段的含义如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>名称</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>类型</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>约束</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>含义</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ID
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>整数
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>主键
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>图书ID
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a> 书名
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>VARCHAR(30)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>非空 唯一
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>书名
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a> 作者
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>VARCHAR(20)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>非空
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>作者
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a> 类型
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>VARCHAR(30)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>非空
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>类型（小说、诗歌、悬疑、漫画等）
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a> 购买
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>日期
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>非空
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>购书日期
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a> 价格
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>NUMERIC(6,2)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>非空
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>价格
+</code></pre></div>
+</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a> 有货
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>CHAR(1)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>非空
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>是否可用？Y（是），N（否）
+</code></pre></div>
+</div></td></tr></table>
+
+<p>此表是使用 IBEXPERT 向导创建的，但也可以直接使用 SQL 语句创建。要查看这些语句，只需查看该表的 [DDL] 选项卡：</p>
+<p><img src="images/100000000000024D0000008BFCD65B65.png" width="471" height="111" style="width:12.465cm;height:2.942cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024D0000008BFCD65B65.png" /></p>
+<p>用于创建 [BIBLIO] 表的 SQL 代码如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-39-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-39-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-39-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-39-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-39-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-39-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-39-10">10</a></span>
+<span class="normal"><a href="#__codelineno-39-11">11</a></span>
+<span class="normal"><a href="#__codelineno-39-12">12</a></span>
+<span class="normal"><a href="#__codelineno-39-13">13</a></span>
+<span class="normal"><a href="#__codelineno-39-14">14</a></span>
+<span class="normal"><a href="#__codelineno-39-15">15</a></span>
+<span class="normal"><a href="#__codelineno-39-16">16</a></span>
+<span class="normal"><a href="#__codelineno-39-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">DIALECT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="n">ISO8859_1</span><span class="p">;</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4"></a>
+<a id="__codelineno-39-5" name="__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7"></a><span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8"></a><span class="w">    </span><span class="n">TITRE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="w">    </span><span class="n">AUTEUR</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-10" name="__codelineno-39-10"></a><span class="w">   </span><span class="n">GENRE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11"></a><span class="w">   </span><span class="n">ACHAT</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12"></a><span class="w">   </span><span class="n">PRIX</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-39-13" name="__codelineno-39-13"></a><span class="w">   </span><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-39-14" name="__codelineno-39-14"></a><span class="p">);</span>
+<a id="__codelineno-39-15" name="__codelineno-39-15"></a>
+<a id="__codelineno-39-16" name="__codelineno-39-16"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ1_BIBLIO</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">TITRE</span><span class="p">);</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_BIBLIO</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 1 行：所有者 Firebird - 指示所使用的 SQL 方言级别
+  </li>
+  <li>第 2 行：Firebird 特有 - 指定所使用的字符集
+  </li>
+  <li>第 6–14 行：SQL 标准：通过定义各列的名称和数据类型来创建 BIBLIO 表。
+  </li>
+  <li>第 16 行：SQL 标准：创建约束，规定 TITLE 列不允许重复
+  </li>
+  <li>第 17 行：SQL 标准：指定 [ID] 列为表的主键。这意味着表中不存在两行具有相同 ID 的情况。这与 [TITLE] 列上的 [UNIQUE NOT NULL] 约束类似，实际上 [TITLE] 列本可以作为主键。 当前的趋势是使用没有特定含义且由数据库管理系统（DBMS）生成的主键。
+  </li>
+</ul>
+
+<p>[CREATE TABLE] 命令的语法如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>CREATE TABLE</b><i> 表名 (列名1 列类型1 列约束1, 列名2 列类型2 列约束2, ..., 列名N 列类型N 列约束N, 其他约束)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">创建具有指定列的 table<i> 表</i></div><table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>列名_i
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">要创建的第 i 个列的名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>column_type_i
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">第 i 列的数据类型：</div><div style="margin:0 0 0.5em 0">char(30) numeric(6,2) date timestamp ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>列约束_i
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">列 i 中的数据必须满足的约束。以下是一些示例：</div><div style="margin:0 0 0.5em 0"><b>主键 </b>(<b>PRIMARY KEY</b>)：该列为主键。这意味着表中不存在两行在此列上具有相同值，且该列必须有值。主键主要用于唯一标识一行。</div><div style="margin:0 0 0.5em 0"><b>NOT NULL</b>    ：该列不允许出现空值。</div><div style="margin:0 0 0.5em 0"><b>UNIQUE</b>    ：该列中任何值都只能出现一次。</div><div style="margin:0 0 0.5em 0"><b>CHECK (条件)</b>：该列中的值必须满足<b>该条件</b>。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>其他约束
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">您可以在此处指定</div><div style="margin:0 0 0.5em 0">- 针对多个列的约束：check(col1&gt;col2)</div><div style="margin:0 0 0.5em 0">- 外键约束</div></td></tr></table></td></tr></table>
+
+<p>[BIBLIO] 表也可以通过以下 SQL 语句创建：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span>
+<span class="normal"><a href="#__codelineno-46-3">3</a></span>
+<span class="normal"><a href="#__codelineno-46-4">4</a></span>
+<span class="normal"><a href="#__codelineno-46-5">5</a></span>
+<span class="normal"><a href="#__codelineno-46-6">6</a></span>
+<span class="normal"><a href="#__codelineno-46-7">7</a></span>
+<span class="normal"><a href="#__codelineno-46-8">8</a></span>
+<span class="normal"><a href="#__codelineno-46-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2"></a><span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3"></a><span class="w">    </span><span class="n">TITRE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4"></a><span class="w">    </span><span class="n">AUTEUR</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-46-5" name="__codelineno-46-5"></a><span class="w">   </span><span class="n">GENRE</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-46-6" name="__codelineno-46-6"></a><span class="w">   </span><span class="n">ACHAT</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7"></a><span class="w">   </span><span class="n">PRIX</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-46-8" name="__codelineno-46-8"></a><span class="w">   </span><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9"></a><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>让我们演示一下。在 SQL 编辑器（F12）中打开此查询，创建一个名为 [BIBLIO2] 的表：</p>
+<p><img src="images/100000000000018E000000D2B26CACB6.png" width="318" height="168" style="width:8.421cm;height:4.443cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018E000000D2B26CACB6.png" /></p>
+<p>执行后，必须提交事务才能在数据库中查看结果：</p>
+<p><img src="images/100000000000028D000000884DEA88BB.png" width="525" height="109" style="width:13.889cm;height:2.893cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000028D000000884DEA88BB.png" /></p>
+<p>完成此操作后，该表便会出现在数据库中：</p>
+<p><img src="images/100000000000010800000053F7BDFBAA.png" width="211" height="66" style="width:5.588cm;height:1.757cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010800000053F7BDFBAA.png" /></p>
+<p>双击其名称，即可查看其结构：</p>
+<p><img src="images/1000000000000246000000CFD6B31107.png" width="465" height="165" style="width:12.298cm;height:4.374cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000246000000CFD6B31107.png" /></p>
+<p>我们可以看到为 [BIBLIO2] 表创建的定义</p>
+<h2 id="33">3.3. <span style="color: #4f81bd">删除表</span></h2>
+<p>删除表的 SQL 语句如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE</b> 表名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">删除 [表]</div></td></tr></table>
+
+<p>要删除我们刚刚创建的 [BIBLIO2] 表，现在执行以下 SQL 命令：</p>
+<p><img src="images/10000000000000C7000000518AFF2DC0.png" width="159" height="65" style="width:4.209cm;height:1.713cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C7000000518AFF2DC0.png" /></p>
+<p>并通过 [Commit] 确认。此时 [BIBLIO2] 表已被删除：</p>
+<p><img src="images/1000000000000090000000C9A9522CA4.png" width="115" height="161" style="width:3.048cm;height:4.255cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000090000000C9A9522CA4.png" /></p>
+<h2 id="34">3.4. <span style="color: #4f81bd">填充表</span></h2>
+<p>现在，让我们向刚刚创建的 [BIBLIO] 表中插入一行数据：</p>
+<p><img src="images/10000000000001C800000086CDFCE3F7.png" width="365" height="107" style="width:9.647cm;height:2.835cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C800000086CDFCE3F7.png" /></p>
+<p>点击 [提交] 确认行已添加，然后右键单击已添加的行：</p>
+<p><img src="images/10000000000001C40000012E719B06E7.png" width="316" height="211" style="width:8.368cm;height:5.592cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C40000012E719B06E7.png" /></p>
+<p>如上所示，将插入的行复制到剪贴板，作为一条 INSERT SQL 语句。接下来，打开任意文本编辑器并粘贴刚才复制的内容。我们将得到以下 SQL 代码：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="n">TITRE</span><span class="p">,</span><span class="n">AUTEUR</span><span class="p">,</span><span class="n">GENRE</span><span class="p">,</span><span class="n">ACHAT</span><span class="p">,</span><span class="n">PRIX</span><span class="p">,</span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Candide&#39;</span><span class="p">,</span><span class="s1">&#39;Voltaire&#39;</span><span class="p">,</span><span class="s1">&#39;Essai&#39;</span><span class="p">,</span><span class="s1">&#39;18-OCT-1985&#39;</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>SQL <strong>INSERT</strong> 语句的语法如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>insert into</b><i> 表 [(列1, 列2, ..)] </i><b>values </b><i>(值1, 值2, ....)</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">向<i>表中</i>添加一行<i>（value1, value2, ...）</i>。如果<i>列1</i>、<i>列2</i>...已存在，则这些值将赋给这些列；否则，将按定义顺序赋给表中的列。</div></td></tr></table>
+
+<p>为了向 [BIBLIO] 表中插入新行，我们将在 SQL 编辑器中输入以下 INSERT 语句。我们将逐一执行并提交这些语句。我们将使用 [新建查询] 按钮转到下一个 INSERT 语句。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span>
+<span class="normal"><a href="#__codelineno-52-2">2</a></span>
+<span class="normal"><a href="#__codelineno-52-3">3</a></span>
+<span class="normal"><a href="#__codelineno-52-4">4</a></span>
+<span class="normal"><a href="#__codelineno-52-5">5</a></span>
+<span class="normal"><a href="#__codelineno-52-6">6</a></span>
+<span class="normal"><a href="#__codelineno-52-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;Les fleurs du mal&#39;</span><span class="p">,</span><span class="s1">&#39;Baudelaire&#39;</span><span class="p">,</span><span class="s1">&#39;Poème&#39;</span><span class="p">,</span><span class="s1">&#39;01-jan-78&#39;</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;Tintin au Tibet&#39;</span><span class="p">,</span><span class="s1">&#39;Hergé&#39;</span><span class="p">,</span><span class="s1">&#39;BD&#39;</span><span class="p">,</span><span class="s1">&#39;10-nov-90&#39;</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;Du côté de chez Swann&#39;</span><span class="p">,</span><span class="s1">&#39;Proust&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;08-dec-78&#39;</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="s1">&#39;La terre&#39;</span><span class="p">,</span><span class="s1">&#39;Zola&#39;</span><span class="p">,</span><span class="s1">&#39;roman&#39;</span><span class="p">,</span><span class="s1">&#39;12-jun-90&#39;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="s1">&#39;n&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="s1">&#39;Madame Bovary&#39;</span><span class="p">,</span><span class="s1">&#39;Flaubert&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;12-mar-88&#39;</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="s1">&#39;Manhattan transfer&#39;</span><span class="p">,</span><span class="s1">&#39;Dos Passos&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;30-aug-87&#39;</span><span class="p">,</span><span class="mi">320</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-52-7" name="__codelineno-52-7"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;Tintin en Amérique&#39;</span><span class="p">,</span><span class="s1">&#39;Hergé&#39;</span><span class="p">,</span><span class="s1">&#39;BD&#39;</span><span class="p">,</span><span class="s1">&#39;15-may-91&#39;</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>提交 [Commit] 这些 SQL 语句后，我们得到如下表：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000203000001026998415E.png" width="412" height="206" style="display:inline-block; margin:4px;width:10.899cm;height:5.459cm;" class="odt-zoomable" data-zoom-src="images/1000000000000203000001026998415E.png" /></td></tr></table>
+
+<h2 id="35">3.5. <span style="color: #4f81bd">查询表</span></h2>
+<h3 id="351">3.5.1. <span style="color: #4f81bd">简介</span></h3>
+<p>在 SQL 编辑器中，输入以下命令：</p>
+<p><img src="images/10000000000001DD000000608F293F33.png" width="382" height="77" style="width:10.098cm;height:2.032cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DD000000608F293F33.png" /></p>
+<p>并执行该命令。我们将得到以下结果：</p>
+<p><img src="images/10000000000001DF000000CEBD55B923.png" width="383" height="165" style="width:10.139cm;height:4.36cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001DF000000CEBD55B923.png" /></p>
+<p>SELECT 语句用于从数据库表中检索数据。该语句的语法非常丰富。在此，我们将重点介绍查询单个表的语法。关于同时查询多个表的内容，我们将在后续章节中介绍。SQL [SELECT] 语句的语法如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT [ALL|DISTINCT] </b><i>[*|表达式1 别名1, 表达式2 别名2, ...]</i></div><div style="margin:0 0 0.5em 0"><b>FROM</b><i> 表</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">显示表中所有行对应的<i> expression1</i> 的值。<i>expression1</i> 可以是列，也可以是更复杂的表达式。符号 <i>*</i> 表示所有列。默认情况下，显示表中的所有行（<b>ALL</b>）。如果使用了<b> DISTINCT</b>，则仅显示重复的选定行一次。<i>expression1</i> 的值将显示在名为 <i>expression1</i> 的列中，如果使用了别名<i> alias1</i>，则显示在该列中。</div></td></tr></table>
+
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000C5000000CD0221679C.png" width="158" height="164" style="width:4.168cm;height:4.337cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C5000000CD0221679C.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000D80000009CAFD0116B.png" width="173" height="125" style="width:4.568cm;height:3.298cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D80000009CAFD0116B.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="n">TITRE_DU_LIVRE</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="n">PRIX_ACHAT</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000001160000009BF994E384.png" width="222" height="124" style="width:5.879cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001160000009BF994E384.png" /></p>
+<p>在上面的示例中，我们为所查询的列赋予了别名（BOOK_TITLE、PURCHASE_PRICE）。</p>
+<h3 id="352">3.5.2. <span style="color: #4f81bd">显示满足条件的行</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>WHERE</b><i> 条件</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">仅显示满足<i>条件的</i>行</div></td></tr></table>
+
+<p><strong>示例</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="o">&gt;</span><span class="mi">100</span>
+</code></pre></div>
+<p><img src="images/10000000000000A70000006752367BA3.png" width="133" height="82" style="width:3.528cm;height:2.177cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000A70000006752367BA3.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;Roman&#39;</span>
+</code></pre></div>
+<p><img src="images/100000000000010C00000045A08DF196.png" width="214" height="55" style="width:5.667cm;height:1.459cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010C00000045A08DF196.png" /></p>
+<p>其中一本书的类型为“novel”，而非“Novel”。我们使用UPPER函数（该函数可将字符串转换为大写）来获取所有小说。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
+</code></pre></div>
+<p><img src="images/10000000000000DD00000058C2F14B0F.png" width="177" height="70" style="width:4.678cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DD00000058C2F14B0F.png" /></p>
+<p>我们可以使用逻辑运算符组合条件</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>AND
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">逻辑与</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>OR
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">逻辑或</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a>非
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">逻辑非</div></td></tr></table>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">100</span>
+</code></pre></div>
+<p><img src="images/1000000000000126000000656A155D26.png" width="235" height="81" style="width:6.219cm;height:2.136cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000126000000656A155D26.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000001320000009DA2CE3E90.png" width="245" height="126" style="width:6.479cm;height:3.323cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001320000009DA2CE3E90.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;BD&#39;</span>
+</code></pre></div>
+<p><img src="images/100000000000013300000078BCE83823.png" width="246" height="96" style="width:6.498cm;height:2.54cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013300000078BCE83823.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">not</span><span class="p">(</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;BD&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000001360000003651413F79.png" width="248" height="43" style="width:6.558cm;height:1.141cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001360000003651413F79.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000001170000009B6319FFFD.png" width="223" height="124" style="width:5.909cm;height:3.283cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001170000009B6319FFFD.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">achat</span><span class="o">&gt;</span><span class="s1">&#39;31-dec-1987&#39;</span>
+</code></pre></div>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001180000005751848011.png" width="224" height="70" style="display:inline-block; margin:4px;width:5.928cm;height:1.842cm;" class="odt-zoomable" data-zoom-src="images/10000000000001180000005751848011.png" /></td></tr></table>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
+</code></pre></div>
+<p><img src="images/1000000000000119000000440BBBF342.png" width="225" height="54" style="width:5.948cm;height:1.439cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000119000000440BBBF342.png" /></p>
+<h3 id="353">3.5.3. <span style="color: #4f81bd">按特定顺序显示行</span></h3>
+<p>在上述语法基础上，您可以添加 <strong>ORDER BY</strong> 子句来指定所需的显示顺序：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b>....</div><div style="margin:0 0 0.5em 0"><b>ORDER BY</b><i> 表达式1 </i>[<b>asc|desc</b>],<i> 表达式2 </i>[<b>asc|desc</b>], ...</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">选择结果的行按以下顺序显示</div><div style="margin:0 0 0.5em 0">1：<i>按表达式1的</i>升序（<b>asc </b>/ <b>ascending，</b>这是默认值）或降序（<b>desc / descending</b>）排序</div><div style="margin:0 0 0.5em 0">2: 如果<i>表达式1</i>相等，则根据<i>表达式2</i>的值进行显示</div><div style="margin:0 0 0.5em 0">等等。</div></td></tr></table>
+
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">desc</span>
+</code></pre></div>
+<p><img src="images/100000000000011D0000009C31430FAD.png" width="228" height="125" style="width:6.029cm;height:3.3cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011D0000009C31430FAD.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">prix</span>
+</code></pre></div>
+<p><img src="images/100000000000011F0000009BF27A7581.png" width="229" height="124" style="width:6.068cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009BF27A7581.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">desc</span>
+</code></pre></div>
+<p><img src="images/10000000000001200000009B514B518A.png" width="230" height="124" style="width:6.098cm;height:3.283cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001200000009B514B518A.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span>
+</code></pre></div>
+<p><img src="images/100000000000011E0000009B58187535.png" width="229" height="124" style="width:6.048cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011E0000009B58187535.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">desc</span>
+</code></pre></div>
+<p><img src="images/100000000000011F0000009A39F46255.png" width="229" height="123" style="width:6.068cm;height:3.256cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009A39F46255.png" /></p>
+<h2 id="36">3.6. <span style="color: #4f81bd">从表中删除行</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DELETE FROM</b><i> 表 </i>[<b>WHERE</b><i> 条件</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">删除<i>满足条件的</i>表行。如果未指定条件，则删除所有行。</div></td></tr></table>
+
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000780000009A1092AFD1.png" width="96" height="123" style="width:2.538cm;height:3.256cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000780000009A1092AFD1.png" /></p>
+<p>以下两个命令依次执行：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="o">=</span><span class="s1">&#39;Candide&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000007A0000008871DE31D3.png" width="97" height="109" style="width:2.579cm;height:2.875cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A0000008871DE31D3.png" /></p>
+<h2 id="37">3.7. <span style="color: #4f81bd">修改表中的内容</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>update table set</b><i> 列1 = 表达式1, 列2 = 表达式2, ...</i></div><div style="margin:0 0 0.5em 0">[<b>where</b><i> 条件</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">对于满足<i>条件</i>（若无条件则为所有行）的表行，将<i> column1</i> 设置为 <i>expression1 的</i>值。</div></td></tr></table>
+
+<p><strong>示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p>我们将所有流派名称首字母大写：</p>
+<p><img src="images/100000000000004D0000008911F25B3D.png" width="62" height="109" style="width:1.628cm;height:2.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004D0000008911F25B3D.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
+</code></pre></div>
+<p>我们检查：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000003B0000008CAEBEFCE4.png" width="47" height="112" style="width:1.249cm;height:2.963cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003B0000008CAEBEFCE4.png" /></p>
+<p>显示价格：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="p">;</span>
+</code></pre></div>
+<p><img src="images/10000000000000680000008B40D1CEDB.png" width="83" height="111" style="width:2.198cm;height:2.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000680000008B40D1CEDB.png" /></p>
+<p>小说的价格上涨了5%： </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="n">prix</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>让我们来检查一下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000670000008957F3498F.png" width="82" height="109" style="width:2.178cm;height:2.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000670000008957F3498F.png" /></p>
+<h2 id="38">3.8. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">永久更新表</span></strong></span></h2>
+<p>当对表进行修改时，Firebird 实际上是将这些修改应用到表的副本上。随后可以通过 <strong>COMMIT</strong> 和 <strong>ROLLBACK</strong> 命令将这些修改永久保存或回滚。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">COMMIT</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">将自上次COMMIT以来对表所做的更新永久保存。</div></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">回滚</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">回滚自上次 COMMIT 以来对表所做的所有更改。</div></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a>注
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">在以下情况下会隐式执行 COMMIT：</div><div style="margin:0 0 0.5em 0">a) 退出 Firebird 时</div><div style="margin:0 0 0.5em 0">b) 每次执行影响表结构的命令后：CREATE、ALTER、DROP。</div></td></tr></table>
+
+<p><strong>示例</strong></p>
+<p>在 SQL 编辑器中，您可以通过提交自上次 COMMIT 或 ROLLBACK 以来执行的所有操作，将数据库恢复到已知状态：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>我们检索标题列表：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/1000000000000077000000890BB53B60.png" width="95" height="110" style="width:2.519cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000077000000890BB53B60.png" /></p>
+<p>删除书名：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="o">=</span><span class="s1">&#39;La terre&#39;</span>
+</code></pre></div>
+<p>验证：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000007800000078D9A03C32.png" width="96" height="96" style="width:2.538cm;height:2.538cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000078D9A03C32.png" /></p>
+<p>标题已成功删除。现在我们将回滚自上次 COMMIT / ROLLBACK 以来所做的所有更改：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">rollback</span>
+</code></pre></div>
+<p>验证：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000790000008AEF1966E1.png" width="97" height="110" style="width:2.558cm;height:2.917cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000790000008AEF1966E1.png" /></p>
+<p>已删除的书名又出现了。现在让我们检索价格列表：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-104-1" name="__codelineno-104-1" href="#__codelineno-104-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000003C0000008A13F61867.png" width="48" height="110" style="width:1.268cm;height:2.916cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003C0000008A13F61867.png" /></p>
+<p>让我们将所有价格设为零。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-105-1" name="__codelineno-105-1" href="#__codelineno-105-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="mi">0</span>
+</code></pre></div>
+<p>让我们检查一下价格：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-106-1" name="__codelineno-106-1" href="#__codelineno-106-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000003B00000089900CBDB6.png" width="47" height="110" style="width:1.249cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003B00000089900CBDB6.png" /></p>
+<p>让我们撤销对数据库所做的更改：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">rollback</span>
+</code></pre></div>
+<p>然后再次检查价格：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000003C0000008B47503EC8.png" width="48" height="111" style="width:1.268cm;height:2.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000003C0000008B47503EC8.png" /></p>
+<p>我们已恢复了原始价格。</p>
+<h2 id="39">3.9. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">将一行数据从一个表添加到另一个表</span></strong></span></h2>
+<p>当两个表的结构兼容时，可以将行从一个表添加到另一个表中。为了演示这一点，让我们先创建一个与 [BIBLIO] 结构相同的 [BIBLIO2] 表。</p>
+<p>在 IBExpert 数据库资源管理器中，双击 [BIBLIO] 表以打开 [DDL] 选项卡：</p>
+<p><img src="images/1000000000000314000001241011E3D9.png" width="551" height="204" style="width:14.589cm;height:5.406cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000314000001241011E3D9.png" /></p>
+<p>在此选项卡中，您将看到用于生成 [BIBLIO] 表的 SQL 语句列表。将所有代码复制到剪贴板（CTRL-A，CTRL-C）。然后打开名为 [Script Executive] 的工具，该工具允许您执行一组 SQL 语句： </p>
+<p><img src="images/10000000000000FD000000A49207069C.png" width="203" height="131" style="width:5.359cm;height:3.475cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FD000000A49207069C.png" /></p>
+<p>此时将打开一个文本编辑器，我们可以将之前复制到剪贴板的文本粘贴（CTRL-V）到其中：</p>
+<p><img src="images/10000000000000E0000000DAFDFB41AC.png" width="157" height="153" style="width:4.149cm;height:4.038cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E0000000DAFDFB41AC.png" /></p>
+<p>SQL 命令列表通常被称为 <strong>SQL 脚本</strong>。[Script Executive] 允许我们执行此类脚本，而 SQL 编辑器每次只能执行一条命令。当前的 SQL 脚本会创建名为 [BIBLIO] 的表。让我们让它创建一个名为 [BIBLIO2] 的表。要做到这一点，只需将 [BIBLIO] 改为 [BIBLIO2]：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-109-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-109-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-109-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-109-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-109-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-109-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-109-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-109-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-109-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-109-10">10</a></span>
+<span class="normal"><a href="#__codelineno-109-11">11</a></span>
+<span class="normal"><a href="#__codelineno-109-12">12</a></span>
+<span class="normal"><a href="#__codelineno-109-13">13</a></span>
+<span class="normal"><a href="#__codelineno-109-14">14</a></span>
+<span class="normal"><a href="#__codelineno-109-15">15</a></span>
+<span class="normal"><a href="#__codelineno-109-16">16</a></span>
+<span class="normal"><a href="#__codelineno-109-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-109-1" name="__codelineno-109-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">DIALECT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-109-2" name="__codelineno-109-2"></a>
+<a id="__codelineno-109-3" name="__codelineno-109-3"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="n">ISO8859_1</span><span class="p">;</span>
+<a id="__codelineno-109-4" name="__codelineno-109-4"></a>
+<a id="__codelineno-109-5" name="__codelineno-109-5"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-109-6" name="__codelineno-109-6"></a><span class="w">    </span><span class="n">ID</span><span class="w">          </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-7" name="__codelineno-109-7"></a><span class="w">    </span><span class="n">TITRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-8" name="__codelineno-109-8"></a><span class="w">    </span><span class="n">AUTEUR</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-9" name="__codelineno-109-9"></a><span class="w">    </span><span class="n">GENRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-10" name="__codelineno-109-10"></a><span class="w">    </span><span class="n">ACHAT</span><span class="w">       </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-11" name="__codelineno-109-11"></a><span class="w">    </span><span class="n">PRIX</span><span class="w">        </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-109-12" name="__codelineno-109-12"></a><span class="w">    </span><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-109-13" name="__codelineno-109-13"></a><span class="p">);</span>
+<a id="__codelineno-109-14" name="__codelineno-109-14"></a>
+<a id="__codelineno-109-15" name="__codelineno-109-15"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ1_BIBLIIO2</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">TITRE</span><span class="p">);</span>
+<a id="__codelineno-109-16" name="__codelineno-109-16"></a>
+<a id="__codelineno-109-17" name="__codelineno-109-17"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_BIBLIIO2</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>让我们使用下方的 [运行脚本] 按钮来运行此脚本：</p>
+<p><img src="images/10000000000002110000005BA9384BB4.png" width="423" height="73" style="width:11.199cm;height:1.926cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002110000005BA9384BB4.png" /></p>
+<p>脚本已执行：</p>
+<p><img src="images/10000000000000D700000079BACB516F.png" width="150" height="85" style="width:3.978cm;height:2.238cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D700000079BACB516F.png" /></p>
+<p>我们可以在数据库资源管理器中看到新创建的表：</p>
+<p><img src="images/10000000000000FD000000536F986C1C.png" width="177" height="58" style="width:4.678cm;height:1.535cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FD000000536F986C1C.png" /></p>
+<p>如果双击 [BIBLIO2] 查看其内容，我们会发现它是空的，这是正常的：</p>
+<p><img src="images/10000000000001C600000077DE6CF029.png" width="318" height="83" style="width:8.408cm;height:2.205cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C600000077DE6CF029.png" /></p>
+<p>SQL INSERT 语句的一种变体允许您将一行数据从一个表插入到另一个表中：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>INSERT INTO</b><i> 表1 </i>[(<i>列1, 列2</i>, ...)]</div><div style="margin:0 0 0.5em 0"><b>SELECT</b><i> 列1, 列2</i>, ... <b>FROM</b><i> 表2 </i><b>WHERE</b><i> 条件</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">满足<i>该条件的 table2</i> 中的行将被插入到 <i>table1</i> 中。<i>table2</i> 中的列 <i>column1、column2</i>、... 将按顺序赋值给 <i>table1</i> 中的 <i>column1、column2</i>、...，因此这些列的类型必须兼容。</div></td></tr></table>
+
+<p>让我们回到 SQL 编辑器：</p>
+<p><img src="images/10000000000000BE0000010D52F9C729.png" width="133" height="188" style="width:3.519cm;height:4.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BE0000010D52F9C729.png" /></p>
+<p>并执行以下 SQL 语句：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
+</code></pre></div>
+<p>该语句将 [BIBLIO] 表中所有对应于小说（novel）的行插入到 [BIBLIO2] 表中。执行完 SQL 语句后，让我们使用 [Commit] 进行提交：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>现在，让我们查看 [BIBLIO2] 表中的数据：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO2</span>
+</code></pre></div>
+<p><img src="images/10000000000001D1000000550A786F95.png" width="372" height="68" style="width:9.839cm;height:1.799cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D1000000550A786F95.png" /></p>
+<h2 id="310">3.10. <span style="color: #4f81bd">删除表</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-115-1" name="__codelineno-115-1" href="#__codelineno-115-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP TABLE</b><i> 表名</i></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-116-1" name="__codelineno-116-1" href="#__codelineno-116-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">删除<i>表</i></div></td></tr></table>
+
+<p>示例：删除 BIBLIO2 表</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-117-1" name="__codelineno-117-1" href="#__codelineno-117-1"></a>SQL&gt; drop table BIBLIO2
+</code></pre></div>
+<p>确认更改：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-118-1" name="__codelineno-118-1" href="#__codelineno-118-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>在数据库资源管理器中，刷新表格视图：</p>
+<p><img src="images/100000000000015A000000B9F7D9352A.png" width="277" height="148" style="width:7.318cm;height:3.912cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015A000000B9F7D9352A.png" /></p>
+<p>我们可以看到 [BIBLIO2] 表已被删除：</p>
+<p><img src="images/10000000000001030000005133B61751.png" width="207" height="65" style="width:5.479cm;height:1.715cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001030000005133B61751.png" /></p>
+<h2 id="311">3.11. <span style="color: #4f81bd">修改表的结构</span></h2>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-119-1" name="__codelineno-119-1" href="#__codelineno-119-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ALTER TABLE</b><i> 表名</i></div><div style="margin:0 0 0.5em 0">[ <b>ADD</b><i> 列名1 列类型1 列约束1</i>]</div><div style="margin:0 0 0.5em 0">[<b>ALTER</b><i> 列名2 </i><i><b>TYPE</b></i><i> 列类型2</i>]</div><div style="margin:0 0 0.5em 0">[<b>DROP</b><i> 列名3</i>]</div><div style="margin:0 0 0.5em 0">[<b>ADD</b><i> 约束</i>]</div><div style="margin:0 0 0.5em 0">[<b>DROP CONSTRAINT</b><i> 约束名</i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-120-1" name="__codelineno-120-1" href="#__codelineno-120-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">允许您添加 (<b>ADD</b>)、修改 (<b>ALTER</b>) 和删除 (<b>DROP)</b> 表列。语法 <i>column_name1 column_type1 column_constraint1</i> 与 CREATE TABLE 的语法相同。您还可以添加或删除表约束。</div></td></tr></table>
+
+<p><strong>示例：</strong>在 SQL 编辑器中依次执行以下两个 SQL 命令</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">nb_pages</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="n">genre</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-122-1" name="__codelineno-122-1" href="#__codelineno-122-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>在数据库资源管理器中，让我们查看 [BIBLIO] 表的结构：</p>
+<p><img src="images/100000000000016A000000B21FDCB4F3.png" width="289" height="142" style="width:7.659cm;height:3.766cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016A000000B21FDCB4F3.png" /></p>
+<p>更改已应用。让我们看看表的内容发生了哪些变化：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000021D00000089DEA7C703.png" width="433" height="110" style="width:11.448cm;height:2.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021D00000089DEA7C703.png" /></p>
+<p>新创建的 [NB_PAGES] 列已创建但没有值。让我们删除该列：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="n">nb_pages</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>让我们查看 [BIBLIO] 表的新结构：</p>
+<p><img src="images/10000000000001660000009FF1750C5B.png" width="286" height="127" style="width:7.578cm;height:3.366cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001660000009FF1750C5B.png" /></p>
+<p>[NB_PAGES] 列确实已经消失了。</p>
+<h2 id="312">3.12. <span style="color: #4f81bd">视图</span></h2>
+<p>可以创建一个表或多个表的部分视图。视图的行为类似于表，但不包含数据。其数据是从其他表或视图中提取的。视图具有以下几个优点：</p>
+<ol>
+  <li>用户可能只对特定表中的某些列和行感兴趣。视图允许他们仅查看这些列和行。
+  </li>
+  <li>表的所有者可能希望仅向其他用户授予有限的访问权限。视图使他们能够做到这一点。经其授权的用户将仅能访问其定义的视图。
+  </li>
+</ol>
+<h3 id="3121">3.12.1. <span style="color: #4f81bd">创建视图</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>CREATE VIEW</b><i> 视图名</i></div><div style="margin:0 0 0.5em 0"><b>AS SELECT</b><i> 列1, 列2</i>, ... <b>FROM</b><i> 表 </i><b>WHERE</b><i> 条件</i></div><div style="margin:0 0 0.5em 0">[ <b>WITH CHECK OPTION </b>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">创建视图 <i>view_name</i>。这是一个具有以下结构的表：<i>column1, column2</i>, ... <i>来自表 </i>table，其行来自<i>表 table </i>中满足<i>条件 condition</i> 的行（如果没有条件，则为所有行）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="k">WITH</span><span class="w"> </span><span class="n">CHECK</span><span class="w"> </span><span class="n">OPTION</span>
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">此可选子句指定，对视图的插入和更新操作不得创建视图无法选中的行。</div></td></tr></table>
+
+<p><strong>注</strong>    CREATE VIEW 的语法实际上比上文所述更为复杂，特别是允许基于多张表创建视图。要实现这一点，SELECT 语句只需引用多张表即可（参见下一章）。</p>
+<p><strong>示例</strong></p>
+<p>我们基于 <strong>biblio</strong> 表创建一个视图，该视图仅包含小说（行选择），且仅包含<strong>标题、作者和价格</strong>这三个列（列选择）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">create</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">romans</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>在数据库资源管理器中，刷新视图（F5）。此时将显示一个视图：</p>
+<p><img src="images/10000000000000F7000000D98EA7697B.png" width="198" height="174" style="width:5.228cm;height:4.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F7000000D98EA7697B.png" /></p>
+<p>我们可以查看与该视图关联的 SQL 语句。要执行此操作，请双击 [ROMANS] 视图：</p>
+<p><img src="images/100000000000021E00000096CC193736.png" width="433" height="120" style="width:11.469cm;height:3.173cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021E00000096CC193736.png" /></p>
+<p>视图类似于表。它具有以下结构：</p>
+<p><img src="images/10000000000001440000008FD314233B.png" width="259" height="114" style="width:6.858cm;height:3.027cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001440000008FD314233B.png" /></p>
+<p>以及内容：</p>
+<p><img src="images/10000000000000FF000000AC8E2AFA17.png" width="204" height="138" style="width:5.398cm;height:3.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FF000000AC8E2AFA17.png" /></p>
+<p>视图的使用方式与表类似。您可以对其执行 SQL 查询。以下是在 SQL 编辑器中可以尝试的几个示例：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<p><img src="images/10000000000000F40000005806869C0E.png" width="195" height="70" style="width:5.158cm;height:1.859cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F40000005806869C0E.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-132-1" name="__codelineno-132-1" href="#__codelineno-132-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="s1">&#39;Le père Goriot&#39;</span><span class="p">,</span><span class="s1">&#39;Balzac&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;01-sep-91&#39;</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>这本新小说在[ROMANS]视图中可见吗？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-133-1" name="__codelineno-133-1" href="#__codelineno-133-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<p><img src="images/10000000000000F3000000674913ADC8.png" width="194" height="82" style="width:5.138cm;height:2.178cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F3000000674913ADC8.png" /></p>
+<p>让我们在 [BIBLIO] 表中添加一些小说以外的内容：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-134-1" name="__codelineno-134-1" href="#__codelineno-134-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;Poèmes saturniens&#39;</span><span class="p">,</span><span class="s1">&#39;Verlaine&#39;</span><span class="p">,</span><span class="s1">&#39;Poème&#39;</span><span class="p">,</span><span class="s1">&#39;02-sep-92&#39;</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>让我们检查一下 [BIBLIO] 表：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-135-1" name="__codelineno-135-1" href="#__codelineno-135-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
+</code></pre></div>
+<p><img src="images/10000000000000B7000000AA3FE3A74D.png" width="146" height="136" style="width:3.868cm;height:3.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000AA3FE3A74D.png" /></p>
+<p>让我们查看 [ROMANS] 视图：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-136-1" name="__codelineno-136-1" href="#__codelineno-136-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ROMANS</span>
+</code></pre></div>
+<p><img src="images/10000000000000B900000068B5D0F04D.png" width="148" height="83" style="width:3.918cm;height:2.203cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B900000068B5D0F04D.png" /></p>
+<p>新增的书籍未出现在 [ROMANS] 视图中，因为它不满足 upper(genre)=&#x27;ROMAN&#x27; 的条件。</p>
+<h3 id="3122">3.12.2. <span style="color: #4f81bd">更新视图</span></h3>
+<p>您可以像更新表一样更新视图。视图数据所提取的所有源表都会受到此更新的影响。以下是一些示例：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-137-1" name="__codelineno-137-1" href="#__codelineno-137-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">biblio</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">titre</span><span class="p">,</span><span class="n">auteur</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">achat</span><span class="p">,</span><span class="n">prix</span><span class="p">,</span><span class="n">disponible</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="s1">&#39;Le Rouge et le Noir&#39;</span><span class="p">,</span><span class="s1">&#39;Stendhal&#39;</span><span class="p">,</span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="s1">&#39;03-oct-92&#39;</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-138-1" name="__codelineno-138-1" href="#__codelineno-138-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<p><img src="images/10000000000001140000007726D04466.png" width="221" height="95" style="width:5.838cm;height:2.517cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001140000007726D04466.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-139-1" name="__codelineno-139-1" href="#__codelineno-139-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000B6000000BCD1704424.png" width="145" height="150" style="width:3.849cm;height:3.976cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B6000000BCD1704424.png" /></p>
+<p>我们从 [ROMANS] 视图中删除一行：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-140-1" name="__codelineno-140-1" href="#__codelineno-140-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">ROMANS</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="o">=</span><span class="s1">&#39;Le Rouge et le Noir&#39;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-141-1" name="__codelineno-141-1" href="#__codelineno-141-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<p><img src="images/10000000000001150000006807F4CF79.png" width="221" height="83" style="width:5.858cm;height:2.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001150000006807F4CF79.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-142-1" name="__codelineno-142-1" href="#__codelineno-142-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">auteur</span><span class="p">,</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BIBLIO</span>
+</code></pre></div>
+<p><img src="images/10000000000000B7000000AA3506FC15.png" width="146" height="136" style="width:3.868cm;height:3.593cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B7000000AA3506FC15.png" /></p>
+<p>从 [NOVELS] 视图中删除的行也已从 [BIBLIO] 表中删除。现在，我们将提高 [NOVELS] 视图中书籍的价格：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-143-1" name="__codelineno-143-1" href="#__codelineno-143-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">update</span><span class="w"> </span><span class="n">romans</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">prix</span><span class="o">=</span><span class="n">prix</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">05</span>
+</code></pre></div>
+<p>让我们在 [NOVELS] 中查看：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-144-1" name="__codelineno-144-1" href="#__codelineno-144-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<p><img src="images/10000000000000E5000000671473CD89.png" width="183" height="82" style="width:4.849cm;height:2.18cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E5000000671473CD89.png" /></p>
+<p>这对 [BIBLIO] 表产生了什么影响？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-145-1" name="__codelineno-145-1" href="#__codelineno-145-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">auteur</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000E5000000AC516AA2EA.png" width="183" height="138" style="width:4.849cm;height:3.642cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E5000000AC516AA2EA.png" /></p>
+<p>[BIBLIO]表中小说的价格确实也上涨了5%。</p>
+<h3 id="3123">3.12.3. <span style="color: #4f81bd">删除视图</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-146-1" name="__codelineno-146-1" href="#__codelineno-146-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>DROP VIEW</b> 视图名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-147-1" name="__codelineno-147-1" href="#__codelineno-147-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">删除名为</div></td></tr></table>
+
+<p><strong>示例</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-148-1" name="__codelineno-148-1" href="#__codelineno-148-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">romans</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-149-1" name="__codelineno-149-1" href="#__codelineno-149-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">commit</span>
+</code></pre></div>
+<p>在数据库资源管理器中，您可以刷新视图（F5），会发现 [ROMANS] 视图已消失：</p>
+<p><img src="images/10000000000000FC000000662163F411.png" width="201" height="82" style="width:5.329cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000FC000000662163F411.png" /></p>
+<h2 id="313">3.13. <span style="color: #4f81bd">使用分组函数</span></h2>
+<p>有些函数并非对表中的每一行进行操作，而是对行组进行操作。这些本质上是统计函数，允许我们计算某列数据的均值、标准差等。 </p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-150-1" name="__codelineno-150-1" href="#__codelineno-150-1"></a>语法1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM</b><i> 表</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE</b><i> 条件 </i>]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-151-1" name="__codelineno-151-1" href="#__codelineno-151-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">计算表中所有满足<i>条件的</i>行上的统计函数 <i>fi</i>。</div></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-152-1" name="__codelineno-152-1" href="#__codelineno-152-1"></a>语法2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM</b><i> 表</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE</b><i> 条件 </i>]</div><div style="margin:0 0 0.5em 0">[ <b>GROUP BY</b><i> 表达式1</i>,<i> 表达式2</i>, ..]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-153-1" name="__codelineno-153-1" href="#__codelineno-153-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>GROUP BY</b> 关键字将表中的行划分为组。每个组包含那些表达式 <i>expr1、expr2</i>、... 具有相同值的行。</div><div style="margin:0 0 0.5em 0">示例：<b>GROUP BY genre</b> 会将同一类型的书籍分组。<b>GROUP BY author,genre</b> 子句则会将作者和类型相同的书籍分组。<b>WHERE 条件</b>首先会从表中移除不符合<b>该条件的</b>行。随后，通过 GROUP BY 子句形成各组。最后，针对每组行计算<i>聚合</i>函数。</div></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-154-1" name="__codelineno-154-1" href="#__codelineno-154-1"></a>语法3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>f1, f2, .., fn </i><b>FROM </b><i>table</i></div><div style="margin:0 0 0.5em 0">[ <b>WHERE</b><i> 条件 </i>]</div><div style="margin:0 0 0.5em 0">[ <b>GROUP BY</b><i> 表达式</i>]</div><div style="margin:0 0 0.5em 0">[<b> 具有 </b>group_condition]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-155-1" name="__codelineno-155-1" href="#__codelineno-155-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>HAVING</b> 子句用于过滤由 <b>GROUP BY</b> 子句形成的组。因此，它总是与 GROUP BY 子句的出现相关联。示例：<b>GROUP BY </b>genre <b>HAVING </b>genre!=&#x27;NOVEL&#x27;</div></td></tr></table>
+
+<p>可用的统计函数如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-156-1" name="__codelineno-156-1" href="#__codelineno-156-1"></a>AVG(表达式)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表达式的平均值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-157-1" name="__codelineno-157-1" href="#__codelineno-157-1"></a>COUNT(表达式)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表达式有值的行数</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-158-1" name="__codelineno-158-1" href="#__codelineno-158-1"></a>COUNT(*)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表中的总行数</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-159-1" name="__codelineno-159-1" href="#__codelineno-159-1"></a>MAX(表达式)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表达式的最大值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-160-1" name="__codelineno-160-1" href="#__codelineno-160-1"></a>MIN(表达式)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表达式的最小值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-161-1" name="__codelineno-161-1" href="#__codelineno-161-1"></a>SUM(表达式)
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表达式的求和</div></td></tr></table>
+
+<p><strong>示例</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-162-1" name="__codelineno-162-1" href="#__codelineno-162-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/100000000000002E000000AE83D5A88C.png" width="37" height="138" style="width:0.968cm;height:3.662cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000002E000000AE83D5A88C.png" /></p>
+<p>平均价格？ 最高价格？ 最低价格？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-163-1" name="__codelineno-163-1" href="#__codelineno-163-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">),</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">prix</span><span class="p">),</span><span class="w"> </span><span class="k">min</span><span class="w"> </span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/1000000000000082000000241D17350F.png" width="130" height="36" style="width:3.438cm;height:0.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000082000000241D17350F.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-164-1" name="__codelineno-164-1" href="#__codelineno-164-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="p">,</span><span class="n">genre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/10000000000000DE000000ACBA2B0169.png" width="178" height="138" style="width:4.699cm;height:3.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DE000000ACBA2B0169.png" /></p>
+<p>小说的平均价格是多少？最高价格是多少？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-165-1" name="__codelineno-165-1" href="#__codelineno-165-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">moyenne</span><span class="p">,</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">prix_maxi</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span>
+</code></pre></div>
+<p><img src="images/10000000000000B1000000235F15D93E.png" width="177" height="35" style="width:4.681cm;height:0.926cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000235F15D93E.png" /></p>
+<p>有多少本漫画书？ </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-166-1" name="__codelineno-166-1" href="#__codelineno-166-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;BD&#39;</span>
+</code></pre></div>
+<p><img src="images/100000000000004000000024B4388C66.png" width="64" height="36" style="width:1.692cm;height:0.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004000000024B4388C66.png" /></p>
+<p>价格低于100法郎的小说有多少本？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-167-1" name="__codelineno-167-1" href="#__codelineno-167-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">100</span>
+</code></pre></div>
+<p><img src="images/100000000000004000000024C3BC9853.png" width="64" height="36" style="width:1.692cm;height:0.953cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000004000000024C3BC9853.png" /></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-168-1" name="__codelineno-168-1" href="#__codelineno-168-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">genre</span><span class="p">,</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+</code></pre></div>
+<p><img src="images/1000000000000065000000AD0E5E6179.png" width="81" height="138" style="width:2.138cm;height:3.662cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000065000000AD0E5E6179.png" /></p>
+<p>同一类别的书籍数量及每本书的平均价格是多少？</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-169-1" name="__codelineno-169-1" href="#__codelineno-169-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">PRIX_MOYEN</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">NOMBRE</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
+</code></pre></div>
+<p><img src="images/10000000000000D000000047EE26254D.png" width="166" height="57" style="width:4.397cm;height:1.501cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D000000047EE26254D.png" /></p>
+<p>同样的问题，但仅针对非小说类书籍：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-170-1" name="__codelineno-170-1" href="#__codelineno-170-1"></a><span class="k">SQL</span><span class="o">&gt;</span>
+<a id="__codelineno-170-2" name="__codelineno-170-2" href="#__codelineno-170-2"></a><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">PRIX_MOYEN</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">NOMBRE</span>
+<a id="__codelineno-170-3" name="__codelineno-170-3" href="#__codelineno-170-3"></a><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+<a id="__codelineno-170-4" name="__codelineno-170-4" href="#__codelineno-170-4"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
+<a id="__codelineno-170-5" name="__codelineno-170-5" href="#__codelineno-170-5"></a><span class="k">having</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">GENRE</span><span class="p">)</span><span class="o">!=</span><span class="s1">&#39;ROMAN&#39;</span>
+</code></pre></div>
+<p><img src="images/10000000000000D20000003390ECF8A7.png" width="168" height="41" style="width:4.449cm;height:1.08cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D20000003390ECF8A7.png" /></p>
+<p>相同的查询，但仅针对150美元以下的书籍：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-171-1" name="__codelineno-171-1" href="#__codelineno-171-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span>
+<a id="__codelineno-171-2" name="__codelineno-171-2" href="#__codelineno-171-2"></a><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">PRIX_MOYEN</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">NOMBRE</span>
+<a id="__codelineno-171-3" name="__codelineno-171-3" href="#__codelineno-171-3"></a><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+<a id="__codelineno-171-4" name="__codelineno-171-4" href="#__codelineno-171-4"></a><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">150</span>
+<a id="__codelineno-171-5" name="__codelineno-171-5" href="#__codelineno-171-5"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
+<a id="__codelineno-171-6" name="__codelineno-171-6" href="#__codelineno-171-6"></a><span class="k">having</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">GENRE</span><span class="p">)</span><span class="o">!=</span><span class="s1">&#39;ROMAN&#39;</span>
+</code></pre></div>
+<p><img src="images/10000000000000D2000000332392533B.png" width="168" height="41" style="width:4.449cm;height:1.08cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D2000000332392533B.png" /></p>
+<p>相同的查询，但我们只保留平均书价 &gt;100 法郎的组</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-172-1" name="__codelineno-172-1" href="#__codelineno-172-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span>
+<a id="__codelineno-172-2" name="__codelineno-172-2" href="#__codelineno-172-2"></a><span class="k">select</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="w"> </span><span class="n">PRIX_MOYEN</span><span class="p">,</span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">NOMBRE</span>
+<a id="__codelineno-172-3" name="__codelineno-172-3" href="#__codelineno-172-3"></a><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
+<a id="__codelineno-172-4" name="__codelineno-172-4" href="#__codelineno-172-4"></a><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">genre</span><span class="p">)</span>
+<a id="__codelineno-172-5" name="__codelineno-172-5" href="#__codelineno-172-5"></a><span class="k">having</span><span class="w"> </span><span class="k">avg</span><span class="p">(</span><span class="n">prix</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">100</span>
+</code></pre></div>
+<p><img src="images/10000000000000D100000035717D5286.png" width="167" height="42" style="width:4.419cm;height:1.122cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D100000035717D5286.png" /></p>
+<p><a id="bibliosql"></a></p>
+<h2 id="314-sql">3.14. <span style="color: #4f81bd"><strong>为</strong> <strong>表创建SQL脚本</strong></span></h2>
+<p>SQL 是一种可用于多种数据库管理系统 (DBMS) 的标准语言。为了能够在不同的数据库管理系统之间切换，将数据库或其特定元素导出为 SQL 脚本非常有用。当在另一个数据库管理系统中重新运行该脚本时，即可重建脚本中导出的元素。</p>
+<p>在此，我们将导出 [BIBLIO] 表。请选择 [提取元数据] 选项：</p>
+<p><img src="images/1000000000000196000000F73E86A5B2.png" width="325" height="197" style="width:8.588cm;height:5.225cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000196000000F73E86A5B2.png" /></p>
+<p>请注意，您必须位于要从中导出元素的数据库中。该选项将启动一个向导：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000031A00000252071623F8.png" width="397" height="297" style="display:inline-block; margin:4px;width:10.504cm;height:7.858cm;" class="odt-zoomable" data-zoom-src="images/100000000000031A00000252071623F8.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-173-1" name="__codelineno-173-1" href="#__codelineno-173-1"></a>1
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">在何处生成 SQL 脚本：</div><ul>
+  <li>保存到文件（File）
+  </li>
+  <li>复制到剪贴板
+  </li>
+  <li>在“脚本执行”工具中
+  </li>
+</ul></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-174-1" name="__codelineno-174-1" href="#__codelineno-174-1"></a>2
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">若选中 [File] 选项，则为文件名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-175-1" name="__codelineno-175-1" href="#__codelineno-175-1"></a>3
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">导出内容</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-176-1" name="__codelineno-176-1" href="#__codelineno-176-1"></a>4
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">用于选择（-&gt;）或取消选择（&lt;-）要导出的对象的按钮</div></td></tr></table>
+
+<p>如果要导出整个数据库，需勾选上方的 [全部提取] 选项。我们只需导出 BIBLIO 表。为此，使用 [4] 选择 [BIBLIO] 表，并使用 [2] 指定文件：</p>
+<p><img src="images/10000000000001740000012381618292.png" width="297" height="233" style="width:7.869cm;height:6.156cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001740000012381618292.png" /></p>
+<p>如果到此为止，仅会导出 [BIBLIO] 表的结构。要导出其内容，我们需要使用 [数据表] 选项卡：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000024E000000ED016B1A34.png" width="295" height="118" style="display:inline-block; margin:4px;width:7.805cm;height:3.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000024E000000ED016B1A34.png" /></td></tr></table>
+
+<p>使用 [1] 选择 [BIBLIO] 表：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000020E000000F4EC2E2DF0.png" width="263" height="122" style="display:inline-block; margin:4px;width:6.959cm;height:3.228cm;" class="odt-zoomable" data-zoom-src="images/100000000000020E000000F4EC2E2DF0.png" /></td></tr></table>
+
+<p>使用 [2] 生成 SQL 脚本：</p>
+<p><img src="images/100000000000018D000000843AF1D0C0.png" width="317" height="106" style="width:8.398cm;height:2.792cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D000000843AF1D0C0.png" /></p>
+<p>我们接受提示。这样我们就可以在 [biblio.sql] 文件中查看生成的脚本：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-177-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-177-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-177-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-177-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-177-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-177-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-177-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-177-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-177-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-177-10">10</a></span>
+<span class="normal"><a href="#__codelineno-177-11">11</a></span>
+<span class="normal"><a href="#__codelineno-177-12">12</a></span>
+<span class="normal"><a href="#__codelineno-177-13">13</a></span>
+<span class="normal"><a href="#__codelineno-177-14">14</a></span>
+<span class="normal"><a href="#__codelineno-177-15">15</a></span>
+<span class="normal"><a href="#__codelineno-177-16">16</a></span>
+<span class="normal"><a href="#__codelineno-177-17">17</a></span>
+<span class="normal"><a href="#__codelineno-177-18">18</a></span>
+<span class="normal"><a href="#__codelineno-177-19">19</a></span>
+<span class="normal"><a href="#__codelineno-177-20">20</a></span>
+<span class="normal"><a href="#__codelineno-177-21">21</a></span>
+<span class="normal"><a href="#__codelineno-177-22">22</a></span>
+<span class="normal"><a href="#__codelineno-177-23">23</a></span>
+<span class="normal"><a href="#__codelineno-177-24">24</a></span>
+<span class="normal"><a href="#__codelineno-177-25">25</a></span>
+<span class="normal"><a href="#__codelineno-177-26">26</a></span>
+<span class="normal"><a href="#__codelineno-177-27">27</a></span>
+<span class="normal"><a href="#__codelineno-177-28">28</a></span>
+<span class="normal"><a href="#__codelineno-177-29">29</a></span>
+<span class="normal"><a href="#__codelineno-177-30">30</a></span>
+<span class="normal"><a href="#__codelineno-177-31">31</a></span>
+<span class="normal"><a href="#__codelineno-177-32">32</a></span>
+<span class="normal"><a href="#__codelineno-177-33">33</a></span>
+<span class="normal"><a href="#__codelineno-177-34">34</a></span>
+<span class="normal"><a href="#__codelineno-177-35">35</a></span>
+<span class="normal"><a href="#__codelineno-177-36">36</a></span>
+<span class="normal"><a href="#__codelineno-177-37">37</a></span>
+<span class="normal"><a href="#__codelineno-177-38">38</a></span>
+<span class="normal"><a href="#__codelineno-177-39">39</a></span>
+<span class="normal"><a href="#__codelineno-177-40">40</a></span>
+<span class="normal"><a href="#__codelineno-177-41">41</a></span>
+<span class="normal"><a href="#__codelineno-177-42">42</a></span>
+<span class="normal"><a href="#__codelineno-177-43">43</a></span>
+<span class="normal"><a href="#__codelineno-177-44">44</a></span>
+<span class="normal"><a href="#__codelineno-177-45">45</a></span>
+<span class="normal"><a href="#__codelineno-177-46">46</a></span>
+<span class="normal"><a href="#__codelineno-177-47">47</a></span>
+<span class="normal"><a href="#__codelineno-177-48">48</a></span>
+<span class="normal"><a href="#__codelineno-177-49">49</a></span>
+<span class="normal"><a href="#__codelineno-177-50">50</a></span>
+<span class="normal"><a href="#__codelineno-177-51">51</a></span>
+<span class="normal"><a href="#__codelineno-177-52">52</a></span>
+<span class="normal"><a href="#__codelineno-177-53">53</a></span>
+<span class="normal"><a href="#__codelineno-177-54">54</a></span>
+<span class="normal"><a href="#__codelineno-177-55">55</a></span>
+<span class="normal"><a href="#__codelineno-177-56">56</a></span>
+<span class="normal"><a href="#__codelineno-177-57">57</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-177-1" name="__codelineno-177-1"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-2" name="__codelineno-177-2"></a><span class="cm">/****         Generated by IBExpert 2004.06.17 22/01/2006 15:06:13         ****/</span>
+<a id="__codelineno-177-3" name="__codelineno-177-3"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-4" name="__codelineno-177-4"></a>
+<a id="__codelineno-177-5" name="__codelineno-177-5"></a><span class="k">SET</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">DIALECT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-177-6" name="__codelineno-177-6"></a>
+<a id="__codelineno-177-7" name="__codelineno-177-7"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="n">ISO8859_1</span><span class="p">;</span>
+<a id="__codelineno-177-8" name="__codelineno-177-8"></a>
+<a id="__codelineno-177-9" name="__codelineno-177-9"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="s1">&#39;D:\data\serge\travail\2005-2006\polys\sql\DBBIBLIO.GDB&#39;</span>
+<a id="__codelineno-177-10" name="__codelineno-177-10"></a><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;SYSDBA&#39;</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;masterkey&#39;</span>
+<a id="__codelineno-177-11" name="__codelineno-177-11"></a><span class="n">PAGE_SIZE</span><span class="w"> </span><span class="mi">16384</span>
+<a id="__codelineno-177-12" name="__codelineno-177-12"></a><span class="k">DEFAULT</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">ISO8859_1</span><span class="p">;</span>
+<a id="__codelineno-177-13" name="__codelineno-177-13"></a>
+<a id="__codelineno-177-14" name="__codelineno-177-14"></a>
+<a id="__codelineno-177-15" name="__codelineno-177-15"></a>
+<a id="__codelineno-177-16" name="__codelineno-177-16"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-17" name="__codelineno-177-17"></a><span class="cm">/****                                Tables                                ****/</span>
+<a id="__codelineno-177-18" name="__codelineno-177-18"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-19" name="__codelineno-177-19"></a>
+<a id="__codelineno-177-20" name="__codelineno-177-20"></a>
+<a id="__codelineno-177-21" name="__codelineno-177-21"></a>
+<a id="__codelineno-177-22" name="__codelineno-177-22"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-177-23" name="__codelineno-177-23"></a><span class="n">ID</span><span class="w">          </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-24" name="__codelineno-177-24"></a><span class="n">TITRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-25" name="__codelineno-177-25"></a><span class="n">AUTEUR</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-26" name="__codelineno-177-26"></a><span class="n">GENRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-27" name="__codelineno-177-27"></a><span class="n">ACHAT</span><span class="w">       </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-28" name="__codelineno-177-28"></a><span class="n">PRIX</span><span class="w">        </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-177-29" name="__codelineno-177-29"></a><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-177-30" name="__codelineno-177-30"></a><span class="p">);</span>
+<a id="__codelineno-177-31" name="__codelineno-177-31"></a>
+<a id="__codelineno-177-32" name="__codelineno-177-32"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Les fleurs du mal&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Baudelaire&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POèME&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1978-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-33" name="__codelineno-177-33"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tintin au Tibet&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hergé&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;BD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1990-11-10&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-34" name="__codelineno-177-34"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Du côté de chez Swann&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Proust&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ROMAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1978-12-08&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">220</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-35" name="__codelineno-177-35"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;La terre&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Zola&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ROMAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1990-06-12&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">55</span><span class="p">.</span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-36" name="__codelineno-177-36"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Madame Bovary&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Flaubert&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ROMAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1988-03-12&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">143</span><span class="p">.</span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-37" name="__codelineno-177-37"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Manhattan transfer&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Dos Passos&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;ROMAN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1987-08-30&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">352</span><span class="p">.</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-38" name="__codelineno-177-38"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Tintin en Amérique&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hergé&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;BD&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1991-05-15&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-39" name="__codelineno-177-39"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Le père Goriot&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Balzac&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Roman&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1991-09-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-40" name="__codelineno-177-40"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Poèmes saturniens&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Verlaine&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Poème&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1992-09-02&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
+<a id="__codelineno-177-41" name="__codelineno-177-41"></a>
+<a id="__codelineno-177-42" name="__codelineno-177-42"></a><span class="k">COMMIT</span><span class="w"> </span><span class="k">WORK</span><span class="p">;</span>
+<a id="__codelineno-177-43" name="__codelineno-177-43"></a>
+<a id="__codelineno-177-44" name="__codelineno-177-44"></a>
+<a id="__codelineno-177-45" name="__codelineno-177-45"></a>
+<a id="__codelineno-177-46" name="__codelineno-177-46"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-47" name="__codelineno-177-47"></a><span class="cm">/****                          Unique Constraints                          ****/</span>
+<a id="__codelineno-177-48" name="__codelineno-177-48"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-49" name="__codelineno-177-49"></a>
+<a id="__codelineno-177-50" name="__codelineno-177-50"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ1_BIBLIO</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">TITRE</span><span class="p">);</span>
+<a id="__codelineno-177-51" name="__codelineno-177-51"></a>
+<a id="__codelineno-177-52" name="__codelineno-177-52"></a>
+<a id="__codelineno-177-53" name="__codelineno-177-53"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-54" name="__codelineno-177-54"></a><span class="cm">/****                             Primary Keys                             ****/</span>
+<a id="__codelineno-177-55" name="__codelineno-177-55"></a><span class="cm">/******************************************************************************/</span>
+<a id="__codelineno-177-56" name="__codelineno-177-56"></a>
+<a id="__codelineno-177-57" name="__codelineno-177-57"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_BIBLIO</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 1 至 3 行是注释
+  </li>
+  <li>第 5 至 12 行是 Firebird 专用的 SQL 语句
+  </li>
+  <li>其余行是标准 SQL，在支持 BIBLIO 表中声明的数据类型的数据库管理系统中应可执行。
+  </li>
+</ul>
+
+<p>让我们在 Firebird 中运行此脚本，以创建一个名为 BIBLIO2 的表，该表将是 BIBLIO 表的克隆。为此，请使用 [脚本执行] (Ctrl-F12)：</p>
+<p><img src="images/10000000000001D10000006E8CFE7A3E.png" width="372" height="88" style="width:9.843cm;height:2.328cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000006E8CFE7A3E.png" /></p>
+<p>现在，让我们加载刚刚生成的 [biblio.sql] 脚本：</p>
+<p><img src="images/100000000000015D0000011A29C896F8.png" width="244" height="197" style="width:6.458cm;height:5.218cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015D0000011A29C896F8.png" /></p>
+<p>将其修改为仅保留表创建和行插入部分。该表重命名为 [BIBLIO2]：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-178-1" name="__codelineno-178-1" href="#__codelineno-178-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-178-2" name="__codelineno-178-2" href="#__codelineno-178-2"></a><span class="w">    </span><span class="n">ID</span><span class="w">          </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-3" name="__codelineno-178-3" href="#__codelineno-178-3"></a><span class="w">    </span><span class="n">TITRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-4" name="__codelineno-178-4" href="#__codelineno-178-4"></a><span class="w">    </span><span class="n">AUTEUR</span><span class="w">      </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-5" name="__codelineno-178-5" href="#__codelineno-178-5"></a><span class="w">    </span><span class="n">GENRE</span><span class="w">       </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-6" name="__codelineno-178-6" href="#__codelineno-178-6"></a><span class="w">    </span><span class="n">ACHAT</span><span class="w">       </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-7" name="__codelineno-178-7" href="#__codelineno-178-7"></a><span class="w">    </span><span class="n">PRIX</span><span class="w">        </span><span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-178-8" name="__codelineno-178-8" href="#__codelineno-178-8"></a><span class="w">    </span><span class="n">DISPONIBLE</span><span class="w">  </span><span class="nb">CHAR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-178-9" name="__codelineno-178-9" href="#__codelineno-178-9"></a><span class="p">);</span>
+<a id="__codelineno-178-10" name="__codelineno-178-10" href="#__codelineno-178-10"></a>
+<a id="__codelineno-178-11" name="__codelineno-178-11" href="#__codelineno-178-11"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">BIBLIO2</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEUR</span><span class="p">,</span><span class="w"> </span><span class="n">GENRE</span><span class="p">,</span><span class="w"> </span><span class="n">ACHAT</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="p">,</span><span class="w"> </span><span class="n">DISPONIBLE</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Les fleurs du mal&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Baudelaire&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;POèME&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;1978-01-01&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;n&#39;</span><span class="p">);</span>
+<a id="__codelineno-178-12" name="__codelineno-178-12" href="#__codelineno-178-12"></a><span class="p">...</span>
+<a id="__codelineno-178-13" name="__codelineno-178-13" href="#__codelineno-178-13"></a>
+<a id="__codelineno-178-14" name="__codelineno-178-14" href="#__codelineno-178-14"></a><span class="k">COMMIT</span><span class="w"> </span><span class="k">WORK</span><span class="p">;</span>
+</code></pre></div>
+<p>让我们运行这个脚本：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001D00000006717B8E512.png" width="371" height="82" style="display:inline-block; margin:4px;width:9.818cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000001D00000006717B8E512.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000D90000007FF646FC00.png" width="173" height="101" style="display:inline-block; margin:4px;width:4.588cm;height:2.685cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D90000007FF646FC00.png" /></td></tr></table>
+
+<p>我们可以在数据库浏览器中验证 [BIBLIO2] 表是否已创建，以及其结构和内容是否符合预期：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F90000009EDFC8F1BB.png" width="199" height="126" style="display:inline-block; margin:4px;width:5.269cm;height:3.343cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F90000009EDFC8F1BB.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001EF000000FC7FB4644F.png" width="396" height="202" style="display:inline-block; margin:4px;width:10.478cm;height:5.334cm;" class="odt-zoomable" data-zoom-src="images/10000000000001EF000000FC7FB4644F.png" /></td></tr></table>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享署名-非商业性使用-
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

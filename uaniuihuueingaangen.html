@@ -1,0 +1,1120 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="使用Firebird数据库管理系统（DBMS）学习SQL入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/uaniuihuueingaangen.html">
+      
+      
+        <link rel="prev" href="aoi-sql.html">
+      
+      
+        <link rel="next" href="nhuangehiong-firebird-e-odbc-uonghengu.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>7. 管理对数据的并发访问 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "使用Firebird数据库管理系统（DBMS）学习SQL入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#7" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-header__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            使用Firebird数据库管理系统（DBMS）学习SQL入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              7. 管理对数据的并发访问
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-nav__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    使用Firebird数据库管理系统（DBMS）学习SQL入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-iaoheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Firebird 教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-uanianie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. SQL 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-iaoahi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL 表达式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaohiianeuani.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 表之间的关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aoi-sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 高级 SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 管理对数据的并发访问
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="uaniuihuueingaangen.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 管理对数据的并发访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#71-firebird" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. 创建 Firebird 用户
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. 授予用户访问权限
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. 事务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3. 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#731" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.1. 隔离级别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#732" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.2. 快照模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3.2. 快照模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.2.1. 一致性读取原则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.2.2. 两个事务对同一数据库对象的并发修改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.2.3. 可重复读模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#733" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3.3. 已提交读模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="7">7. <span style="color: #365f91">管理对数据的并发访问</span></h1>
+<p>到目前为止，我们使用的都是仅由我们自己使用的表。实际上，在多用户机器上，数据通常会在不同用户之间共享。这引出了一个问题：谁可以使用某个表，以及以何种权限（查询、插入、删除、追加等）？</p>
+<h2 id="71-firebird">7.1. <span style="color: #4f81bd">创建 Firebird 用户</span></h2>
+<p>在使用 IB-Expert 时，我们是以 SYSDBA 用户身份登录的。该信息可在与 DBMS 建立的连接属性中找到：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015C0000019296125B1C.png" width="279" height="322" style="display:inline-block; margin:4px;width:7.37cm;height:8.514cm;" class="odt-zoomable" data-zoom-src="images/100000000000015C0000019296125B1C.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E9000000A7423AE975.png" width="186" height="134" style="display:inline-block; margin:4px;width:4.93cm;height:3.535cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E9000000A7423AE975.png" /></td></tr></table>
+
+<p>在右侧，我们可以看到登录用户为 [SYSDBA]。但我们看不到其密码 [masterkey]。[SYSDBA] 是 Firebird 中的特殊用户：它对 DBMS 管理的所有对象拥有完全权限。您可以在 IBExpert 中通过 [工具 / 用户管理] 选项或以下图标创建新用户：</p>
+<p><img src="images/100000000000008A0000005D9B410705.png" width="110" height="74" style="width:2.919cm;height:1.967cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000008A0000005D9B410705.png" /></p>
+<p>这将打开用户管理窗口：</p>
+<p><img src="images/1000000000000207000000E8DB4E2E45.png" width="415" height="186" style="width:10.991cm;height:4.912cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000207000000E8DB4E2E45.png" /></p>
+<p>点击 [添加] 按钮即可创建新用户：</p>
+<p><img src="images/10000000000000B700000085F8583085.png" width="146" height="106" style="width:3.87cm;height:2.813cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B700000085F8583085.png" /></p>
+<p>让我们创建以下用户：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>用户名</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>密码</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ADMIN1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">admin1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ADMIN2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">admin2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">SELECT1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">select1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">SELECT2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">select2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">更新1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">update1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">更新2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">更新2</div></td></tr></table>
+
+<h2 id="72">7.2. <span style="color: #4f81bd">授予用户访问权限</span></h2>
+<p>数据库归创建它的用户所有。到目前为止，我们创建的数据库都属于用户 [SYSDBA]。为了说明权限的概念，让我们在用户 [ADMIN1, admin1] 身份下创建（数据库 / 创建数据库）一个新数据库：</p>
+<p><img src="images/10000000000001F500000145D25B9213.png" width="401" height="260" style="width:10.599cm;height:6.876cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F500000145D25B9213.png" /></p>
+<p>并将其注册为别名 DBACCES (ADMIN1)。使用别名可让您使用不同的用户名连接到同一数据库，从而在 IBExpert 数据库资源管理器中更容易识别它们。 :</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001E5000000E133233BDB.png" width="388" height="180" style="display:inline-block; margin:4px;width:10.269cm;height:4.764cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E5000000E133233BDB.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000D5000000F56D3B7495.png" width="170" height="196" style="display:inline-block; margin:4px;width:4.51cm;height:5.188cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D5000000F56D3B7495.png" /></td></tr></table>
+
+<p>现在，让我们创建以下两个表：TA 和 TB：</p>
+<p><strong>表 TA</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000116000000341E315274.png" width="222" height="42" style="display:inline-block; margin:4px;width:5.881cm;height:1.101cm;" class="odt-zoomable" data-zoom-src="images/1000000000000116000000341E315274.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000057000000463EF052AB.png" width="70" height="56" style="display:inline-block; margin:4px;width:1.84cm;height:1.48cm;" class="odt-zoomable" data-zoom-src="images/1000000000000057000000463EF052AB.png" /></td></tr></table>
+
+<p><strong>表 TB</strong></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001170000003589A1C09D.png" width="223" height="42" style="display:inline-block; margin:4px;width:5.911cm;height:1.124cm;" class="odt-zoomable" data-zoom-src="images/10000000000001170000003589A1C09D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000006100000047EE0118EB.png" width="77" height="57" style="display:inline-block; margin:4px;width:2.05cm;height:1.501cm;" class="odt-zoomable" data-zoom-src="images/100000000000006100000047EE0118EB.png" /></td></tr></table>
+
+<p>这些表之间没有关联。</p>
+<p>使用 IB-Expert，让我们创建第二个连接到 [DBACCES] 数据库的连接，这次使用名称 [ADMIN2 / admin2]。为此，我们将使用 [数据库 / 注册数据库] 选项：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000130000000D5CA65170A.png" width="243" height="170" style="display:inline-block; margin:4px;width:6.429cm;height:4.505cm;" class="odt-zoomable" data-zoom-src="images/1000000000000130000000D5CA65170A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000D100000105AF51EAFC.png" width="167" height="209" style="display:inline-block; margin:4px;width:4.42cm;height:5.519cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D100000105AF51EAFC.png" /></td></tr></table>
+
+<p>选择 DBACCES(ADMIN2) 并打开 SQL 编辑器（Shift + F12）：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000028D000000C7A41D8116.png" width="327" height="100" style="display:inline-block; margin:4px;width:8.64cm;height:2.633cm;" class="odt-zoomable" data-zoom-src="images/100000000000028D000000C7A41D8116.png" /></td></tr></table>
+
+<p>我们将有机会使用多种连接访问同一个数据库 [DBACCES]。每种连接都会对应一个 SQL 编辑器。在 [1] 中，SQL 编辑器会显示所连接数据库的别名。请利用此信息判断您当前所在的 SQL 编辑器。这一点非常重要，因为我们将创建对数据库对象具有不同访问权限的连接。</p>
+<p>让我们查询 TA 表的内容：</p>
+<p><img src="images/10000000000000E700000069D967D2BE.png" width="185" height="84" style="width:4.89cm;height:2.223cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E700000069D967D2BE.png" /></p>
+<p>我们收到以下错误信息：</p>
+<p><img src="images/100000000000017A0000008A0E627BB5.png" width="302" height="110" style="width:7.999cm;height:2.919cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017A0000008A0E627BB5.png" /></p>
+<p>这是什么意思？[DBACCESS] 数据库是由用户 [ADMIN1] 创建的，因此归该用户所有。只有该用户才能访问此数据库中的各种对象。他们可以使用 SQL GRANT 命令向其他用户授予访问权限。该命令有多种语法，其中一种如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>GRANT</b><i> 权限1, 权限2, </i>...| <b>ALL PRIVILEGES</b></div><div style="margin:0 0 0.5em 0"><b>ON</b><i> 表/视图</i></div><div style="margin:0 0 0.5em 0"><b>授予 </b><i>user1, user2, ...</i>|<b> 公共</b></div><div style="margin:0 0 0.5em 0"><b>[ WITH GRANT OPTION ]</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">向特定用户或所有用户（<b>PUBLIC</b>）授予<i>表</i>或<i>视图</i>上的<i>特定</i>访问权限或所有权限（<b>ALL PRIVILEGES</b>）。<b>WITH GRANT OPTION</b> 子句允许被授予权限的用户进一步将这些权限授予其他用户。</div></td></tr></table>
+
+<p>可授予的权限包括以下内容：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>DELETE
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">在表或视图上使用 DELETE 命令的权限。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>INSERT
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">对表或视图使用 INSERT 命令的权限</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span>
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">对表或视图使用SELECT命令的权限</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">UPDATE</span>
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">对表或视图使用 UPDATE 命令的权限。可通过以下语法将此权限限制为特定列：GRANT update <b>(col1, col2, ...) ON table/view TO user1, user2, ...| PUBLIC [WITH GRANT OPTION]</b></div></td></tr></table>
+
+<p>让我们授予用户 [ADMIN2] 对表 TA 的 SELECT 权限。只有表所有者才能授予此权限，即本例中的 [ADMIN1]。切换到 DBACCES(ADMIN1) 连接并打开一个新的 SQL 编辑器（Shift+F12）：</p>
+<p><img src="images/10000000000000EB00000065E195ADF8.png" width="188" height="81" style="width:4.971cm;height:2.136cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000EB00000065E195ADF8.png" /></p>
+<p>从现在开始，我们将在这两个 SQL 编辑器之间切换。要在它们之间切换，您可以使用 [Windows] 菜单选项：</p>
+<p><img src="images/10000000000001240000010D5AB6B6A2.png" width="234" height="215" style="width:6.181cm;height:5.694cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001240000010D5AB6B6A2.png" /></p>
+<p>上图中，我们可以看到两个 SQL 编辑器，每个都与特定用户相关联。让我们回到 SQL 编辑器（ADMIN1），并输入以下命令：</p>
+<p><img src="images/100000000000014E0000006B06009F91.png" width="267" height="86" style="width:7.07cm;height:2.265cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000014E0000006B06009F91.png" /></p>
+<p>然后使用 COMMIT 进行提交：</p>
+<p><img src="images/10000000000000ED0000006BF244E376.png" width="190" height="86" style="width:5.02cm;height:2.267cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000ED0000006BF244E376.png" /></p>
+<p>现在，让我们切换到 ADMIN2 用户的编辑器，重新运行之前失败的 SELECT 语句：</p>
+<p><img src="images/10000000000000E700000069D967D2BE.png" width="185" height="84" style="width:4.89cm;height:2.223cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E700000069D967D2BE.png" /></p>
+<p>我们收到以下错误信息：</p>
+<p><img src="images/100000000000017A0000008A0E627BB5.png" width="302" height="110" style="width:7.999cm;height:2.919cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017A0000008A0E627BB5.png" /></p>
+<p>用户 [ADMIN2] 仍然没有查看 [TA] 表的权限。事实上，用户的权限似乎是在登录时加载的。因此，[ADMIN2] 仍将拥有与首次登录时相同的权限，即没有任何权限。让我们验证一下。请让用户 [ADMIN2] 注销：</p>
+<ul>
+  <li>选择其连接
+  </li>
+  <li>右键单击该连接并选择 [断开与数据库的连接] 选项，或按 (Shift + Ctrl + D) 执行注销操作
+  </li>
+</ul>
+
+<p><img src="images/1000000000000177000000EF979F69FC.png" width="300" height="191" style="width:7.939cm;height:5.061cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000177000000EF979F69FC.png" /></p>
+<p>如果弹出对话框提示执行 [COMMIT]，请执行 [COMMIT]。然后通过选择上方的 [重新连接] 选项重新连接用户 [ADMIN2]。完成后，返回 SQL 编辑器（ADMIN2）并重新运行之前失败的 SELECT 查询：</p>
+<p><img src="images/10000000000000E700000069D967D2BE.png" width="185" height="84" style="width:4.89cm;height:2.223cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E700000069D967D2BE.png" /></p>
+<p>随后将得到以下结果：</p>
+<p><img src="images/10000000000000E6000000AF1DF2E5CA.png" width="184" height="140" style="width:4.87cm;height:3.704cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E6000000AF1DF2E5CA.png" /></p>
+<p>这次，由于表所有者 ADMIN1 授予了 SELECT 权限，ADMIN2 可以查看 TA 表。通常，这是他们拥有的唯一权限。让我们验证一下。仍在 SQL 编辑器（ADMIN2）中：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC0000006D725B9F46.png" width="189" height="87" style="display:inline-block; margin:4px;width:5.001cm;height:2.311cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC0000006D725B9F46.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000017A00000086FF19D22D.png" width="302" height="107" style="display:inline-block; margin:4px;width:7.999cm;height:2.836cm;" class="odt-zoomable" data-zoom-src="images/100000000000017A00000086FF19D22D.png" /></td></tr></table>
+
+<p>右侧屏幕显示，ADMIN2 没有对 TA 表的 DELETE 权限。</p>
+<p>让我们回到 SQL 编辑器（ADMIN1），为用户 ADMIN2 授予更多权限。我们依次执行以下两条命令：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001D70000006B98218311.png" width="333" height="76" style="display:inline-block; margin:4px;width:8.804cm;height:2cm;" class="odt-zoomable" data-zoom-src="images/10000000000001D70000006B98218311.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB0000006B3C15F66D.png" width="235" height="107" style="display:inline-block; margin:4px;width:6.218cm;height:2.831cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB0000006B3C15F66D.png" /></td></tr></table>
+
+<ul>
+  <li>第一条命令授予用户 ADMIN2 对 [TA] 表的完全访问权限，并允许其向他人授予权限（WITH GRANT OPTION）
+  </li>
+  <li>第二条命令用于验证前一条命令
+  </li>
+</ul>
+
+<p>完成上述操作后，与之前一样，请刷新 [ADMIN2] 用户的连接（断开/重新连接），然后在 SQL 编辑器（ADMIN2）中输入以下命令：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB0000006DFFEDAC8B.png" width="188" height="87" style="display:inline-block; margin:4px;width:4.971cm;height:2.305cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB0000006DFFEDAC8B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC000000697AB655A5.png" width="189" height="84" style="display:inline-block; margin:4px;width:5.001cm;height:2.224cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC000000697AB655A5.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E9000000994A786CC8.png" width="186" height="122" style="display:inline-block; margin:4px;width:4.93cm;height:3.237cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E9000000994A786CC8.png" /></td></tr></table>
+
+<p>ADMIN2 已成功从 TA 表中删除了所有行。现在让我们使用 ROLLBACK 撤销此次删除操作：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EF0000006BC3984876.png" width="191" height="86" style="display:inline-block; margin:4px;width:5.061cm;height:2.267cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EF0000006BC3984876.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC000000697AB655A5.png" width="189" height="84" style="display:inline-block; margin:4px;width:5.001cm;height:2.224cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC000000697AB655A5.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000B610B6EC33.png" width="188" height="146" style="display:inline-block; margin:4px;width:4.971cm;height:3.851cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000B610B6EC33.png" /></td></tr></table>
+
+<p>现在让我们验证 ADMIN2 是否能够对 TA 表授予权限。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001110000006C56EF1671.png" width="218" height="86" style="display:inline-block; margin:4px;width:5.78cm;height:2.288cm;" class="odt-zoomable" data-zoom-src="images/10000000000001110000006C56EF1671.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA000000686EB7E2EF.png" width="187" height="83" style="display:inline-block; margin:4px;width:4.949cm;height:2.2cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA000000686EB7E2EF.png" /></td></tr></table>
+
+<p>现在，让我们以 [SELECT1 / select1] 的用户名（即之前创建的用户之一）连接到 [DBACCES] 数据库（数据库 / 注册数据库），然后双击 [数据库资源管理器] 中创建的链接：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000133000000D223426DC5.png" width="246" height="168" style="display:inline-block; margin:4px;width:6.5cm;height:4.447cm;" class="odt-zoomable" data-zoom-src="images/1000000000000133000000D223426DC5.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000D4000001192235BA8D.png" width="170" height="225" style="display:inline-block; margin:4px;width:4.491cm;height:5.953cm;" class="odt-zoomable" data-zoom-src="images/10000000000000D4000001192235BA8D.png" /></td></tr></table>
+
+<p>切换到此新连接，并打开一个新的 SQL 编辑器（Shift + F12），输入以下命令：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F100000069043A88B0.png" width="193" height="84" style="display:inline-block; margin:4px;width:5.099cm;height:2.223cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F100000069043A88B0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EF000000B4D9E3CC82.png" width="191" height="144" style="display:inline-block; margin:4px;width:5.061cm;height:3.812cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EF000000B4D9E3CC82.png" /></td></tr></table>
+
+<p>SELECT1 用户确实对 TA 表拥有 SELECT 权限。他们能否将此权限授予 SELECT2 用户？</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015B000000D4F9E9E162.png" width="277" height="169" style="display:inline-block; margin:4px;width:7.34cm;height:4.484cm;" class="odt-zoomable" data-zoom-src="images/100000000000015B000000D4F9E9E162.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>该操作失败是因为用户 SELECT1 未获得授予 SELECT 权限的权限，而该权限是其从用户 ADMIN2 处获得的。要实现这一点，用户 ADMIN2 必须在其 SQL GRANT 语句中使用 WITH GRANT OPTION 子句。授予权限的规则很简单：</p>
+<ul>
+  <li>用户只能授予其已获得的权限，而不能授予更多权限
+  </li>
+  <li>且只有当其获得的权限包含 [WITH GRANT OPTION] 特权时，才能将其授予他人
+  </li>
+</ul>
+
+<p>已授予的权限可通过 REVOKE 语句撤销：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>REVOKE</b><i> 权限1, 权限2, </i>...| <b>ALL PRIVILEGES</b></div><div style="margin:0 0 0.5em 0"><b>ON</b><i> 表/视图</i></div><div style="margin:0 0 0.5em 0"><b>FROM </b><i>user1, user2, ...</i>| <b>PUBLIC</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>操作
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">撤销用户（<i>user1, user2, ...）</i>或所有用户（<b>PUBLIC</b>）对<i>该</i>表或<i>视图</i>的访问权限（<i>privilege1</i>）或所有权限（<b>ALL PRIVILEGES</b>）。</div></td></tr></table>
+
+<p>让我们试一试。返回 ADMIN2 SQL 编辑器，撤销我们授予用户 SELECT1 的 SELECT 权限：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001540000006EF0F0061B.png" width="272" height="88" style="display:inline-block; margin:4px;width:7.2cm;height:2.328cm;" class="odt-zoomable" data-zoom-src="images/10000000000001540000006EF0F0061B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC0000006E2B2FA137.png" width="188" height="88" style="display:inline-block; margin:4px;width:4.971cm;height:2.318cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC0000006E2B2FA137.png" /></td></tr></table>
+
+<p>让我们先断开 SELECT1 用户的会话，然后重新连接。接着，在 SQL 编辑器（SELECT1）中，查询 TA 表的内容：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE0000006C5C307E03.png" width="190" height="86" style="display:inline-block; margin:4px;width:5.039cm;height:2.288cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE0000006C5C307E03.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000017B0000008878D48374.png" width="303" height="109" style="display:inline-block; margin:4px;width:8.02cm;height:2.879cm;" class="odt-zoomable" data-zoom-src="images/100000000000017B0000008878D48374.png" /></td></tr></table>
+
+<p>SELECT1 用户确实已失去对 TA 表的 SELECT 权限。请注意，授予此权限的是 ADMIN2，撤销权限的也是 ADMIN2。如果由 ADMIN1 尝试撤销该权限，虽然不会报错，但我们可以看到 SELECT1 用户仍保留了 SELECT 权限。</p>
+<p>可以通过以下语法将权限授予所有人：GRANT 权限 ON 表/视图 TO <strong>PUBLIC</strong>。让我们将 TA 表的 SELECT 权限授予所有人。我们可以使用 ADMIN1 或 ADMIN2 来执行此操作。我们将使用 ADMIN2：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000010B000000695980CEF6.png" width="214" height="84" style="display:inline-block; margin:4px;width:5.65cm;height:2.223cm;" class="odt-zoomable" data-zoom-src="images/100000000000010B000000695980CEF6.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E80000006F8F6016BF.png" width="186" height="89" style="display:inline-block; margin:4px;width:4.911cm;height:2.35cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E80000006F8F6016BF.png" /></td></tr></table>
+
+<p>现在，让我们使用用户 USER1 / user1 连接到数据库：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000012D000000D941A6E79B.png" width="241" height="174" style="display:inline-block; margin:4px;width:6.369cm;height:4.591cm;" class="odt-zoomable" data-zoom-src="images/100000000000012D000000D941A6E79B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000DA00000098652A73B2.png" width="174" height="122" style="display:inline-block; margin:4px;width:4.611cm;height:3.216cm;" class="odt-zoomable" data-zoom-src="images/10000000000000DA00000098652A73B2.png" /></td></tr></table>
+
+<p>使用 DBACCES(USER1) 连接后，打开一个新的 SQL 编辑器（Shift + F12），并输入以下命令：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E60000006B00BEEFFE.png" width="184" height="86" style="display:inline-block; margin:4px;width:4.87cm;height:2.267cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E60000006B00BEEFFE.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E1000000B78A269E42.png" width="180" height="146" style="display:inline-block; margin:4px;width:4.761cm;height:3.872cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E1000000B78A269E42.png" /></td></tr></table>
+
+<p>用户 USER1 确实对 TA 表拥有 SELECT 权限。</p>
+<h2 id="73">7.3. <span style="color: #4f81bd">事务</span></h2>
+<h3 id="731">7.3.1. <span style="color: #4f81bd">隔离级别</span></h3>
+<p>接下来，我们将从数据库对象的访问权限问题转向这些对象的并发访问问题。假设两位用户都拥有对某个数据库对象（例如一张表）的充分访问权限，并希望同时使用该对象。此时会发生什么情况？</p>
+<p>每个用户都在事务中进行操作。事务是一系列以“原子性”方式执行的 SQL 语句： </p>
+<ul>
+  <li>要么所有操作都成功
+  </li>
+  <li>要么其中一个失败，此时所有先前操作都会被回滚
+  </li>
+</ul>
+
+<p>最终，事务中的操作要么全部成功应用，要么全部未被应用。当用户能够控制事务时（如本文档所述），他们可以使用 COMMIT 语句提交事务，或使用 ROLLBACK 语句回滚事务。</p>
+<p>每个用户都在属于自己的事务中进行操作。不同用户之间通常存在四个隔离级别：</p>
+<ul>
+  <li>未提交读
+  </li>
+  <li>已提交读
+  </li>
+  <li><b>可重复读</b>
+  </li>
+  <li>可串行化
+  </li>
+</ul>
+
+<p><strong>未提交读</strong></p>
+<p>此隔离级别也被称为“脏读”。以下是一个在此模式下可能发生的情况示例：</p>
+<ol>
+  <li>用户 U1 在表 T 上启动事务
+  </li>
+  <li>用户 U2 在同一张表 T 上启动事务
+  </li>
+  <li>用户 U1 修改了表 T 中的行，但尚未提交
+  </li>
+  <li>用户 U2 “看到”了这些更改，并根据所见内容做出决策
+  </li>
+  <li>该用户使用 ROLLBACK 回滚其事务
+  </li>
+</ol>
+
+<p>我们可以看到，在第 4 步中，用户 U2 基于数据做出了决策，而这些数据后来被证明是错误的。</p>
+<p><strong>已提交读取</strong></p>
+<p>此隔离级别可避免上述问题。在此模式下，步骤4中的用户U2将无法“看到”用户U1对表T所做的更改。只有在U1提交事务后，U2才能看到这些更改。</p>
+<p>在此模式下（也称为“不可重复读”），可能会出现以下情况：</p>
+<ol>
+  <li>用户 U1 在表 T 上启动一个事务
+  </li>
+  <li>用户 U2 在同一张表 T 上启动事务
+  </li>
+  <li>用户 U2 执行 SELECT 语句，以获取满足特定条件的 T 表行中 C 列的平均值
+  </li>
+  <li>用户 U1 修改（UPDATE）表 T 中列 C 的某些值，并提交（COMMIT）更改
+  </li>
+  <li>用户 U2 重复执行步骤 3 中的 SELECT 语句。他们会发现，由于 U1 进行的修改，列 C 的平均值已经发生了变化。
+  </li>
+</ol>
+
+<p>现在，用户 U2 只能看到 U1 “提交”的更改。但在同一事务中，两个相同的操作（步骤 3 和 5）却产生了不同的结果。术语“不可重复读”指的就是这种情况。对于希望获得表 T 一致视图的人来说，这种情况会带来问题。</p>
+<p><strong>可重复读</strong></p>
+<p>在此隔离级别下，只要用户始终处于同一事务中，其数据库读取操作就保证得到相同的结果。用户操作的是一张快照，该快照永远不会反映其他事务所做的更改，即使这些更改已被提交。只有当用户自己通过 COMMIT 或 ROLLBACK 结束事务后，才会看到这些更改。</p>
+<p>然而，此隔离级别尚不完美。 在上述操作 3 之后，用户 U2 查询的行已被锁定。在操作 4 期间，用户 U1 将无法修改（UPDATE）这些行中 C 列的值。但他们可以插入新行（INSERT）。如果部分新增行满足操作 3 中测试的条件，由于这些新增行的存在，操作 5 得出的平均值将与操作 3 中的结果不同。</p>
+<p>为解决这一新问题，必须切换至“可串行化”隔离级别。</p>
+<p><strong>可串行化</strong></p>
+<p>在此隔离级别下，事务之间完全相互隔离。它确保同时执行的两个事务的结果，与它们依次执行时完全一致。为了实现这一结果，在操作 4 中，当用户 U1 尝试插入会改变其 SELECT 结果的行时，系统将阻止其操作。 系统将显示一条错误消息，告知用户无法执行插入操作。只有在用户 U2 提交其事务后，该操作才变得可行。</p>
+<p>并非所有数据库管理系统（DBMS）都支持这四种 SQL 事务隔离级别。Firebird 提供以下隔离级别：</p>
+<ul>
+  <li><b>快照（snapshot</b>）：默认隔离模式。对应于 SQL 标准的“可重复读”模式。
+  </li>
+  <li><b>已提交读</b>（<b>committed read</b>）：对应于 SQL 标准的“已提交读”模式
+  </li>
+</ul>
+
+<p>此隔离级别通过 SET TRANSACTION 命令设置：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>语法
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">SET TRANSACTION</div><div style="margin:0 0 0.5em 0">[<u>READ WRITE </u>| READ ONLY]</div><div style="margin:0 0 0.5em 0">[WAIT|NOWAIT]</div><div style="margin:0 0 0.5em 0">隔离级别[<u>快照 </u>| 已提交读]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>功能
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">带下划线的关键字为默认值</div><div style="margin:0 0 0.5em 0">读写：事务可以读写</div><div style="margin:0 0 0.5em 0">只读：事务仅可读取</div><div style="margin:0 0 0.5em 0">WAIT：若两个事务发生冲突，无法完成操作的事务将等待直至另一个事务提交。该事务将无法再执行 SQL 语句。</div><div style="margin:0 0 0.5em 0">NOWAIT：无法完成操作的事务不会被阻塞。它会收到一条错误消息，并可继续工作。</div><div style="margin:0 0 0.5em 0">隔离级别 [<u>快照 </u>| 已提交读]：隔离级别</div></td></tr></table>
+
+<p>让我们试一试。在 SQL 编辑器（ADMIN1）中，输入以下 SQL 命令：</p>
+<p><img src="images/10000000000001EC000000BDD870A5C8.png" width="393" height="151" style="width:10.41cm;height:3.999cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EC000000BDD870A5C8.png" /></p>
+<p>我们看到该操作未获授权。我们不知道原因…… </p>
+<p>IB-Expert 还支持通过另一种方式设置隔离模式。右键单击 DBACCES(ADMIN1) 连接，选择 [数据库注册信息] 选项：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016A0000015D0BF1E0D0.png" width="253" height="244" style="display:inline-block; margin:4px;width:6.699cm;height:6.458cm;" class="odt-zoomable" data-zoom-src="images/100000000000016A0000015D0BF1E0D0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000026F00000176ABC54C0F.png" width="374" height="224" style="display:inline-block; margin:4px;width:9.89cm;height:5.937cm;" class="odt-zoomable" data-zoom-src="images/100000000000026F00000176ABC54C0F.png" /></td></tr></table>
+
+<p>右侧屏幕显示了 [事务] 选项。这将允许我们设置事务隔离级别。在此，我们将它设置为 [快照]。对 DBACCES(ADMIN2) 连接也进行同样的设置。</p>
+<h3 id="732">7.3.2. <span style="color: #4f81bd">快照模式</span></h3>
+<p>让我们来探讨<em>一下快</em>照隔离级别，这是 Firebird 的默认隔离模式。当用户启动事务时，系统会生成数据库的快照。随后，用户便在此快照上进行操作。因此，每个用户都在各自的数据库快照上工作。如果用户对快照进行了修改，其他用户是无法看到的。只有当进行修改的用户通过 COMMIT 提交后，其他用户才能看到这些更改。</p>
+<p>可能存在两种情况：</p>
+<ul>
+  <li>一个用户正在读取表（SELECT），而另一个用户正在修改表（INSERT、UPDATE、DELETE）
+  </li>
+  <li>两个用户都想同时修改该表
+  </li>
+</ul>
+<h4 id="7321">7.3.2.1. <span style="color: #4f81bd">一致性读取原则</span></h4>
+<p>假设两个用户 <em>U1</em> 和 <em>U2</em> 正在操作同一张表 <em>TAB</em>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>      --------+----------+--------+-------+----------------------
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>              T1a       T2a      T1b     T2b 
+</code></pre></div>
+<p><em>用户</em> U1 的事务始于时间 <em>T1a</em>，终于时间 <em>T1b</em>。</p>
+<p>用户 <em>U2 的</em>事务始于时间 <em>T2a</em>，终于时间 <em>T2b</em>。</p>
+<p><em>U1</em> 基于在时间 <em>T1a</em> 截取的 <em>TAB</em> 快照进行操作。在 <em>T1a</em> 到 <em>T1b</em> 之间，他们修改了 <em>TAB</em>。其他用户在时间 <em>T1b</em> 之前无法访问这些修改，直到 <em>U1</em> 执行 <em>COMMIT</em> 操作。</p>
+<p><em>U2</em> 基于在时间 <em>T2a</em> 截取的 <em>TAB</em> 快照进行操作，该快照与 <em>U1</em> 使用的快照相同（前提是期间没有其他用户修改了原始数据）。他无法“看到”用户 <em>U1</em> 对 <em>TAB</em> 可能做出的更改。他只能在时间 <em>T1b</em> 时看到这些更改。</p>
+<p>让我们通过 [DBACCES] 数据库来说明这一点。我们将让两个用户 [ADMIN1] 和 [ADMIN2] 同时工作。切换到 DBACCES(ADMIN1) 连接，并在 ADMIN1 的 SQL 编辑器中执行以下操作：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014C000000669F52CCE0.png" width="232" height="71" style="display:inline-block; margin:4px;width:6.151cm;height:1.889cm;" class="odt-zoomable" data-zoom-src="images/100000000000014C000000669F52CCE0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC0000006A96730CB3.png" width="189" height="85" style="display:inline-block; margin:4px;width:5.001cm;height:2.245cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC0000006A96730CB3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000B392414DC8.png" width="188" height="143" style="display:inline-block; margin:4px;width:4.971cm;height:3.785cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000B392414DC8.png" /></td></tr></table>
+
+<p>ADMIN1 已修改了表 TA 的第 2 行，但尚未提交（COMMIT）该操作。随后，用户 ADMIN2 对表 TA 执行了一条 SELECT 语句（我们切换到 ADMIN2 的 SQL 编辑器）。此时，我们处于示例中的时间点 T2a 之前。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006EEB11B30B.png" width="186" height="88" style="display:inline-block; margin:4px;width:4.93cm;height:2.327cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006EEB11B30B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E9000000B8DBBAC628.png" width="186" height="147" style="display:inline-block; margin:4px;width:4.93cm;height:3.893cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E9000000B8DBBAC628.png" /></td></tr></table>
+
+<p>回到 ADMIN1 的 SQL 编辑器，该编辑器将提交更新：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E80000006CA52AA273.png" width="186" height="86" style="display:inline-block; margin:4px;width:4.911cm;height:2.286cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E80000006CA52AA273.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>回到 ADMIN2 的 SQL 编辑器，重新运行 SELECT 语句：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006EEB11B30B.png" width="186" height="88" style="display:inline-block; margin:4px;width:4.93cm;height:2.327cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006EEB11B30B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E8000000B64E181B3C.png" width="186" height="146" style="display:inline-block; margin:4px;width:4.93cm;height:3.868cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E8000000B64E181B3C.png" /></td></tr></table>
+
+<p>ADMIN2 可以看到 ADMIN1 所做的更改。在快照模式下，一个事务在其他事务完成之前，是看不到这些事务所做的更改的。</p>
+<h4 id="7322">7.3.2.2. <span style="color: #4f81bd">两个事务对同一数据库对象的并发修改</span></h4>
+<p>让我们以会计为例：<em>U1</em> 和 <em>U2</em> 正在处理账目。<em>U1 从账户 X</em> 借记金额 S，并向<em>账户 Y</em> 贷记相同金额。他将分几个步骤完成此操作： </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>      --------+----------+--------+-------+----------------------
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>              T1a       T1b     T1c      T1d 
+</code></pre></div>
+<p><em>用户 U1</em> 在时间 T1a 开始事务，在时间 T1b <em>从账户 comptex</em> 扣款，在时间 T1c <em>向账户 comptey</em> 入账，并在时间 T1d 提交这两项操作。此外，假设<em>用户 U2</em> 也想执行同样的操作，其事务在时间 <em>T2a</em> 开始，并按照以下方案在时间 T2d 结束：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>      --------+----------+----+----+-------+------+-----+-------+---------
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>              T1a       T1b  T2a   T1c     T2b   T1d   T2c    T2d
+</code></pre></div>
+<p>在时间<em>点</em> T2，为 <em>U2</em> 生成账户表的快照。根据<em>快照</em>原则，该快照是一致的。由于 U1 尚未提交其事务，因此 U2 看到的是 <em>comptex</em> 和 <em>comptey</em> 账户的初始状态。</p>
+<p>假设 <em>comptex</em> 的初始余额为 1,000 欧元，且用户 U1 和 U2 都希望从该账户中扣款 100 欧元。 </p>
+<ul>
+  <li>在时间点 T1b，U1 从<i> comptex</i> 账户中扣款 100 欧元，使其余额变为 90 欧元。该交易要到时间点 T1d 才会提交。
+  </li>
+  <li>在时间 T2b，U2 看到 <i>comptex </i>的余额为 1,000 欧元（一致性读取原则），并从该账户中扣除 100 欧元，使其余额变为 90 欧元。
+  </li>
+  <li>最终，在时间点 T2d，当所有操作均通过验证后，<i>comptex </i>的余额将为 90 欧元，而非预期的 80 欧元。
+  </li>
+</ul>
+
+<p>解决此问题的方案是，在 U1 完成其交易之前，禁止 U2 修改 <em>comptex</em>。因此，U2 将被阻塞直至时间 T1d。快照模式提供了这一机制。</p>
+<p>让我们通过 DBACCES 数据库来说明这一点。ADMIN1 在其 SQL 编辑器中启动了一个事务（ADMIN1）：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E70000006CE91A4566.png" width="163" height="76" style="display:inline-block; margin:4px;width:4.302cm;height:2.011cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E70000006CE91A4566.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000F20000006C08A62D8A.png" width="163" height="73" style="display:inline-block; margin:4px;width:4.3cm;height:1.919cm;" class="odt-zoomable" data-zoom-src="images/10000000000000F20000006C08A62D8A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB0000006800CD4906.png" width="163" height="72" style="display:inline-block; margin:4px;width:4.302cm;height:1.903cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB0000006800CD4906.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA000000B05234A68B.png" width="163" height="122" style="display:inline-block; margin:4px;width:4.307cm;height:3.239cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA000000B05234A68B.png" /></td></tr></table>
+
+<p>我们首先执行了COMMIT，以确保正在开始一个新事务。然后删除了第4行。该事务尚未提交。</p>
+<p>随后，ADMIN2 在其 SQL 编辑器中启动了一个事务（ADMIN2）：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006C61230648.png" width="163" height="75" style="display:inline-block; margin:4px;width:4.304cm;height:1.995cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006C61230648.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000157000000F26D0BA296.png" width="274" height="194" style="display:inline-block; margin:4px;width:7.26cm;height:5.122cm;" class="odt-zoomable" data-zoom-src="images/1000000000000157000000F26D0BA296.png" /></td></tr></table>
+
+<p>右侧屏幕显示，ADMIN2 试图修改第 4 行。系统提示其无法进行此操作，因为其他人已修改该行但尚未提交更改。</p>
+<p>让我们回到 SQL 编辑器（ADMIN1）执行 COMMIT 操作：</p>
+<p><img src="images/10000000000000EA00000068970DFC77.png" width="234" height="104" style="width:6.191cm;height:2.752cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000EA00000068970DFC77.png" /></p>
+<p>让我们回到 SQL 编辑器（ADMIN2）再次运行 UPDATE 命令：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014A000000664351B1ED.png" width="264" height="82" style="display:inline-block; margin:4px;width:6.99cm;height:2.161cm;" class="odt-zoomable" data-zoom-src="images/100000000000014A000000664351B1ED.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED0000006EB553DEF2.png" width="190" height="88" style="display:inline-block; margin:4px;width:5.02cm;height:2.33cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED0000006EB553DEF2.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000B32400DCFA.png" width="188" height="143" style="display:inline-block; margin:4px;width:4.971cm;height:3.785cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000B32400DCFA.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE0000006FAFD9E9F9.png" width="190" height="89" style="display:inline-block; margin:4px;width:5.039cm;height:2.35cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE0000006FAFD9E9F9.png" /></td></tr></table>
+
+<p>尽管第 4 行已不存在，但 UPDATE 操作仍成功完成，如下面的 SELECT 语句所示。正是在这一刻，ADMIN2 发现该行已不存在。</p>
+<h4 id="7323">7.3.2.3. <span style="color: #4f81bd">可重复读模式</span></h4>
+<p>现在让我们说明“可重复读”模式。该隔离级别由“快照”模式提供。它确保事务在读取数据库时始终获得相同的结果。</p>
+<p>首先，我们使用 ADMIN2 的 SQL 编辑器进行操作：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E900000067526D557E.png" width="186" height="82" style="display:inline-block; margin:4px;width:4.93cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E900000067526D557E.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA0000006DC025DF7D.png" width="187" height="87" style="display:inline-block; margin:4px;width:4.949cm;height:2.305cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA0000006DC025DF7D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC000000BB05C5D76F.png" width="219" height="174" style="display:inline-block; margin:4px;width:5.805cm;height:4.6cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC000000BB05C5D76F.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014B000000671BAD6022.png" width="232" height="72" style="display:inline-block; margin:4px;width:6.13cm;height:1.909cm;" class="odt-zoomable" data-zoom-src="images/100000000000014B000000671BAD6022.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E80000009668FC9466.png" width="163" height="105" style="display:inline-block; margin:4px;width:4.3cm;height:2.78cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E80000009668FC9466.png" /></td></tr></table>
+
+<p>现在让我们切换到 ADMIN1 的 SQL 编辑器：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE00000066E59EAE50.png" width="219" height="94" style="display:inline-block; margin:4px;width:5.805cm;height:2.489cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE00000066E59EAE50.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA0000006C1936C0FE.png" width="187" height="86" style="display:inline-block; margin:4px;width:4.949cm;height:2.284cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA0000006C1936C0FE.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000BB8EB368DF.png" width="188" height="150" style="display:inline-block; margin:4px;width:4.971cm;height:3.956cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000BB8EB368DF.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016E0000006C8F3727E0.png" width="219" height="65" style="display:inline-block; margin:4px;width:5.805cm;height:1.713cm;" class="odt-zoomable" data-zoom-src="images/100000000000016E0000006C8F3727E0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000017F0000006A898160FA.png" width="230" height="64" style="display:inline-block; margin:4px;width:6.08cm;height:1.683cm;" class="odt-zoomable" data-zoom-src="images/100000000000017F0000006A898160FA.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE00000068A72607CC.png" width="143" height="62" style="display:inline-block; margin:4px;width:3.78cm;height:1.653cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE00000068A72607CC.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED000000D5184992A2.png" width="190" height="171" style="display:inline-block; margin:4px;width:5.02cm;height:4.512cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000D5184992A2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006B744A75D9.png" width="186" height="86" style="display:inline-block; margin:4px;width:4.93cm;height:2.265cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006B744A75D9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>用户 ADMIN1 添加了两行数据并提交了事务。现在让我们回到 SQL 编辑器（ADMIN2），重新运行 SELECT SUM 语句：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014A00000063188CC515.png" width="264" height="79" style="display:inline-block; margin:4px;width:6.99cm;height:2.097cm;" class="odt-zoomable" data-zoom-src="images/100000000000014A00000063188CC515.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE00000096E214CEAF.png" width="190" height="120" style="display:inline-block; margin:4px;width:5.039cm;height:3.177cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE00000096E214CEAF.png" /></td></tr></table>
+
+<p>我们可以看到，尽管这些行已通过 COMMIT 提交，但 ADMIN2 并未看到 ADMIN1 添加的行。SELECT SUM 返回的结果与添加行之前相同。这就是可重复读（Repeatable Read）的原则。</p>
+<p>现在，仍在 SQL 编辑器（ADMIN2）中，让我们使用 COMMIT 提交事务，然后再次运行 SELECT SUM：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB0000006FF3AD4208.png" width="188" height="89" style="display:inline-block; margin:4px;width:4.971cm;height:2.348cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB0000006FF3AD4208.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014B00000068F5D7B36D.png" width="265" height="83" style="display:inline-block; margin:4px;width:7.01cm;height:2.203cm;" class="odt-zoomable" data-zoom-src="images/100000000000014B00000068F5D7B36D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB00000093506B2531.png" width="193" height="121" style="display:inline-block; margin:4px;width:5.108cm;height:3.194cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB00000093506B2531.png" /></td></tr></table>
+
+<p>现在，ADMIN1 添加的行已被计入。</p>
+<h3 id="733">7.3.3. <span style="color: #4f81bd">已提交读模式</span></h3>
+<p>现在让我们演示一下“已提交读”模式。该隔离级别<em>与快照隔离</em>级别类似<em>，</em>但在“可重复读”方面有所不同。</p>
+<p>首先，我们将两个连接的事务隔离级别进行更改。 </p>
+<ul>
+  <li>断开两个用户 ADMIN1 和 ADMIN2 的连接
+  </li>
+  <li>我们将它们事务的隔离级别进行修改
+  </li>
+</ul>
+
+<p><img src="images/1000000000000281000001816F7FD83A.png" width="513" height="308" style="width:13.57cm;height:8.149cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000281000001816F7FD83A.png" /></p>
+<ul>
+  <li>重新连接用户 ADMIN1 和 ADMIN2
+  </li>
+</ul>
+
+<p>现在，我们将重新审视之前用于说明“可重复读”的示例，以展示其行为已发生变化。首先，让我们使用 ADMIN2 的 SQL 编辑器进行操作：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E900000067526D557E.png" width="186" height="82" style="display:inline-block; margin:4px;width:4.93cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E900000067526D557E.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA0000006DC025DF7D.png" width="187" height="87" style="display:inline-block; margin:4px;width:4.949cm;height:2.305cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA0000006DC025DF7D.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC000000BB05C5D76F.png" width="219" height="174" style="display:inline-block; margin:4px;width:5.805cm;height:4.6cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC000000BB05C5D76F.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014B000000671BAD6022.png" width="232" height="72" style="display:inline-block; margin:4px;width:6.13cm;height:1.909cm;" class="odt-zoomable" data-zoom-src="images/100000000000014B000000671BAD6022.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E80000009668FC9466.png" width="163" height="105" style="display:inline-block; margin:4px;width:4.3cm;height:2.78cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E80000009668FC9466.png" /></td></tr></table>
+
+<p>现在让我们切换到 ADMIN1 的 SQL 编辑器：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE00000066E59EAE50.png" width="219" height="94" style="display:inline-block; margin:4px;width:5.805cm;height:2.489cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE00000066E59EAE50.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EA0000006C1936C0FE.png" width="187" height="86" style="display:inline-block; margin:4px;width:4.949cm;height:2.284cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EA0000006C1936C0FE.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EB000000BB8EB368DF.png" width="188" height="150" style="display:inline-block; margin:4px;width:4.971cm;height:3.956cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EB000000BB8EB368DF.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016E0000006C8F3727E0.png" width="219" height="65" style="display:inline-block; margin:4px;width:5.805cm;height:1.713cm;" class="odt-zoomable" data-zoom-src="images/100000000000016E0000006C8F3727E0.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000017F0000006A898160FA.png" width="230" height="64" style="display:inline-block; margin:4px;width:6.08cm;height:1.683cm;" class="odt-zoomable" data-zoom-src="images/100000000000017F0000006A898160FA.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EE00000068A72607CC.png" width="143" height="62" style="display:inline-block; margin:4px;width:3.78cm;height:1.653cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EE00000068A72607CC.png" /></td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000ED000000D5184992A2.png" width="190" height="171" style="display:inline-block; margin:4px;width:5.02cm;height:4.512cm;" class="odt-zoomable" data-zoom-src="images/10000000000000ED000000D5184992A2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000E90000006B744A75D9.png" width="186" height="86" style="display:inline-block; margin:4px;width:4.93cm;height:2.265cm;" class="odt-zoomable" data-zoom-src="images/10000000000000E90000006B744A75D9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+
+<p>用户 ADMIN1 已添加了两行数据并提交了事务。现在让我们回到 SQL 编辑器（ADMIN2）中，重新运行 SELECT SUM 语句：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014A00000063188CC515.png" width="264" height="79" style="display:inline-block; margin:4px;width:6.99cm;height:2.097cm;" class="odt-zoomable" data-zoom-src="images/100000000000014A00000063188CC515.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000EC0000009308CA65D3.png" width="189" height="118" style="display:inline-block; margin:4px;width:5.001cm;height:3.115cm;" class="odt-zoomable" data-zoom-src="images/10000000000000EC0000009308CA65D3.png" /></td></tr></table>
+
+<p>SELECT SUM 查询返回的结果与 ADMIN1 插入数据之前的结果不同。这就是<strong>快照</strong>模式与<strong>读已</strong>提交模式之间的区别。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享署名-非商业性使用-
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

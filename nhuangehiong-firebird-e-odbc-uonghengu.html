@@ -1,0 +1,880 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="使用Firebird数据库管理系统（DBMS）学习SQL入门">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/nhuangehiong-firebird-e-odbc-uonghengu.html">
+      
+      
+        <link rel="prev" href="uaniuihuueingaangen.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>8. 安装和使用 [Firebird] 的 ODBC 驱动程序 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "使用Firebird数据库管理系统（DBMS）学习SQL入门";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-firebird-odbc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-header__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            使用Firebird数据库管理系统（DBMS）学习SQL入门
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="使用Firebird数据库管理系统（DBMS）学习SQL入门" class="md-nav__button md-logo" aria-label="使用Firebird数据库管理系统（DBMS）学习SQL入门" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    使用Firebird数据库管理系统（DBMS）学习SQL入门
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-sql-firebird-janv-2006" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="firebird-iaoheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Firebird 教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-uanianie.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. SQL 语言简介
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql-iaoahi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SQL 表达式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaohiianeuani.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 表之间的关系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aoi-sql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 高级 SQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 管理对数据的并发访问
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. 安装驱动程序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82-odbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. 创建 ODBC 数据源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83-odbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. 测试 ODBC 数据源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84-microsoft-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Microsoft Query
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="8-firebird-odbc">8. <span style="color: #365f91">安装和使用 [Firebird] 的 ODBC 驱动程序</span></h1>
+<h2 id="81">8.1. <span style="color: #4f81bd">安装驱动程序</span></h2>
+<p>市面上有许多数据库。为了在 MS Windows 环境下标准化数据库访问，微软开发了一个名为 ODBC（开放数据库连接）的接口。该接口层将各数据库的具体特性隐藏在标准接口之后。目前有许多适用于 MS Windows 的 ODBC 驱动程序，可简化数据库访问。例如，以下是安装在 Windows XP 计算机上的一些 ODBC 驱动程序： </p>
+<p><img src="images/10000000000001D10000015EA41092C7.png" width="372" height="280" style="width:9.841cm;height:7.407cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000015EA41092C7.png" /></p>
+<p>依赖这些驱动程序的应用程序无需重写代码即可使用任何数据库。ODBC 驱动程序充当应用程序与数据库管理系统 (DBMS) 之间的中介。应用程序 &lt;-&gt; ODBC 驱动程序的接口是标准化的。如果您更换了数据库管理系统，只需安装新数据库管理系统的 ODBC 驱动程序，应用程序即可保持不变。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000489000000C4DC1F7C74.png" width="581" height="98" style="display:inline-block; margin:4px;width:15.36cm;height:2.593cm;" class="odt-zoomable" data-zoom-src="images/1000000000000489000000C4DC1F7C74.png" /></td></tr></table>
+
+<p>[Firebird] 下载页面（<a href="#firebird"><u><span style="color: #0563c1">第 2.1</span></u></a> 节）上的 [firebird-odbc-provider] 链接提供了 ODBC 驱动程序的下载入口。安装完成后，该驱动程序将显示在已安装的 ODBC 驱动程序列表中。</p>
+<h2 id="82-odbc">8.2. <span style="color: #4f81bd">创建 ODBC 数据源</span></h2>
+<ul>
+  <li>启动工具 [开始 -&gt; 设置 -&gt; 配置工具 -&gt; 管理工具 -&gt; ODBC 数据源]：
+  </li>
+</ul>
+
+<p><img src="images/10000000000002300000004F5D5AC060.png" width="392" height="55" style="width:10.363cm;height:1.462cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002300000004F5D5AC060.png" /></p>
+<ul>
+  <li>随后将显示以下窗口：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001C9000000A624EE6794.png" width="320" height="116" style="width:8.456cm;height:3.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C9000000A624EE6794.png" /></p>
+<ul>
+  <li>点击 [添加] 以添加一个新的系统数据源（位于 [系统 DSN] 窗格中），我们将将其与<a href="#dbarticles"><u><span style="color: #0563c1">第 2.3</span></u></a> 节中创建的 Firebird 数据库 [dbarticles] 关联：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001C0000000908EA3F24F.png" width="314" height="101" style="width:8.299cm;height:2.669cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C0000000908EA3F24F.png" /></p>
+<ul>
+  <li>首先，我们需要指定要使用的 ODBC 驱动程序。在上图中，我们选择 Firebird 的驱动程序，然后点击 [完成]。随后 Firebird ODBC 驱动程序向导将接管操作：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001680000015EDB63A521.png" width="252" height="245" style="width:6.664cm;height:6.479cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001680000015EDB63A521.png" /></p>
+<ul>
+  <li>我们填写各个字段：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000166000000EB91DB777F.png" width="250" height="164" style="width:6.623cm;height:4.348cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000166000000EB91DB777F.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DSN [demo-odbc-firebird]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ODBC 源的 DSN 名称——可以是任意名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>数据库 [D:\..\DBARTICLES.GDB]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">要使用的 Firebird 数据库名称——使用 [浏览] 选择相应的 .gbd 文件。此处，我们使用第<a href="#dbarticles"><u><span style="color: #0563c1"> 8</span></u></a> 页创建的 [dbarticles] 数据库。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>数据库账户 [SYSDBA]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">用于连接数据库的用户名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>密码 [masterkey]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">与该用户名关联的密码</div></td></tr></table>
+
+<p>[测试连接] 按钮可让您验证所输入信息的有效性。使用该按钮前，请先启动 [Firebird] 数据库管理系统：</p>
+<p><img src="images/100000000000010E000000715EB8CF57.png" width="189" height="79" style="width:4.997cm;height:2.09cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010E000000715EB8CF57.png" /></p>
+<ul>
+  <li>根据需要多次点击 [确定] 以确认 ODBC 向导
+  </li>
+</ul>
+<p><a id="testersourceodbc"></a></p>
+<h2 id="83-odbc">8.3. <span style="color: #4f81bd">测试 ODBC 数据源</span></h2>
+<p>有多种方法可以验证 ODBC 数据源是否正常工作。在此，我们将使用 Excel：</p>
+<p><img src="images/10000000000002FE0000011C4766F8B1.png" width="536" height="199" style="width:14.183cm;height:5.258cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002FE0000011C4766F8B1.png" /></p>
+<ul>
+  <li>使用上方的 [数据 -&gt; 外部数据 -&gt; 创建查询] 选项。这将打开数据源定义向导的第一个窗口。[数据库] 窗格中列出了当前计算机上已定义的 ODBC 数据源：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001C40000008759047E8D.png" width="362" height="108" style="width:9.569cm;height:2.858cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C40000008759047E8D.png" /></p>
+<ul>
+  <li>选择我们刚刚创建的 ODBC 数据源 [odbc-firebird-articles]，然后单击 [确定] 进入下一步：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001A8000000BBB5B02067.png" width="296" height="131" style="width:7.844cm;height:3.461cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A8000000BBB5B02067.png" /></p>
+<ul>
+  <li>此窗口列出了 ODBC 数据源中可用的表和列。我们将选择整个表：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001A1000000A4D05B6723.png" width="292" height="115" style="width:7.717cm;height:3.036cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A1000000A4D05B6723.png" /></p>
+<ul>
+  <li>点击 [下一步] 进入下一步：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001A9000000A390F267F9.png" width="297" height="114" style="width:7.863cm;height:3.016cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A9000000A390F267F9.png" /></p>
+<ul>
+  <li>此步骤允许我们筛选数据。在此，我们不进行任何筛选，直接进入下一步：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001760000008A11A9838F.png" width="262" height="97" style="width:6.925cm;height:2.556cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001760000008A11A9838F.png" /></p>
+<ul>
+  <li>此步骤允许我们对数据进行排序。我们不会进行排序，而是直接进入下一步：
+  </li>
+</ul>
+
+<p><img src="images/10000000000001F10000009660A83120.png" width="347" height="105" style="width:9.193cm;height:2.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F10000009660A83120.png" /></p>
+<ul>
+  <li>最后一步询问我们希望对数据进行什么操作。这里，我们将数据导出到 Excel：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000174000000A73256E8B1.png" width="260" height="117" style="width:6.888cm;height:3.092cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000174000000A73256E8B1.png" /></p>
+<ul>
+  <li>此时，Excel 会询问我们希望将检索到的数据放置在何处。我们将数据放置在当前工作表的 A1 单元格开始的位置。随后，数据便会导入到 Excel 工作表中：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000163000000569C910E63.png" width="284" height="69" style="width:7.507cm;height:1.819cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000163000000569C910E63.png" /></p>
+<p>还有其他方法可以测试 ODBC 数据源的有效性。例如，您可以使用 [<a href="http://www.openoffice.org/"><u><span style="color: #0563c1">http://www.openoffice.org</span></u></a>] 提供的免费 OpenOffice 套件。以下是一个使用 OpenOffice Text 的示例：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000194000000A116CB2AF7.png" width="283" height="113" style="display:inline-block; margin:4px;width:7.475cm;height:2.979cm;" class="odt-zoomable" data-zoom-src="images/1000000000000194000000A116CB2AF7.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015400000082E88D5673.png" width="238" height="91" style="display:inline-block; margin:4px;width:6.297cm;height:2.408cm;" class="odt-zoomable" data-zoom-src="images/100000000000015400000082E88D5673.png" /></td></tr></table>
+
+<ul>
+  <li>OpenOffice 窗口左侧的图标可用于访问数据源。随后界面将切换为显示数据源管理区域：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000117000000D40479A691.png" width="195" height="148" style="width:5.154cm;height:3.916cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000117000000D40479A691.png" /></p>
+<ul>
+  <li>系统预设了一个数据源：[参考文献]。右键单击数据源区域，可通过[管理数据源]选项创建新的数据源：
+  </li>
+</ul>
+
+<p><img src="images/100000000000011F0000009AA3A7F501.png" width="200" height="108" style="width:5.304cm;height:2.845cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009AA3A7F501.png" /></p>
+<ul>
+  <li>[数据源管理]向导可用于创建数据源。右键单击数据源区域，可通过[新建数据源]选项创建新的数据源： 
+  </li>
+</ul>
+
+<p><img src="images/100000000000021400000095EE775B91.png" width="372" height="104" style="width:9.846cm;height:2.759cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021400000095EE775B91.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>名称 [odbc-firebird-articles]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">任意名称。此处我们使用了 ODBC 数据源的名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>数据库类型 [odbc]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">OpenOffice 可以通过 JDBC、ODBC 或直接连接（如 MySQL、Dbase 等）处理各种数据库类型。在本示例中，请选择 ODBC</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>数据源 URL
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">输入字段右侧的按钮可让我们访问本机上的 ODBC 数据源列表。我们选择数据源 [odbc-firebird-articles]</div></td></tr></table>
+
+<ul>
+  <li>切换到 [ODBC] 面板，以定义将用于建立连接的用户凭据：
+  </li>
+</ul>
+
+<p><img src="images/100000000000015200000063E39E08E9.png" width="270" height="79" style="width:7.149cm;height:2.094cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015200000063E39E08E9.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>用户名 [sysdba]
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ODBC 数据源的所有者</div></td></tr></table>
+
+<ul>
+  <li>转到 [表] 面板。系统会提示您输入密码。此处的密码是 [masterkey]：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000219000000AE62FFF4E4.png" width="376" height="122" style="width:9.936cm;height:3.219cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000219000000AE62FFF4E4.png" /></p>
+<ul>
+  <li>单击 [确定]。随后将显示 ODBC 源中的表列表：
+  </li>
+</ul>
+
+<p><img src="images/100000000000010D0000008F52BA0B8E.png" width="188" height="100" style="width:4.972cm;height:2.642cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010D0000008F52BA0B8E.png" /></p>
+<ul>
+  <li>您可以选择要在 [OpenOffice] 文档中显示的表。在此，我们选择 [ARTICLES] 表并单击 [确定]。数据源定义已完成。随后，它将出现在当前文档的数据源列表中：
+  </li>
+</ul>
+
+<p><img src="images/100000000000029D000000E23B22A499.png" width="468" height="158" style="width:12.386cm;height:4.184cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029D000000E23B22A499.png" /></p>
+<ul>
+  <li>您可以使用鼠标将上方的 [ARTICLES] 表拖拽到 [OpenOffice] 文档中。
+  </li>
+</ul>
+<h2 id="84-microsoft-query">8.4. <span style="color: #4f81bd">Microsoft Query</span></h2>
+<p>尽管 MS Query 随 MS Office 一起提供，但该程序并不总是带有快捷方式。您可以在 MS Office 的 <em>Office</em> 文件夹中找到它，文件名为 <em>MSQRY32.EXE</em>。例如<em>：“C:\Program Files\Office 2000\Office\MSQRY32.EXE”</em>。 MS Query 允许您使用 SQL 查询对任何 ODBC 数据源进行查询。这些查询既可以通过图形界面构建，也可以直接在键盘上输入。由于大多数 Windows 数据库都提供了 ODBC 驱动程序，因此均可通过 MS Query 进行查询。启动 MS Query 后，将显示以下界面：</p>
+<p><img src="images/10000000000001C70000006854343211.png" width="364" height="83" style="width:9.631cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C70000006854343211.png" /></p>
+<p>首先，我们需要指定要查询的 ODBC 数据源。为此，请使用<em>“文件/新建</em>”选项：</p>
+<p><img src="images/10000000000001C7000000ED130998F5.png" width="364" height="190" style="width:9.631cm;height:5.017cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C7000000ED130998F5.png" /></p>
+<p>我们将使用之前创建的 ODBC 数据源。随后 MS Query 将显示该数据源的结构：</p>
+<p><img src="images/10000000000001EE000001324CD8E8A3.png" width="347" height="215" style="width:9.19cm;height:5.694cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE000001324CD8E8A3.png" /></p>
+<p>由于您已掌握 SQL 语言，向导功能并不实用，因此我们点击 [取消] 按钮。通过 [文件 / 执行 SQL] 选项，我们可以对所选的 ODBC 数据源运行 SQL 查询：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000AD000000A9FCF375CC.png" width="138" height="135" style="display:inline-block; margin:4px;width:3.66cm;height:3.575cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD000000A9FCF375CC.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016100000145581A5704.png" width="282" height="260" style="display:inline-block; margin:4px;width:7.47cm;height:6.877cm;" class="odt-zoomable" data-zoom-src="images/100000000000016100000145581A5704.png" /></td></tr></table>
+
+<p>系统会提示我们再次选择 ODBC 数据源：</p>
+<p><img src="images/10000000000001C5000000994E49CD26.png" width="362" height="122" style="width:9.59cm;height:3.239cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C5000000994E49CD26.png" /></p>
+<p>选择 ODBC 数据源后，我们可以在其上执行 SQL 命令：</p>
+<p><img src="images/100000000000015F0000011233BE3562.png" width="281" height="219" style="width:7.43cm;height:5.8cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015F0000011233BE3562.png" /></p>
+<p>我们得到以下结果：</p>
+<p><img src="images/10000000000001570000012E8FF0D252.png" width="274" height="242" style="width:7.26cm;height:6.392cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001570000012E8FF0D252.png" /></p>
+<p>欢迎读者创建一个基于 Firebird DBBIBLIO 数据库的 ODBC 数据源，并重复上述示例。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享署名-非商业性使用-
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
