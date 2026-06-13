@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -404,7 +406,7 @@
   <a href="#22-firebird" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2. Firebird 文档
+        2.2. Firebird文档
       
     </span>
   </a>
@@ -412,10 +414,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#23-ib-expert-firebird" class="md-nav__link">
+  <a href="#23-ib-expert-sgbd-firebird" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3. 使用 IB- Expert 操作 Firebird 数据库管理系统
+        2.3. 借助 IB- Expert 操作 SGBD Firebird
       
     </span>
   </a>
@@ -448,7 +450,7 @@
   <a href="#26-ib-expert-sql" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.6. [IB-Expert] SQL 编辑器
+        2.6. [IB-Expert] 的编辑器 SQL
       
     </span>
   </a>
@@ -497,14 +499,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-iaoahi.html" class="md-nav__link">
+      <a href="sql-uanhongeiaoahi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL 表达式
+    4. SQL 语言中的表达式
   
 
     
@@ -551,14 +553,14 @@
   
   
     <li class="md-nav__item">
-      <a href="aoi-sql.html" class="md-nav__link">
+      <a href="sql-uanehenuiei.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. 高级 SQL
+    6. SQL 语言的深入解析
   
 
     
@@ -578,14 +580,14 @@
   
   
     <li class="md-nav__item">
-      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+      <a href="ingahuuangenuani.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. 管理对数据的并发访问
+    7. 并发数据访问管理
   
 
     
@@ -605,14 +607,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link">
+      <a href="ei-firebird-nhuanginghiong-odbc-uonghengu.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+    8. 为 [Firebird] 安装并使用 ODBC 驱动程序
   
 
     
@@ -643,161 +645,168 @@
 
 
 <h1 id="2-firebird">2. <span style="color: #365f91">Firebird 教程</span></h1>
-<p>在介绍SQL语言的基础知识之前，我们将向读者展示如何安装Firebird数据库管理系统以及IB-Expert图形化客户端。</p>
+<p>在介绍 SQL 语言的基础知识之前，我们将向读者介绍如何安装 Firebird SGBD 以及图形客户端 IB-Expert。</p>
 <h2 id="21-firebird">2.1. <span style="color: #4f81bd">在哪里可以找到 Firebird？</span></h2>
-<p>Firebird<a id="firebird"></a> 的官方网站是 [<a href="http://firebird.sourceforge.net/"><u><span style="color: #0563c1">http://firebird.sourceforge.net/</span></u></a>]。下载页面提供以下链接（2005年4月）：</p>
-<p><img src="images/100000000000029C000001F5CFB40258.png" width="467" height="350" style="width:12.363cm;height:9.273cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029C000001F5CFB40258.png" /></p>
-<p>您将下载以下内容：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p><span id="firebird" name="firebird" class="odt-bookmark-anchor"></span> Firebird 的官方网站是 [http://firebird.sourceforge.net/]。下载页面提供以下链接（2005年4月）：</p>
+<p><img src="images/100000000000029C000001F5CFB40258.png" width="467" height="351" style="width:12.363cm;height:9.278cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029C000001F5CFB40258.png" /></p>
+<p>需下载以下文件：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>firebird-win32
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">适用于 Windows 的数据库管理系统</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">适用于 Windows 的 SGBD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>firebird-net-provider
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">一个用于 .NET 应用程序的类库，允许在不使用 ODBC 驱动程序的情况下访问该数据库管理系统。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">一个用于应用程序的类库，可直接访问SGBD，无需通过ODBC驱动程序。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>firebird-ODBC-driver
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Firebird ODBC 驱动程序</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">Firebird 的 ODBC 驱动程序</div></td></tr></table>
 
-<p>请安装这些组件。数据库管理系统（DBMS）安装在内容类似于以下内容的文件夹中：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016C000000F954F34DD9.png" width="291" height="199" style="display:inline-block; margin:4px;width:7.694cm;height:5.263cm;" class="odt-zoomable" data-zoom-src="images/100000000000016C000000F954F34DD9.png" /></td></tr></table>
+<p>安装这些组件。SGBD 安装在内容类似于以下结构的文件夹中：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000016C000000F954F34DD9.png" width="291" height="199" style="display:inline-block; margin:4px;width:7.694cm;height:5.267cm;" class="odt-zoomable" data-zoom-src="images/100000000000016C000000F954F34DD9.png" /></td></tr></table>
 
 <p>二进制文件位于 [bin] 文件夹中：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000980000018EB6B815A2.png" width="106" height="279" style="display:inline-block; margin:4px;width:2.817cm;height:7.377cm;" class="odt-zoomable" data-zoom-src="images/10000000000000980000018EB6B815A2.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000980000018EB6B815A2.png" width="106" height="278" style="display:inline-block; margin:4px;width:2.817cm;height:7.368cm;" class="odt-zoomable" data-zoom-src="images/10000000000000980000018EB6B815A2.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fbguard.exe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">允许您启动/停止数据库管理系统</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">用于启动/停止 SGBD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>isql.exe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">用于管理数据库的命令行客户端</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">用于管理数据库的命令行客户端</div></td></tr></table>
 
-<p>请注意，默认情况下，数据库管理系统管理员的用户名为 [SYSDBA]，密码为 [masterkey]。[开始] 菜单中已添加相关选项：</p>
-<p><img src="images/10000000000000B50000005C44F7E193.png" width="181" height="92" style="width:4.782cm;height:2.431cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B50000005C44F7E193.png" /></p>
-<p>通过 [Firebird Guardian] 选项，您可以启动/停止 DBMS。启动后，DBMS 图标将保留在 Windows 任务栏中：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000340000002BBE55685B.png" width="52" height="43" style="display:inline-block; margin:4px;width:1.374cm;height:1.136cm;" class="odt-zoomable" data-zoom-src="images/10000000000000340000002BBE55685B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000B1000000517CF578E2.png" width="177" height="81" style="display:inline-block; margin:4px;width:4.676cm;height:2.14cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000517CF578E2.png" /></td></tr></table>
+<p>请注意，默认情况下，SGBD的管理员名为[SYSDBA]，密码为[masterkey]。[Démarrer]中已安装以下菜单：</p>
+<p><img src="images/10000000000000B50000005C44F7E193.png" width="181" height="92" style="width:4.782cm;height:2.427cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B50000005C44F7E193.png" /></p>
+<p>通过 [Firebird Guardian] 选项可启动/停止 SGBD。启动后，SGBD 的图标会保留在 Windows 任务栏中：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000340000002BBE55685B.png" width="52" height="43" style="display:inline-block; margin:4px;width:1.374cm;height:1.132cm;" class="odt-zoomable" data-zoom-src="images/10000000000000340000002BBE55685B.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000B1000000517CF578E2.png" width="177" height="81" style="display:inline-block; margin:4px;width:4.676cm;height:2.136cm;" class="odt-zoomable" data-zoom-src="images/10000000000000B1000000517CF578E2.png" /></td></tr></table>
 
-<p>若要使用命令行客户端 [isql.exe] 创建和管理 Firebird 数据库，您必须阅读产品 [doc] 文件夹中随附的文档。</p>
-<p><a id="ibexpert1"></a>
-<a id="docfirebird"></a></p>
-<h2 id="22-firebird">2.2. <span style="color: #4f81bd"><strong>Firebird 文档</strong></span></h2>
-<p>有关 Firebird 及 SQL 语言的文档可在 Firebird 网站上找到（2006 年 1 月）：</p>
+<p>若要使用命令行客户端 [isql.exe] 创建和操作 Firebird 数据库，请务必阅读产品附带的文档（位于 [doc] 文件夹中）。</p>
+<p><span id="docfirebird" name="docfirebird" class="odt-bookmark-anchor"></span>
+<span id="ibexpert1" name="ibexpert1" class="odt-bookmark-anchor"></span></p>
+<h2 id="22-firebird">2.2. <span style="color: #4f81bd">Firebird文档</span></h2>
+<p>有关 Firebird 及 SQL 语言的文档可访问 Firebird 网站（2006 年 1 月）：</p>
 <p><img src="images/100000000000024000000101E38316E1.png" width="461" height="206" style="width:12.188cm;height:5.438cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024000000101E38316E1.png" /></p>
 <p>提供多种英文手册：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Firebird 1.5 快速入门指南
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Firebird 1.5 Quick Start Guide
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">开始使用 Firebird</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Firebird 1.5 错误代码
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">开始使用 FB</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Firebird 1.5 Error Codes
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">了解 FB 返回的错误代码</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">了解 FB 返回的错误代码</div></td></tr></table>
 
-<p>还提供 SQL 培训手册：</p>
-<p><img src="images/10000000000002B800000109096DAA6C.png" width="487" height="185" style="width:12.889cm;height:4.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002B800000109096DAA6C.png" /></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>数据定义指南
+<p>此外，还提供了关于 SQL 语言的培训手册：</p>
+<p><img src="images/10000000000002B800000109096DAA6C.png" width="487" height="186" style="width:12.889cm;height:4.909cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002B800000109096DAA6C.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Data Definition Guide
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">了解如何创建表、可用的数据类型等</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>语言参考
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">了解如何创建表、可用的数据类型等</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Language Reference
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">使用 Firebird 学习 SQL 的参考指南</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">使用 Firebird 学习 SQL 的参考指南</div></td></tr></table>
 
-<p>使用图形化客户端是快速操作 Firebird 并学习 SQL 的便捷方式。其中一种客户端是 IB-Expert，下文将对此进行介绍。</p>
-<p><a id="ibexpert"></a></p>
-<h2 id="23-ib-expert-firebird">2.3. <span style="color: #4f81bd"><strong>使用 IB-</strong> <strong>Expert 操作 Firebird 数据库管理系统</strong></span></h2>
-<p>IB-Expert 的官方网站为 [<a href="http://www.ibexpert.com/"><u><span style="color: #0563c1">http://www.ibexpert.com/</span></u></a>]。其下载页面提供了以下链接：</p>
-<p><img src="images/10000000000001D0000001AC51C2A46D.png" width="324" height="299" style="width:8.585cm;height:7.92cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D0000001AC51C2A46D.png" /></p>
-<p>请选择免费版本 [Personal Edition]。下载并安装后，您将获得一个类似于下图所示的文件夹：</p>
-<p><img src="images/100000000000017200000145CD603301.png" width="259" height="227" style="width:6.84cm;height:6.008cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017200000145CD603301.png" /></p>
-<p>可执行文件为 [ibexpert.exe]。通常在 [开始] 菜单中会有一个快捷方式：</p>
-<p><img src="images/10000000000001B200000058D089D858.png" width="304" height="62" style="width:8.038cm;height:1.63cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B200000058D089D858.png" /></p>
+<p>使用图形化客户端是快速操作 Firebird 并学习 SQL 语言的一种方法。下文将介绍 IB-Expert 这一图形化客户端。</p>
+<p><span id="ibexpert" name="ibexpert" class="odt-bookmark-anchor"></span></p>
+<h2 id="23-ib-expert-sgbd-firebird">2.3. <span style="color: #4f81bd"><strong>借助 IB-</strong> <strong>Expert 操作 SGBD Firebird</strong></span></h2>
+<p>IB-Expert 的主网站是 [http://www.ibexpert.com/]。下载页面提供以下链接：</p>
+<p><img src="images/10000000000001D0000001AC51C2A46D.png" width="324" height="300" style="width:8.585cm;height:7.927cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D0000001AC51C2A46D.png" /></p>
+<p>我们将选择免费版本 [Personal Edition]。下载并安装后，将生成如下所示的文件夹：</p>
+<p><img src="images/100000000000017200000145CD603301.png" width="259" height="227" style="width:6.84cm;height:6.013cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017200000145CD603301.png" /></p>
+<p>可执行文件为 [ibexpert.exe]。通常在 [Démarrer] 菜单中会有一个快捷方式：</p>
+<p><img src="images/10000000000001B200000058D089D858.png" width="304" height="62" style="width:8.038cm;height:1.628cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B200000058D089D858.png" /></p>
 <p>启动后，IBExpert将显示以下窗口：</p>
-<p><img src="images/100000000000011C000000C2791DD7B5.png" width="199" height="136" style="width:5.253cm;height:3.588cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011C000000C2791DD7B5.png" /></p>
-<p>请使用 [<a id="createdatabase"></a> 数据库/创建数据库] 选项来创建数据库：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>服务器
+<p><img src="images/100000000000011C000000C2791DD7B5.png" width="199" height="136" style="width:5.253cm;height:3.586cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011C000000C2791DD7B5.png" /></p>
+<p>使用选项 [Database/Create Database]<span id="createdatabase" name="createdatabase" class="odt-bookmark-anchor"></span> 来创建数据库：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Server
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">可以是 [local] 或 [remote]。在此，我们的服务器与 [IBExpert] 位于同一台机器上。因此，我们选择 [local]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>数据库
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">可能是 [local] 或 [remote]。这里我们的服务器与 [IBExpert] 位于同一台机器上。因此我们选择 [local]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Database
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">使用下拉菜单中的 [文件夹] 按钮选择数据库文件。Firebird 将整个数据库存储在一个文件中。这是它的优势之一。您只需复制该文件，即可将数据库从一台计算机转移到另一台。系统会自动添加 [.gdb] 后缀。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>用户名
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">使用下拉列表中类似 [dossier] 的按钮来指定数据库文件。Firebird 将整个数据库封装在一个文件中，这是其优势之一。只需复制该文件即可将数据库从一台机器迁移到另一台。后缀 [.gdb] 会自动添加。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Username
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SYSDBA </b>是当前 Firebird 发行版的默认管理员</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>密码
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SYSDBA </b>是当前 Firebird 发行版的默认管理员</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Password
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>masterkey </b>是当前 Firebird 发行版中 SYSDBA 管理员的密码</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>方言
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>masterkey </b>是当前 Firebird 发行版中管理员 SYSDBA 的密码</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Dialect
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">要使用的 SQL 方言</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>注册数据库
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">要使用的方言是 SQL</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Register Database
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">如果勾选此框，IBExpert将在数据库创建后显示一个链接</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果勾选此复选框，IBExpert将在数据库创建完成后显示指向该数据库的链接</div></td></tr></table>
 
-<p>如果在点击 [确定] 按钮创建数据库时，您看到以下警告：</p>
-<p><img src="images/100000000000016100000081ABF4648E.png" width="247" height="90" style="width:6.537cm;height:2.388cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016100000081ABF4648E.png" /></p>
-<p>这意味着您尚未启动 Firebird。请启动它。随后将出现一个新窗口：</p>
-<p><img src="images/10000000000002BF00000122360041C0.png" width="492" height="203" style="width:13.014cm;height:5.369cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BF00000122360041C0.png" /></p>
-<p><a id="dbarticles"></a></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>字符集
+<p>如果点击创建按钮 [OK] 时，您会收到以下警告：</p>
+<p><img src="images/100000000000016100000081ABF4648E.png" width="247" height="90" style="width:6.537cm;height:2.383cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016100000081ABF4648E.png" /></p>
+<p>说明您尚未启动 Firebird。请启动它。此时会弹出一个新窗口：</p>
+<p><img src="images/10000000000002BF00000122360041C0.png" width="492" height="203" style="width:13.014cm;height:5.364cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BF00000122360041C0.png" /></p>
+<p><span id="dbarticles" name="dbarticles" class="odt-bookmark-anchor"></span></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Charset
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">要使用的字符集。尽管上方的截图未显示任何信息，但建议从下拉列表中选择 [ISO-8859-1] 字符集，该字符集支持带重音的拉丁字符。</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">要使用的字符集。尽管上方的屏幕截图未显示任何信息，但建议从下拉列表中选择 [ISO-8859-1] 字符集，该字符集支持带重音的拉丁字符。</div></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>服务器版本
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Server version
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">[IBExpert] 支持处理各种基于 Interbase 的数据库管理系统。请选择您已安装的 Firebird 版本：</div><img src="images/10000000000001E300000044A1D6FA65.png" width="338" height="48" style="display:inline-block; margin:4px;width:8.934cm;height:1.258cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E300000044A1D6FA65.png" /></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">[IBExpert] 能够处理各种源自 Interbase 的 SGBD。请选择您已安装的 Firebird 版本：</div><img src="images/10000000000001E300000044A1D6FA65.png" width="338" height="47" style="display:inline-block; margin:4px;width:8.934cm;height:1.252cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E300000044A1D6FA65.png" /></td></tr></table>
 
-<p>点击 [注册] 确认此新窗口后，您将看到以下结果：</p>
-<p><img src="images/100000000000013A000000D07E511B2E.png" width="251" height="166" style="width:6.634cm;height:4.394cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013A000000D07E511B2E.png" /></p>
-<p>要访问您创建的数据库，只需双击其链接。随后 IBExpert 将显示一个树形视图，供您访问数据库属性：</p>
-<p><img src="images/100000000000013B000000FBEC216B48.png" width="220" height="175" style="width:5.824cm;height:4.641cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013B000000FBEC216B48.png" /></p>
+<p>当 [Register] 确认此新窗口后，将得到以下结果：</p>
+<p><img src="images/100000000000013A000000D07E511B2E.png" width="251" height="166" style="width:6.634cm;height:4.392cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013A000000D07E511B2E.png" /></p>
+<p>要访问创建的数据库，只需双击其链接。IBExpert 随后将显示一个树形结构，用于访问数据库的属性：</p>
+<p><img src="images/100000000000013B000000FBEC216B48.png" width="220" height="176" style="width:5.824cm;height:4.646cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013B000000FBEC216B48.png" /></p>
 <h2 id="24">2.4. <span style="color: #4f81bd">创建数据表</span></h2>
-<p>现在我们来创建一个表。右键单击 [表]（参见上图），然后选择 [新建表] 选项。这将打开用于定义表属性的窗口：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000025C0000011864B71078.png" width="302" height="140" style="display:inline-block; margin:4px;width:7.99cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000025C0000011864B71078.png" /></td></tr></table>
+<p>现在创建一个表。右键单击 [Tables]（参见上图），然后选择 [New Table] 选项。此时将显示表属性定义窗口：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000025C0000011864B71078.png" width="302" height="140" style="display:inline-block; margin:4px;width:7.99cm;height:3.704cm;" class="odt-zoomable" data-zoom-src="images/100000000000025C0000011864B71078.png" /></td></tr></table>
 
-<p>首先，在输入字段 [1] 中将表命名为 [ARTICLES]：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000257000001547586EAE1.png" width="300" height="170" style="display:inline-block; margin:4px;width:7.925cm;height:4.498cm;" class="odt-zoomable" data-zoom-src="images/1000000000000257000001547586EAE1.png" /></td></tr></table>
+<p>首先，通过输入框 [1] 为该表命名 [ARTICLES]：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000257000001547586EAE1.png" width="300" height="170" style="display:inline-block; margin:4px;width:7.925cm;height:4.498cm;" class="odt-zoomable" data-zoom-src="images/1000000000000257000001547586EAE1.png" /></td></tr></table>
 
-<p>使用输入字段 [2] 定义主键 [ID]：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001DC000000E2D6A28434.png" width="238" height="113" style="display:inline-block; margin:4px;width:6.297cm;height:2.99cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DC000000E2D6A28434.png" /></td></tr></table>
+<p>使用输入框 [2] 定义主键 [ID]：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001DC000000E2D6A28434.png" width="238" height="113" style="display:inline-block; margin:4px;width:6.297cm;height:2.99cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DC000000E2D6A28434.png" /></td></tr></table>
 
-<p>双击 [PK]（主键）字段即可将其设为主键。现在让我们使用上方按钮 [3] 添加字段：</p>
-<p><img src="images/1000000000000235000000E89CC75685.png" width="452" height="185" style="width:11.952cm;height:4.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000E89CC75685.png" /></p>
-<p>在“编译”定义之前，表不会被创建。请使用上方的 [Compile] 按钮来完成表的定义。IBExpert 会准备用于生成表的 SQL 查询，并请求确认：</p>
-<p><img src="images/10000000000001F000000156BF4EB358.png" width="397" height="273" style="width:10.493cm;height:7.235cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F000000156BF4EB358.png" /></p>
-<p>值得注意的是，IBExpert 会显示已执行的 SQL 查询。这使您既能学习 SQL 语言，也能了解可能使用的任何专有 SQL 方言。[提交] 按钮用于确认当前事务，而 [回滚] 则用于取消事务。在此，我们点击 [提交] 进行确认。操作完成后，IBExpert 会将创建的表添加到我们的数据库树中：</p>
+<p>双击字段的 [PK]（主键）区域，即可将该字段设为主键。使用位于 [3] 上方的按钮添加字段：</p>
+<p><img src="images/1000000000000235000000E89CC75685.png" width="452" height="185" style="width:11.952cm;height:4.905cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000E89CC75685.png" /></p>
+<p>在“编译”定义之前，表不会被创建。 使用上方的 [Compile] 按钮来完成表的定义。IBExpert 会准备生成表的 SQL 查询，并请求确认：</p>
+<p><img src="images/10000000000001F000000156BF4EB358.png" width="397" height="274" style="width:10.493cm;height:7.239cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F000000156BF4EB358.png" /></p>
+<p>有趣的是，IBExpert 会显示其已执行的 SQL 查询。 这既有助于学习 SQL 语言，也有助于了解可能使用的专有方言 SQL。 [Commit] 按钮用于确认当前事务，[Rollback] 按钮用于取消当前事务。 此处通过 [Commit] 进行确认。操作完成后，IBExpert 将创建的表添加到数据库的树形结构中：</p>
 <p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.851cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
-<p>双击该表，即可访问其属性：</p>
-<p><img src="images/100000000000024E000000C80B48A012.png" width="413" height="140" style="width:10.929cm;height:3.704cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024E000000C80B48A012.png" /></p>
-<p>[约束]面板允许我们为该表添加新的完整性约束。让我们打开它：</p>
-<p><img src="images/100000000000029300000059883C8C55.png" width="461" height="62" style="width:12.199cm;height:1.647cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029300000059883C8C55.png" /></p>
-<p>我们可以看到之前创建的主键约束。现在可以添加其他约束：</p>
+<p>双击该表即可查看其属性：</p>
+<p><img src="images/100000000000024E000000C80B48A012.png" width="413" height="140" style="width:10.929cm;height:3.697cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000024E000000C80B48A012.png" /></p>
+<p>通过面板 [Constraints]，我们可以为该表添加新的完整性约束。让我们打开它：</p>
+<p><img src="images/100000000000029300000059883C8C55.png" width="461" height="62" style="width:12.199cm;height:1.64cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029300000059883C8C55.png" /></p>
+<p>我们可以看到之前创建的主键约束。还可以添加其他约束：</p>
 <ul>
-<li>外键 [Foreign Keys]</li>
-<li>字段完整性约束 [检查]</li>
-<li>字段唯一性约束 [Uniques]</li>
+  <li>外键 [Foreign Keys]
+  </li>
+  <li>字段完整性约束 [Checks]
+  </li>
+  <li>字段唯一性约束 [Uniques]
+  </li>
 </ul>
-<p>让我们明确说明：</p>
+
+<p>请注意：</p>
 <ul>
-<li>字段 [ID, PRICE, CURRENTSTOCK, MINIMUMSTOCK] 必须大于 0</li>
-<li>[NAME] 字段必须不为空且唯一</li>
+  <li>字段 [ID, PRIX, STOCKACTUEL, STOKMINIMUM] 的值必须大于 0
+  </li>
+  <li>字段 [NOM] 必须不为空且唯一
+  </li>
 </ul>
-<p>打开 [检查] 面板，在约束定义区域中右键单击以添加新约束：</p>
-<p><img src="images/1000000000000160000000A5AD45096D.png" width="246" height="115" style="width:6.514cm;height:3.053cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000160000000A5AD45096D.png" /></p>
-<p>让我们定义所需的约束条件：</p>
+
+<p>打开面板 [Checks]，在约束定义区域中右键单击以添加新约束：</p>
+<p><img src="images/1000000000000160000000A5AD45096D.png" width="246" height="115" style="width:6.514cm;height:3.055cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000160000000A5AD45096D.png" /></p>
+<p>定义所需的约束条件：</p>
 <p><img src="images/10000000000000F6000000CC296F6CC5.png" width="197" height="163" style="width:5.207cm;height:4.318cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F6000000CC296F6CC5.png" /></p>
-<p>请注意，上述约束 [NAME&lt;&gt;&#x27;&#x27;] 使用的是两个单引号，而非双引号。使用上方的 [编译] 按钮编译这些约束：</p>
-<p><img src="images/10000000000001EB000000E85058E006.png" width="343" height="162" style="width:9.084cm;height:4.292cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EB000000E85058E006.png" /></p>
-<p>IBExpert 再次通过显示已执行的 SQL 查询，展现了其用户友好性。现在让我们转到 [Constraints/Unique] 面板，指定名称必须是唯一的。这意味着同一名称不能在表中出现两次。</p>
-<p><img src="images/10000000000001C3000000B94989C09B.png" width="315" height="129" style="width:8.341cm;height:3.42cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C3000000B94989C09B.png" /></p>
-<p>让我们定义该约束：</p>
-<p><img src="images/100000000000018B0000008A85D0443A.png" width="276" height="96" style="width:7.306cm;height:2.552cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018B0000008A85D0443A.png" /></p>
-<p>然后进行编译。完成后，打开 [ARTICLES] 表的 [DDL]（数据定义语言）面板： </p>
-<p><img src="images/1000000000000235000000587021FF84.png" width="452" height="70" style="width:11.952cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000587021FF84.png" /></p>
-<p>该面板会显示用于生成该表及其所有约束条件的 SQL 代码。您可以将此代码保存到脚本中以便日后运行：</p>
+<p>请注意，上文中的约束 [NOM&lt;&gt;&#x27;&#x27;] 使用的是两个单引号，而非双引号。点击上方的 [Compile] 按钮编译这些约束：</p>
+<p><img src="images/10000000000001EB000000E85058E006.png" width="343" height="162" style="width:9.084cm;height:4.295cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EB000000E85058E006.png" /></p>
+<p>同样，IBExpert 通过列出已执行的 SQL 查询，展现了其教学功能。 现在我们转向 [Constraints/Uniques] 面板，以说明名称必须是唯一的。这意味着表中不能出现两次相同的名称。</p>
+<p><img src="images/10000000000001C3000000B94989C09B.png" width="315" height="130" style="width:8.341cm;height:3.429cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C3000000B94989C09B.png" /></p>
+<p>定义约束：</p>
+<p><img src="images/100000000000018B0000008A85D0443A.png" width="276" height="97" style="width:7.306cm;height:2.554cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018B0000008A85D0443A.png" /></p>
+<p>然后编译它。完成后，打开表 [ARTICLES] 的面板 [DDL]（数据定义语言）： </p>
+<p><img src="images/1000000000000235000000587021FF84.png" width="452" height="70" style="width:11.952cm;height:1.852cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000235000000587021FF84.png" /></p>
+<p>该面板会生成包含所有约束条件的表生成代码 SQL。我们可以将此代码保存到脚本中，以便日后重新执行：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="n">DIALECT</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="k">NONE</span><span class="p">;</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="p">(</span>
@@ -816,121 +825,120 @@
 <a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ARTICLES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_ARTICLES</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="25">2.5. <span style="color: #4f81bd">向表中插入数据</span></h2>
-<p>现在是向 [ARTICLES] 表中输入数据的时候了。为此，请使用其 [数据] 面板：</p>
-<p><img src="images/10000000000001CC0000009C5D747458.png" width="318" height="108" style="width:8.401cm;height:2.849cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000009C5D747458.png" /></p>
-<p>通过双击表中各行的输入字段即可输入数据。使用 [+] 按钮添加新行，使用 [-] 按钮删除行。这些操作都在一个事务中进行，需通过 [提交事务] 按钮提交（参见上文）。如果不提交，数据将会丢失。</p>
-<p><a id="editeursql"></a></p>
-<h2 id="26-ib-expert-sql">2.6. <span style="color: #4f81bd">[IB-Expert] SQL 编辑器</span></h2>
-<p>SQL（结构化查询语言）允许用户：</p>
+<p>现在是时候向表 [ARTICLES] 中插入数据了。为此，请使用其面板 [Data]：</p>
+<p><img src="images/10000000000001CC0000009C5D747458.png" width="318" height="112" style="width:8.401cm;height:2.97cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000009C5D747458.png" /></p>
+<p>通过双击表格中每行对应的输入字段即可输入数据。 点击按钮 [+] 可添加新行，点击按钮 [-] 可删除行。这些操作都在一个事务中进行，需通过按钮 [Commit Transaction] 进行提交（参见上文）。若未进行提交，数据将丢失。</p>
+<p><span id="editeursql" name="editeursql" class="odt-bookmark-anchor"></span></p>
+<h2 id="26-ib-expert-sql">2.6. <span style="color: #4f81bd">[IB-Expert] 的编辑器 SQL</span></h2>
+<p>SQL 语言（结构化查询语言）允许用户：</p>
 <ol>
-<li>通过指定表将存储的数据类型及数据必须满足的约束条件来创建表</li>
-</ol>
-<ol start="2">
+  <li>创建表，并指定其将存储的数据类型以及数据必须满足的约束条件
+  </li>
   <li>向表中插入数据
   </li>
-  <li>修改特定数据
+  <li>修改部分数据
   </li>
-  <li>删除其他数据
+  <li>删除部分数据
   </li>
-  <li>利用数据检索信息
+  <li>利用表中的内容获取信息
   </li>
   <li>……
   </li>
 </ol>
 
-<p>IBExpert 允许用户以图形化方式执行操作 1 至 4。我们刚才已经看到了这一点。当数据库包含许多表，且每张表都有数百行数据时，我们需要一些难以通过视觉方式获取的信息。例如，假设一家网店每月有数千名客户。 所有购买记录都保存在数据库中。六个月后，发现产品“X”存在质量问题。该商店希望联系所有购买过该产品的顾客，以便他们退货并免费换货。如何找到这些买家的地址？</p>
+<p>IBExpert允许用户以图形化方式执行操作1至4。我们刚才已经看到了这一点。当数据库包含许多表，且每张表都有数百行数据时，我们需要一些难以通过视觉获取的信息。例如，假设一个网络虚拟商店每月有数千名买家。 所有购买记录都存储在数据库中。六个月后，发现产品“X”存在质量问题。希望联系所有购买该产品的顾客，请他们将产品寄回进行免费更换。如何查找这些顾客的地址？</p>
 <ol>
-  <li>你可以手动遍历所有表来查找这些买家，但这可能需要数小时。
+  <li>我们可以手动查看所有数据表并逐一查找这些买家，但这将耗费数小时。
   </li>
-  <li>我们可以通过运行一条SQL查询，在几秒钟内获取这些人的名单
+  <li>也可以发出一个 SQL 指令，几秒钟内就能得到这些人的名单
   </li>
 </ol>
 
-<p>无论何时 </p>
+<p>只要表中的数据量较大，SQL 语言就非常有用 </p>
 <ul>
   <li>当表中的数据量较大时
   </li>
-  <li>当多个表相互关联时
+  <li>当存在大量相互关联的表时
   </li>
-  <li>需要检索的信息分散在多个表中
+  <li>需要获取的信息分散在多个表中
   </li>
-  <li>……
+  <li>...
   </li>
 </ul>
 
-<p>接下来我们将介绍 IBExpert 的 SQL 编辑器。您可以通过 [工具/SQL 编辑器] 选项或按 [F12] 键访问它：</p>
-<p><img src="images/10000000000001BD0000005547C3D716.png" width="356" height="68" style="width:9.414cm;height:1.797cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BD0000005547C3D716.png" /></p>
-<p>这将打开一个高级 SQL 查询编辑器，您可以在其中运行查询。让我们输入一个查询：</p>
-<p><img src="images/10000000000001A40000007268367E9D.png" width="313" height="85" style="width:8.274cm;height:2.245cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A40000007268367E9D.png" /></p>
-<p>使用上方的 [执行] 按钮执行该 SQL 查询。您将获得以下结果：</p>
-<p><img src="images/100000000000017300000062A2B8745F.png" width="296" height="78" style="width:7.844cm;height:2.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017300000062A2B8745F.png" /></p>
-<p>上图中，[结果] 选项卡显示了 [Select] SQL 语句的结果表。若要执行新的 SQL 命令，只需返回 [编辑] 选项卡。随后您将看到已执行的 SQL 语句。</p>
+<p>现在我们介绍 IBExpert 中的 SQL 编辑器。可通过选项 [Tools/SQL Editor] 或 [F12] 访问该编辑器：</p>
+<p><img src="images/10000000000001BD0000005547C3D716.png" width="356" height="68" style="width:9.414cm;height:1.794cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BD0000005547C3D716.png" /></p>
+<p>此时，我们将进入一个功能强大的 SQL 查询编辑器，可以在其中进行查询操作。输入一个查询：</p>
+<p><img src="images/10000000000001A40000007268367E9D.png" width="313" height="82" style="width:8.274cm;height:2.166cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A40000007268367E9D.png" /></p>
+<p>点击上方的 [Execute] 按钮执行该查询。结果如下：</p>
+<p><img src="images/100000000000017300000062A2B8745F.png" width="296" height="78" style="width:7.844cm;height:2.069cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017300000062A2B8745F.png" /></p>
+<p>上图中，[Results] 选项卡显示了 SQL 和 [Select] 命令的结果表。 若要发出新的命令 SQL，只需返回 [Edit] 选项卡。此时将显示已执行的命令 SQL。</p>
 <p><img src="images/100000000000018300000031CA59D8D9.png" width="309" height="39" style="width:8.184cm;height:1.035cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018300000031CA59D8D9.png" /></p>
 <p>工具栏上有几个有用的按钮：</p>
 <ul>
-  <li>[新建查询] 按钮可让您进入新的 SQL 查询：
+  <li>[New Query] 按钮可切换至新的查询 SQL：
   </li>
 </ul>
 
 <p><img src="images/100000000000029F0000005C9684C2EA.png" width="537" height="74" style="width:14.196cm;height:1.946cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F0000005C9684C2EA.png" /></p>
-<p>这将打开一个空白编辑页面：</p>
-<p><img src="images/10000000000001D2000000602D426AED.png" width="372" height="77" style="width:9.855cm;height:2.03cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D2000000602D426AED.png" /></p>
-<p>随后您可以输入新的 SQL 语句：</p>
-<p><img src="images/10000000000001FD00000062A7B296AF.png" width="407" height="78" style="width:10.767cm;height:2.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD00000062A7B296AF.png" /></p>
-<p>并执行它：</p>
-<p><img src="images/1000000000000155000000917F327163.png" width="273" height="116" style="width:7.216cm;height:3.067cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000155000000917F327163.png" /></p>
-<p>让我们回到 [编辑] 选项卡。已执行的各种 SQL 语句均由 [IB-xpert] 保存。通过 [上一个查询] 按钮，您可以返回之前执行的 SQL 语句：</p>
-<p><img src="images/100000000000026D00000061DEA33AFC.png" width="496" height="78" style="width:13.134cm;height:2.051cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000026D00000061DEA33AFC.png" /></p>
-<p>随后您将返回上一个查询：</p>
-<p><img src="images/10000000000001E60000006B452EDD3F.png" width="389" height="86" style="width:10.289cm;height:2.265cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E60000006B452EDD3F.png" /></p>
-<p>点击 [下一条查询] 按钮，即可跳转到下一条 SQL 语句：</p>
-<p><img src="images/100000000000029F00000065D5ED7FF5.png" width="537" height="81" style="width:14.196cm;height:2.138cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F00000065D5ED7FF5.png" /></p>
-<p>随后，您将在存储的 SQL 语句列表中看到下一条 SQL 语句：</p>
+<p>此时将显示一个空白编辑页面：</p>
+<p><img src="images/10000000000001D2000000602D426AED.png" width="372" height="77" style="width:9.855cm;height:2.025cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D2000000602D426AED.png" /></p>
+<p>此时可以输入新的命令 SQL：</p>
+<p><img src="images/10000000000001FD00000062A7B296AF.png" width="407" height="78" style="width:10.767cm;height:2.066cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD00000062A7B296AF.png" /></p>
+<p>并执行该命令：</p>
+<p><img src="images/1000000000000155000000917F327163.png" width="273" height="116" style="width:7.216cm;height:3.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000155000000917F327163.png" /></p>
+<p>回到 [Edit] 选项卡。已发出的各个 SQL 指令会被 [IB-xpert] 保存。 通过按钮 [Previous Query]，可以返回之前生成的 SQL 命令：</p>
+<p><img src="images/100000000000026D00000061DEA33AFC.png" width="496" height="77" style="width:13.134cm;height:2.046cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000026D00000061DEA33AFC.png" /></p>
+<p>此时将返回上一个请求：</p>
+<p><img src="images/10000000000001E60000006B452EDD3F.png" width="389" height="85" style="width:10.289cm;height:2.258cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E60000006B452EDD3F.png" /></p>
+<p>按钮 [Next Query] 则可跳转至下一个命令 SQL：</p>
+<p><img src="images/100000000000029F00000065D5ED7FF5.png" width="537" height="81" style="width:14.196cm;height:2.136cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029F00000065D5ED7FF5.png" /></p>
+<p>随后，在已保存的 SQL 订单列表中，会找到紧随其后的 SQL 订单：</p>
 <p><img src="images/10000000000002A200000063CA8D040D.png" width="539" height="79" style="width:14.265cm;height:2.096cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002A200000063CA8D040D.png" /></p>
-<p>[删除查询] 按钮可让您从已存储语句列表中删除一个 SQL 语句：</p>
-<p><img src="images/10000000000002CD000000680FEA2EB7.png" width="574" height="83" style="width:15.175cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002CD000000680FEA2EB7.png" /></p>
-<p>[清除当前查询] 按钮可清除所显示 SQL 查询的编辑器内容：</p>
-<p><img src="images/100000000000029800000069D9E21A4C.png" width="531" height="84" style="width:14.046cm;height:2.221cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029800000069D9E21A4C.png" /></p>
-<p>[提交] 按钮允许您将对数据库所做的更改永久保存：</p>
-<p><img src="images/1000000000000330000000641FC053DE.png" width="571" height="70" style="width:15.106cm;height:1.85cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000330000000641FC053DE.png" /></p>
-<p>[回滚] 按钮可让您撤销自上次 [提交] 以来对数据库所做的更改。如果自连接数据库以来尚未进行过 [提交]，则自连接以来所做的更改将被撤销。</p>
-<p><img src="images/10000000000002310000005FC55916CB.png" width="448" height="76" style="width:11.864cm;height:2.009cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002310000005FC55916CB.png" /></p>
-<p>我们来看一个例子。让我们在表格中插入一行：</p>
-<p><img src="images/10000000000002E700000035322F0A87.png" width="630" height="45" style="width:16.669cm;height:1.189cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002E700000035322F0A87.png" /></p>
-<p>SQL 语句已执行，但屏幕上没有任何显示。我们无法确定插入操作是否成功。为了确认，让我们执行以下 SQL 语句 [新查询]：</p>
-<p><img src="images/100000000000015700000063216F4977.png" width="274" height="79" style="width:7.255cm;height:2.094cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015700000063216F4977.png" /></p>
-<p>我们得到以下结果：</p>
-<p><img src="images/100000000000018D000000802CABE41B.png" width="317" height="102" style="width:8.396cm;height:2.708cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D000000802CABE41B.png" /></p>
-<p>该行确实已被插入。现在让我们通过另一种方式查看表的内容。双击数据库资源管理器中的 [ARTICLES] 表：</p>
-<p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.849cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
-<p>我们得到如下表格：</p>
+<p>按钮 [Delete Query] 可用于从已保存订单列表中删除订单 SQL：</p>
+<p><img src="images/10000000000002CD000000680FEA2EB7.png" width="574" height="83" style="width:15.175cm;height:2.196cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002CD000000680FEA2EB7.png" /></p>
+<p>按钮 [Clear Current Query] 可清除所显示的订单 SQL 的编辑器内容：</p>
+<p><img src="images/100000000000029800000069D9E21A4C.png" width="531" height="84" style="width:14.046cm;height:2.215cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029800000069D9E21A4C.png" /></p>
+<p>按钮 [Commit] 可将对数据库所做的修改最终提交：</p>
+<p><img src="images/1000000000000330000000641FC053DE.png" width="571" height="70" style="width:15.106cm;height:1.847cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000330000000641FC053DE.png" /></p>
+<p>按钮 [RollBack] 可撤销自上次执行 [Commit] 以来对数据库所做的修改。如果自连接数据库以来未执行过 [Commit]，则将撤销自本次连接以来所做的所有修改。</p>
+<p><img src="images/10000000000002310000005FC55916CB.png" width="448" height="76" style="width:11.864cm;height:2.006cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002310000005FC55916CB.png" /></p>
+<p>举个例子。在表中插入一行：</p>
+<p><img src="images/10000000000002E700000035322F0A87.png" width="630" height="45" style="width:16.669cm;height:1.184cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002E700000035322F0A87.png" /></p>
+<p>SQL命令已执行，但未显示任何结果。我们无法确定插入操作是否成功。为确认这一点，请在[New Query]之后执行以下SQL命令：</p>
+<p><img src="images/100000000000015700000063216F4977.png" width="274" height="79" style="width:7.255cm;height:2.096cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015700000063216F4977.png" /></p>
+<p>结果如下所示：</p>
+<p><img src="images/100000000000018D000000802CABE41B.png" width="317" height="102" style="width:8.396cm;height:2.706cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D000000802CABE41B.png" /></p>
+<p>因此，该行确实已被插入。现在让我们通过另一种方式查看表的内容。在数据库资源管理器中双击表 [ARTICLES]：</p>
+<p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.849cm;height:4.886cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
+<p>我们得到如下表：</p>
 <p><img src="images/10000000000001FD000000A077F4A88B.png" width="407" height="128" style="width:10.767cm;height:3.385cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD000000A077F4A88B.png" /></p>
-<p>上方的箭头按钮可用于刷新表格。刷新后，上方的表格并未发生变化。看起来新行并未被插入。让我们返回 SQL 编辑器（F12），然后使用 [Commit] 按钮提交 SQL 语句：</p>
-<p><img src="images/10000000000002970000006671498947.png" width="530" height="82" style="width:14.025cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002970000006671498947.png" /></p>
-<p>完成此操作后，让我们返回 [ARTICLES] 表。我们可以看到，即使使用 [刷新] 按钮，也没有任何变化：</p>
+<p>上方的箭头按钮可用于刷新表格。刷新后，上方的表格并未发生变化。看起来新行似乎并未被插入。 返回编辑器 SQL（F12），然后通过按钮 [Commit] 确认生成的作业 SQL：</p>
+<p><img src="images/10000000000002970000006671498947.png" width="530" height="81" style="width:14.025cm;height:2.155cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002970000006671498947.png" /></p>
+<p>完成上述操作后，让我们回到表 [ARTICLES]。我们可以发现，即使使用按钮 [Refresh]，情况也没有任何变化：</p>
 <p><img src="images/10000000000001FD000000A077F4A88B.png" width="407" height="128" style="width:10.767cm;height:3.385cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD000000A077F4A88B.png" /></p>
-<p>在上方打开 [字段] 选项卡，然后返回 [数据] 选项卡。这次，插入的行已正确显示：</p>
+<p>在上方，打开 [Fields] 选项卡，然后返回 [Data] 选项卡。这次插入的行显示正确：</p>
 <p><img src="images/10000000000001B9000000814572FAEE.png" width="352" height="103" style="width:9.324cm;height:2.727cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B9000000814572FAEE.png" /></p>
-<p>当开始执行各种 SQL 语句时，编辑器会在数据库上开启一个所谓的<strong>“事务</strong>”。这些 SQL 语句在 SQL 编辑器中做出的更改，只有在你保持在同一个 SQL 编辑器中时才会可见（你可以打开多个实例）。这就像 SQL 编辑器并非在实际数据库上操作，而是在其自身的副本上操作一样。实际上，这并非完全如此，但这个类比有助于我们理解“事务”的概念。 在事务期间对副本所做的所有更改，只有在通过 [提交事务] 进行提交后，才会显示在实际数据库中。随后当前事务终止，并开始一个新事务。</p>
-<p>事务期间所做的更改可以通过名为 [Rollback] 的操作撤销。让我们尝试以下实验。使用以下 SQL 语句开始一个新事务（只需对当前事务执行 [Commit] 即可）：</p>
-<p><img src="images/10000000000000D400000066029FD8BA.png" width="170" height="82" style="width:4.486cm;height:2.157cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D400000066029FD8BA.png" /></p>
-<p>让我们执行这条命令，它将删除 [ARTICLES] 表中的所有行，然后执行 [New Query] 并输入以下新的 SQL 命令：</p>
-<p><img src="images/10000000000001540000004755A4DBBF.png" width="272" height="57" style="width:7.195cm;height:1.503cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001540000004755A4DBBF.png" /></p>
+<p>当开始执行各种 SQL 命令时，编辑器会在数据库上打开一个所谓的<strong>“事务</strong>”。 编辑器SQL通过这些命令SQL所做的修改，仅在保持在同一编辑器SQL内时可见（可以同时打开多个编辑器）。 这就像编辑器 SQL 并非在实际数据库上操作，而是在其自身的副本上操作。实际上，情况并非完全如此，但这个比喻有助于我们理解事务的概念。 在事务期间对副本所做的所有修改，只有在通过 [Commit Transaction] 确认后，才会显示在实际数据库中。此时当前事务结束，并开始一个新事务。</p>
+<p>交易过程中所做的修改可以通过名为 [Rollback] 的操作撤销。让我们进行以下实验。先启动一个新交易（只需在当前交易中执行 [Commit] 即可），并使用以下 SQL 命令：</p>
+<p><img src="images/10000000000000D400000066029FD8BA.png" width="170" height="81" style="width:4.486cm;height:2.155cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D400000066029FD8BA.png" /></p>
+<p>执行该命令以删除表 [ARTICLES] 中的所有行，然后执行 [New Query] 并输入以下新命令 SQL：</p>
+<p><img src="images/10000000000001540000004755A4DBBF.png" width="272" height="57" style="width:7.195cm;height:1.496cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001540000004755A4DBBF.png" /></p>
 <p>我们得到以下结果：</p>
-<p><img src="images/10000000000002240000007C2F998A16.png" width="438" height="99" style="width:11.596cm;height:2.625cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002240000007C2F998A16.png" /></p>
-<p>所有行均已被删除。请注意，此操作是在 [ARTICLES] 表的副本上执行的。要验证这一点，请双击下方的 [ARTICLES] 表：</p>
+<p><img src="images/10000000000002240000007C2F998A16.png" width="438" height="99" style="width:11.596cm;height:2.616cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002240000007C2F998A16.png" /></p>
+<p>所有行均已被删除。请注意，此操作是在表 [ARTICLES] 的副本上执行的。为验证这一点，请双击下方的表 [ARTICLES]：</p>
 <p><img src="images/100000000000013C0000010895A3EEDA.png" width="221" height="185" style="width:5.851cm;height:4.888cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013C0000010895A3EEDA.png" /></p>
-<p>并查看 [数据] 选项卡：</p>
-<p><img src="images/10000000000001A3000000AEDB946E10.png" width="335" height="139" style="width:8.867cm;height:3.681cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A3000000AEDB946E10.png" /></p>
-<p>即使我们点击[刷新]按钮，或者切换到[字段]选项卡后再切回[数据]选项卡，上面的内容依然保持不变。这已经解释过了。我们现在处于另一个事务中，该事务正在处理其自身的副本。现在让我们返回SQL编辑器（F12），并使用[回滚]按钮撤销之前执行的行删除操作：</p>
-<p><img src="images/10000000000002AF000000610C034AD3.png" width="549" height="78" style="width:14.534cm;height:2.051cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002AF000000610C034AD3.png" /></p>
-<p>系统会要求我们确认：</p>
+<p>并查看 [Data] 选项卡：</p>
+<p><img src="images/10000000000001A3000000AEDB946E10.png" width="335" height="139" style="width:8.867cm;height:3.676cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A3000000AEDB946E10.png" /></p>
+<p>即使使用按钮 [Refresh]，或切换到标签页 [Fields] 后再返回标签页 [Data]，上述内容也不会发生变化。这一点已经解释过了。 我们现在处于另一个事务中，该事务正在处理其自身的副本。现在让我们回到编辑器 SQL（F12），并使用按钮 [RollBack] 来撤销之前执行的行删除操作：</p>
+<p><img src="images/10000000000002AF000000610C034AD3.png" width="549" height="77" style="width:14.534cm;height:2.046cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002AF000000610C034AD3.png" /></p>
+<p>系统要求我们确认：</p>
 <p><img src="images/10000000000000C5000000886744B44B.png" width="138" height="95" style="width:3.646cm;height:2.517cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C5000000886744B44B.png" /></p>
-<p>让我们确认。SQL 编辑器确认更改已回滚：</p>
-<p><img src="images/1000000000000151000000A5EBC33000.png" width="269" height="132" style="width:7.126cm;height:3.489cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000151000000A5EBC33000.png" /></p>
-<p>让我们再次运行上面的 SQL 查询进行验证。之前被删除的行现在已经恢复：</p>
-<p><img src="images/100000000000018C0000009F53376765.png" width="317" height="127" style="width:8.378cm;height:3.364cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018C0000009F53376765.png" /></p>
-<p>[回滚]操作已将SQL编辑器正在处理的副本恢复到事务开始时的状态。</p>
+<p>确认。编辑器 SQL 确认更改已撤销：</p>
+<p><img src="images/1000000000000151000000A5EBC33000.png" width="269" height="132" style="width:7.126cm;height:3.485cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000151000000A5EBC33000.png" /></p>
+<p>重新执行上述请求 SQL 以进行验证。被删除的行已恢复：</p>
+<p><img src="images/100000000000018C0000009F53376765.png" width="317" height="127" style="width:8.378cm;height:3.369cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018C0000009F53376765.png" /></p>
+<p>操作 [Rollback] 将编辑器 SQL 正在处理的副本恢复到了事务开始时的状态。</p>
 
 
 

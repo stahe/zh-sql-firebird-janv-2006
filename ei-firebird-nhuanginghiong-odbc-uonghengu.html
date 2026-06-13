@@ -12,10 +12,10 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/nhuangehiong-firebird-e-odbc-uonghengu.html">
+        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/ei-firebird-nhuanginghiong-odbc-uonghengu.html">
       
       
-        <link rel="prev" href="uaniuihuueingaangen.html">
+        <link rel="prev" href="ingahuuangenuani.html">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>8. 安装和使用 [Firebird] 的 ODBC 驱动程序 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
+        <title>8. 为 [Firebird] 安装并使用 ODBC 驱动程序 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
       
     
     
@@ -54,6 +54,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -126,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+              8. 为 [Firebird] 安装并使用 ODBC 驱动程序
             
           </span>
         </div>
@@ -382,14 +384,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-iaoahi.html" class="md-nav__link">
+      <a href="sql-uanhongeiaoahi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL 表达式
+    4. SQL 语言中的表达式
   
 
     
@@ -436,14 +438,14 @@
   
   
     <li class="md-nav__item">
-      <a href="aoi-sql.html" class="md-nav__link">
+      <a href="sql-uanehenuiei.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. 高级 SQL
+    6. SQL 语言的深入解析
   
 
     
@@ -463,14 +465,14 @@
   
   
     <li class="md-nav__item">
-      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+      <a href="ingahuuangenuani.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. 管理对数据的并发访问
+    7. 并发数据访问管理
   
 
     
@@ -506,7 +508,7 @@
   <span class="md-ellipsis">
     
   
-    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+    8. 为 [Firebird] 安装并使用 ODBC 驱动程序
   
 
     
@@ -517,14 +519,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link md-nav__link--active">
+      <a href="ei-firebird-nhuanginghiong-odbc-uonghengu.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+    8. 为 [Firebird] 安装并使用 ODBC 驱动程序
   
 
     
@@ -564,7 +566,7 @@
   <a href="#82-odbc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.2. 创建 ODBC 数据源
+        8.2. 创建 ODBC 源
       
     </span>
   </a>
@@ -575,7 +577,7 @@
   <a href="#83-odbc" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.3. 测试 ODBC 数据源
+        8.3. 测试源文件 ODBC
       
     </span>
   </a>
@@ -618,199 +620,201 @@
 
 
 
-<h1 id="8-firebird-odbc">8. <span style="color: #365f91">安装和使用 [Firebird] 的 ODBC 驱动程序</span></h1>
+<h1 id="8-firebird-odbc">8. <span style="color: #365f91">为 [Firebird] 安装并使用 ODBC 驱动程序</span></h1>
 <h2 id="81">8.1. <span style="color: #4f81bd">安装驱动程序</span></h2>
-<p>市面上有许多数据库。为了在 MS Windows 环境下标准化数据库访问，微软开发了一个名为 ODBC（开放数据库连接）的接口。该接口层将各数据库的具体特性隐藏在标准接口之后。目前有许多适用于 MS Windows 的 ODBC 驱动程序，可简化数据库访问。例如，以下是安装在 Windows XP 计算机上的一些 ODBC 驱动程序： </p>
-<p><img src="images/10000000000001D10000015EA41092C7.png" width="372" height="280" style="width:9.841cm;height:7.407cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000015EA41092C7.png" /></p>
-<p>依赖这些驱动程序的应用程序无需重写代码即可使用任何数据库。ODBC 驱动程序充当应用程序与数据库管理系统 (DBMS) 之间的中介。应用程序 &lt;-&gt; ODBC 驱动程序的接口是标准化的。如果您更换了数据库管理系统，只需安装新数据库管理系统的 ODBC 驱动程序，应用程序即可保持不变。</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000489000000C4DC1F7C74.png" width="581" height="98" style="display:inline-block; margin:4px;width:15.36cm;height:2.593cm;" class="odt-zoomable" data-zoom-src="images/1000000000000489000000C4DC1F7C74.png" /></td></tr></table>
+<p>市场上有许多数据库。 为了统一在 MS Windows 下的数据库访问，微软开发了一个名为 ODBC（Open DataBase Connectivity）的接口。该层将各数据库的特性隐藏在标准接口之下。 在 Windows 系统中，有许多 MS 驱动程序可简化数据库访问。以下是安装在 Windows 机器上的部分 ODBC 驱动程序示例： </p>
+<p><img src="images/10000000000001D10000015EA41092C7.png" width="372" height="280" style="width:9.841cm;height:7.41cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D10000015EA41092C7.png" /></p>
+<p>基于这些驱动程序的应用程序无需重写代码即可使用任何数据库。ODBC驱动程序位于应用程序与SGBD之间。 应用程序与驱动程序 ODBC 之间的交互是标准的。如果更换 SGBD，则安装新版本 SGBD 的驱动程序 ODBC，应用程序保持不变。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000489000000C4DC1F7C74.png" width="581" height="98" style="display:inline-block; margin:4px;width:15.36cm;height:2.593cm;" class="odt-zoomable" data-zoom-src="images/1000000000000489000000C4DC1F7C74.png" /></td></tr></table>
 
-<p>[Firebird] 下载页面（<a href="#firebird"><u><span style="color: #0563c1">第 2.1</span></u></a> 节）上的 [firebird-odbc-provider] 链接提供了 ODBC 驱动程序的下载入口。安装完成后，该驱动程序将显示在已安装的 ODBC 驱动程序列表中。</p>
-<h2 id="82-odbc">8.2. <span style="color: #4f81bd">创建 ODBC 数据源</span></h2>
+<p>[Firebird] 下载页面（第<a href="firebird-iaoheng.html#firebird"><u><span style="color: #0563c1"> 2.1</span></u></a> 段）中的 [firebird-odbc-provider] 链接可访问 ODBC 驱动程序。 安装后，该驱动程序将显示在已安装的 ODBC 驱动程序列表中。</p>
+<h2 id="82-odbc">8.2. <span style="color: #4f81bd">创建 ODBC 源</span></h2>
 <ul>
-  <li>启动工具 [开始 -&gt; 设置 -&gt; 配置工具 -&gt; 管理工具 -&gt; ODBC 数据源]：
+  <li>运行工具 [Démarrer -&gt; Paramètres -&gt; Outil de configuration -&gt; Outils d&#x27;administration -&gt; Sources de données ODBC]：
   </li>
 </ul>
 
-<p><img src="images/10000000000002300000004F5D5AC060.png" width="392" height="55" style="width:10.363cm;height:1.462cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002300000004F5D5AC060.png" /></p>
+<p><img src="images/10000000000002300000004F5D5AC060.png" width="392" height="55" style="width:10.363cm;height:1.457cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002300000004F5D5AC060.png" /></p>
 <ul>
-  <li>随后将显示以下窗口：
+  <li>将显示以下窗口：
   </li>
 </ul>
 
-<p><img src="images/10000000000001C9000000A624EE6794.png" width="320" height="116" style="width:8.456cm;height:3.073cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C9000000A624EE6794.png" /></p>
+<p><img src="images/10000000000001C9000000A624EE6794.png" width="320" height="116" style="width:8.456cm;height:3.062cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C9000000A624EE6794.png" /></p>
 <ul>
-  <li>点击 [添加] 以添加一个新的系统数据源（位于 [系统 DSN] 窗格中），我们将将其与<a href="#dbarticles"><u><span style="color: #0563c1">第 2.3</span></u></a> 节中创建的 Firebird 数据库 [dbarticles] 关联：
+  <li>在 [System DSN] 面板中添加一个新的系统数据源 [Add]，并将它与我们在第<a href="firebird-iaoheng.html#dbarticles"><u><span style="color: #0563c1"> 2.3</span></u></a> 节中创建的 Firebird 数据库 [dbarticles] 关联：
   </li>
 </ul>
 
-<p><img src="images/10000000000001C0000000908EA3F24F.png" width="314" height="101" style="width:8.299cm;height:2.669cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C0000000908EA3F24F.png" /></p>
+<p><img src="images/10000000000001C0000000908EA3F24F.png" width="314" height="101" style="width:8.299cm;height:2.667cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C0000000908EA3F24F.png" /></p>
 <ul>
-  <li>首先，我们需要指定要使用的 ODBC 驱动程序。在上图中，我们选择 Firebird 的驱动程序，然后点击 [完成]。随后 Firebird ODBC 驱动程序向导将接管操作：
+  <li>首先，我们需要指定要使用的驱动程序 ODBC。在上图中，我们选择了 Firebird 的驱动程序，然后执行 [Terminer]。随后，Firebird 的 ODBC 驱动程序向导将接管操作：
   </li>
 </ul>
 
-<p><img src="images/10000000000001680000015EDB63A521.png" width="252" height="245" style="width:6.664cm;height:6.479cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001680000015EDB63A521.png" /></p>
+<p><img src="images/10000000000001680000015EDB63A521.png" width="252" height="245" style="width:6.664cm;height:6.477cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001680000015EDB63A521.png" /></p>
 <ul>
   <li>我们填写各个字段：
   </li>
 </ul>
 
 <p><img src="images/1000000000000166000000EB91DB777F.png" width="250" height="164" style="width:6.623cm;height:4.348cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000166000000EB91DB777F.png" /></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DSN [demo-odbc-firebird]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ODBC 源的 DSN 名称——可以是任意名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>数据库 [D:\..\DBARTICLES.GDB]
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">源文件名称 DSN - 可以是任意名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Database [D:\..\DBARTICLES.GDB]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">要使用的 Firebird 数据库名称——使用 [浏览] 选择相应的 .gbd 文件。此处，我们使用第<a href="#dbarticles"><u><span style="color: #0563c1"> 8</span></u></a> 页创建的 [dbarticles] 数据库。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>数据库账户 [SYSDBA]
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">要使用的 Firebird 数据库名称 BD —— 使用 [Browse] 来指定对应的 .gbd 文件。此处我们使用第<a href="firebird-iaoheng.html#dbarticles"><u><span style="color: #0563c1"> 8</span></u></a> 页创建的文章数据库 [dbarticles]。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Database Account [SYSDBA]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">用于连接数据库的用户名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>密码 [masterkey]
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">用于连接数据库的用户名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Password [masterkey]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">与该用户名关联的密码</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">与该用户名关联的密码</div></td></tr></table>
 
-<p>[测试连接] 按钮可让您验证所输入信息的有效性。使用该按钮前，请先启动 [Firebird] 数据库管理系统：</p>
-<p><img src="images/100000000000010E000000715EB8CF57.png" width="189" height="79" style="width:4.997cm;height:2.09cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010E000000715EB8CF57.png" /></p>
+<p>通过按钮 [Test connection] 可验证我们输入的信息是否有效。使用该按钮前，请先运行 SGBD [Firebird]：</p>
+<p><img src="images/100000000000010E000000715EB8CF57.png" width="189" height="79" style="width:4.997cm;height:2.081cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010E000000715EB8CF57.png" /></p>
 <ul>
-  <li>根据需要多次点击 [确定] 以确认 ODBC 向导
-  </li>
-</ul>
-<p><a id="testersourceodbc"></a></p>
-<h2 id="83-odbc">8.3. <span style="color: #4f81bd">测试 ODBC 数据源</span></h2>
-<p>有多种方法可以验证 ODBC 数据源是否正常工作。在此，我们将使用 Excel：</p>
-<p><img src="images/10000000000002FE0000011C4766F8B1.png" width="536" height="199" style="width:14.183cm;height:5.258cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002FE0000011C4766F8B1.png" /></p>
-<ul>
-  <li>使用上方的 [数据 -&gt; 外部数据 -&gt; 创建查询] 选项。这将打开数据源定义向导的第一个窗口。[数据库] 窗格中列出了当前计算机上已定义的 ODBC 数据源：
+  <li>通过反复执行 [OK] 操作，直至 ODBC 向导验证通过
   </li>
 </ul>
 
-<p><img src="images/10000000000001C40000008759047E8D.png" width="362" height="108" style="width:9.569cm;height:2.858cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C40000008759047E8D.png" /></p>
+<p><span id="testersourceodbc" name="testersourceodbc" class="odt-bookmark-anchor"></span></p>
+<h2 id="83-odbc">8.3. <span style="color: #4f81bd"><strong>测试源文件 ODBC</strong></span></h2>
+<p>验证源文件 ODBC 是否正常运行有多种方法。这里我们将使用 Excel：</p>
+<p><img src="images/10000000000002FE0000011C4766F8B1.png" width="536" height="199" style="width:14.183cm;height:5.253cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002FE0000011C4766F8B1.png" /></p>
 <ul>
-  <li>选择我们刚刚创建的 ODBC 数据源 [odbc-firebird-articles]，然后单击 [确定] 进入下一步：
+  <li>使用上述选项 [Données -&gt; Données externes -&gt; Créer une requête]。此时将弹出数据源定义向导的第一个窗口。面板 [Bases de données] 列出了当前机器上已定义的数据源：
   </li>
 </ul>
 
-<p><img src="images/10000000000001A8000000BBB5B02067.png" width="296" height="131" style="width:7.844cm;height:3.461cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A8000000BBB5B02067.png" /></p>
+<p><img src="images/10000000000001C40000008759047E8D.png" width="362" height="108" style="width:9.569cm;height:2.854cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C40000008759047E8D.png" /></p>
 <ul>
-  <li>此窗口列出了 ODBC 数据源中可用的表和列。我们将选择整个表：
+  <li>选择我们刚刚创建的源 ODBC [odbc-firebird-articles]，并进入下一步：
   </li>
 </ul>
 
-<p><img src="images/10000000000001A1000000A4D05B6723.png" width="292" height="115" style="width:7.717cm;height:3.036cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A1000000A4D05B6723.png" /></p>
+<p><img src="images/10000000000001A8000000BBB5B02067.png" width="296" height="131" style="width:7.844cm;height:3.459cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A8000000BBB5B02067.png" /></p>
 <ul>
-  <li>点击 [下一步] 进入下一步：
+  <li>此窗口列出了源 ODBC 中可用的表和列。我们选择整个表：
   </li>
 </ul>
 
-<p><img src="images/10000000000001A9000000A390F267F9.png" width="297" height="114" style="width:7.863cm;height:3.016cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A9000000A390F267F9.png" /></p>
+<p><img src="images/10000000000001A1000000A4D05B6723.png" width="292" height="115" style="width:7.717cm;height:3.03cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A1000000A4D05B6723.png" /></p>
 <ul>
-  <li>此步骤允许我们筛选数据。在此，我们不进行任何筛选，直接进入下一步：
+  <li>接着进行下一步，使用 [Suivant]：
   </li>
 </ul>
 
-<p><img src="images/10000000000001760000008A11A9838F.png" width="262" height="97" style="width:6.925cm;height:2.556cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001760000008A11A9838F.png" /></p>
+<p><img src="images/10000000000001A9000000A390F267F9.png" width="297" height="114" style="width:7.863cm;height:3.018cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A9000000A390F267F9.png" /></p>
 <ul>
-  <li>此步骤允许我们对数据进行排序。我们不会进行排序，而是直接进入下一步：
+  <li>此步骤允许我们筛选数据。此处我们不进行任何筛选，直接进入下一步：
   </li>
 </ul>
 
-<p><img src="images/10000000000001F10000009660A83120.png" width="347" height="105" style="width:9.193cm;height:2.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F10000009660A83120.png" /></p>
+<p><img src="images/10000000000001760000008A11A9838F.png" width="262" height="97" style="width:6.925cm;height:2.554cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001760000008A11A9838F.png" /></p>
 <ul>
-  <li>最后一步询问我们希望对数据进行什么操作。这里，我们将数据导出到 Excel：
+  <li>此步骤允许我们对数据进行排序。我们不进行排序，直接进入下一步：
   </li>
 </ul>
 
-<p><img src="images/1000000000000174000000A73256E8B1.png" width="260" height="117" style="width:6.888cm;height:3.092cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000174000000A73256E8B1.png" /></p>
+<p><img src="images/10000000000001F10000009660A83120.png" width="347" height="105" style="width:9.193cm;height:2.773cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F10000009660A83120.png" /></p>
 <ul>
-  <li>此时，Excel 会询问我们希望将检索到的数据放置在何处。我们将数据放置在当前工作表的 A1 单元格开始的位置。随后，数据便会导入到 Excel 工作表中：
+  <li>最后一步询问我们希望如何处理数据。在此，我们将数据导出到 Excel：
   </li>
 </ul>
 
-<p><img src="images/1000000000000163000000569C910E63.png" width="284" height="69" style="width:7.507cm;height:1.819cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000163000000569C910E63.png" /></p>
-<p>还有其他方法可以测试 ODBC 数据源的有效性。例如，您可以使用 [<a href="http://www.openoffice.org/"><u><span style="color: #0563c1">http://www.openoffice.org</span></u></a>] 提供的免费 OpenOffice 套件。以下是一个使用 OpenOffice Text 的示例：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000194000000A116CB2AF7.png" width="283" height="113" style="display:inline-block; margin:4px;width:7.475cm;height:2.979cm;" class="odt-zoomable" data-zoom-src="images/1000000000000194000000A116CB2AF7.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000015400000082E88D5673.png" width="238" height="91" style="display:inline-block; margin:4px;width:6.297cm;height:2.408cm;" class="odt-zoomable" data-zoom-src="images/100000000000015400000082E88D5673.png" /></td></tr></table>
-
+<p><img src="images/1000000000000174000000A73256E8B1.png" width="260" height="117" style="width:6.888cm;height:3.085cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000174000000A73256E8B1.png" /></p>
 <ul>
-  <li>OpenOffice 窗口左侧的图标可用于访问数据源。随后界面将切换为显示数据源管理区域：
+  <li>此时，Excel会询问将提取的数据保存到何处。我们将数据保存到当前工作表的A1单元格开始的位置。随后，数据便被导入到Excel工作表中：
   </li>
 </ul>
 
-<p><img src="images/1000000000000117000000D40479A691.png" width="195" height="148" style="width:5.154cm;height:3.916cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000117000000D40479A691.png" /></p>
+<p><img src="images/1000000000000163000000569C910E63.png" width="284" height="69" style="width:7.507cm;height:1.815cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000163000000569C910E63.png" /></p>
+<p>还有其他方法可以测试 ODBC 数据源的有效性。 例如，可以使用在网址 [http://www.openoffice.org] 上提供的免费套件 OpenOffice。以下是一个使用文本 OpenOffice 的示例：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000194000000A116CB2AF7.png" width="283" height="112" style="display:inline-block; margin:4px;width:7.475cm;height:2.97cm;" class="odt-zoomable" data-zoom-src="images/1000000000000194000000A116CB2AF7.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000015400000082E88D5673.png" width="238" height="91" style="display:inline-block; margin:4px;width:6.297cm;height:2.402cm;" class="odt-zoomable" data-zoom-src="images/100000000000015400000082E88D5673.png" /></td></tr></table>
+
 <ul>
-  <li>系统预设了一个数据源：[参考文献]。右键单击数据源区域，可通过[管理数据源]选项创建新的数据源：
+  <li>OpenOffice 窗口左侧的图标可访问数据源。此时界面将切换，显示一个数据源管理区域：
   </li>
 </ul>
 
-<p><img src="images/100000000000011F0000009AA3A7F501.png" width="200" height="108" style="width:5.304cm;height:2.845cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009AA3A7F501.png" /></p>
+<p><img src="images/1000000000000117000000D40479A691.png" width="195" height="148" style="width:5.154cm;height:3.923cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000117000000D40479A691.png" /></p>
 <ul>
-  <li>[数据源管理]向导可用于创建数据源。右键单击数据源区域，可通过[新建数据源]选项创建新的数据源： 
+  <li>系统预设了一个数据源，即 [Bibliography]。右键单击数据源区域，即可通过 [Gérer les sources de données] 选项创建新的数据源：
   </li>
 </ul>
 
-<p><img src="images/100000000000021400000095EE775B91.png" width="372" height="104" style="width:9.846cm;height:2.759cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021400000095EE775B91.png" /></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>名称 [odbc-firebird-articles]
+<p><img src="images/100000000000011F0000009AA3A7F501.png" width="200" height="107" style="width:5.304cm;height:2.843cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011F0000009AA3A7F501.png" /></p>
+<ul>
+  <li>[Gestion des sources de données] 向导可用于创建数据源。右键单击数据源区域，即可通过 [Nouvelle source de données] 选项创建一个新的数据源： 
+  </li>
+</ul>
+
+<p><img src="images/100000000000021400000095EE775B91.png" width="372" height="104" style="width:9.846cm;height:2.753cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021400000095EE775B91.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Nom [odbc-firebird-articles]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">任意名称。此处我们使用了 ODBC 数据源的名称</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>数据库类型 [odbc]
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">任意名称。此处采用了数据源名称 ODBC</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Type de BD [odbc]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">OpenOffice 可以通过 JDBC、ODBC 或直接连接（如 MySQL、Dbase 等）处理各种数据库类型。在本示例中，请选择 ODBC</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>数据源 URL
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">OpenOffice 能够通过 BD、JDBC、ODBC 或直接（MySQL、Dbase 等）处理不同类型的 OpenOffice。 在本示例中，需选择 ODBC</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>URL de la source de données
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">输入字段右侧的按钮可让我们访问本机上的 ODBC 数据源列表。我们选择数据源 [odbc-firebird-articles]</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">输入框右侧的按钮可让我们访问该机器的 ODBC 源列表。我们选择源 [odbc-firebird-articles]</div></td></tr></table>
 
 <ul>
-  <li>切换到 [ODBC] 面板，以定义将用于建立连接的用户凭据：
+  <li>转到面板 [ODBC]，在此处定义用于登录的用户身份：
   </li>
 </ul>
 
-<p><img src="images/100000000000015200000063E39E08E9.png" width="270" height="79" style="width:7.149cm;height:2.094cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015200000063E39E08E9.png" /></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>用户名 [sysdba]
+<p><img src="images/100000000000015200000063E39E08E9.png" width="270" height="79" style="width:7.149cm;height:2.099cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015200000063E39E08E9.png" /></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Nom d&#39;utilisateur [sysdba]
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ODBC 数据源的所有者</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">源文件 ODBC 的所有者</div></td></tr></table>
 
 <ul>
-  <li>转到 [表] 面板。系统会提示您输入密码。此处的密码是 [masterkey]：
+  <li>转到面板 [Tables]。系统会要求输入密码。此处的密码是 [masterkey]：
   </li>
 </ul>
 
 <p><img src="images/1000000000000219000000AE62FFF4E4.png" width="376" height="122" style="width:9.936cm;height:3.219cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000219000000AE62FFF4E4.png" /></p>
 <ul>
-  <li>单击 [确定]。随后将显示 ODBC 源中的表列表：
+  <li>执行 [OK]。随后将显示源文件 ODBC 的表列表：
   </li>
 </ul>
 
-<p><img src="images/100000000000010D0000008F52BA0B8E.png" width="188" height="100" style="width:4.972cm;height:2.642cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010D0000008F52BA0B8E.png" /></p>
+<p><img src="images/100000000000010D0000008F52BA0B8E.png" width="188" height="100" style="width:4.972cm;height:2.644cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010D0000008F52BA0B8E.png" /></p>
 <ul>
-  <li>您可以选择要在 [OpenOffice] 文档中显示的表。在此，我们选择 [ARTICLES] 表并单击 [确定]。数据源定义已完成。随后，它将出现在当前文档的数据源列表中：
+  <li>我们可以定义将显示在文档 [OpenOffice] 中的表格。这里我们选择表格 [ARTICLES]，并生成 [OK]。数据源的定义已完成。它随后会出现在当前文档的数据源列表中：
   </li>
 </ul>
 
-<p><img src="images/100000000000029D000000E23B22A499.png" width="468" height="158" style="width:12.386cm;height:4.184cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029D000000E23B22A499.png" /></p>
+<p><img src="images/100000000000029D000000E23B22A499.png" width="468" height="158" style="width:12.386cm;height:4.18cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000029D000000E23B22A499.png" /></p>
 <ul>
-  <li>您可以使用鼠标将上方的 [ARTICLES] 表拖拽到 [OpenOffice] 文档中。
+  <li>我们可以使用鼠标将上方的表 [ARTICLES] 拖拽到文本 [OpenOffice] 中。
   </li>
 </ul>
-<h2 id="84-microsoft-query">8.4. <span style="color: #4f81bd">Microsoft Query</span></h2>
-<p>尽管 MS Query 随 MS Office 一起提供，但该程序并不总是带有快捷方式。您可以在 MS Office 的 <em>Office</em> 文件夹中找到它，文件名为 <em>MSQRY32.EXE</em>。例如<em>：“C:\Program Files\Office 2000\Office\MSQRY32.EXE”</em>。 MS Query 允许您使用 SQL 查询对任何 ODBC 数据源进行查询。这些查询既可以通过图形界面构建，也可以直接在键盘上输入。由于大多数 Windows 数据库都提供了 ODBC 驱动程序，因此均可通过 MS Query 进行查询。启动 MS Query 后，将显示以下界面：</p>
-<p><img src="images/10000000000001C70000006854343211.png" width="364" height="83" style="width:9.631cm;height:2.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C70000006854343211.png" /></p>
-<p>首先，我们需要指定要查询的 ODBC 数据源。为此，请使用<em>“文件/新建</em>”选项：</p>
-<p><img src="images/10000000000001C7000000ED130998F5.png" width="364" height="190" style="width:9.631cm;height:5.017cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C7000000ED130998F5.png" /></p>
-<p>我们将使用之前创建的 ODBC 数据源。随后 MS Query 将显示该数据源的结构：</p>
-<p><img src="images/10000000000001EE000001324CD8E8A3.png" width="347" height="215" style="width:9.19cm;height:5.694cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE000001324CD8E8A3.png" /></p>
-<p>由于您已掌握 SQL 语言，向导功能并不实用，因此我们点击 [取消] 按钮。通过 [文件 / 执行 SQL] 选项，我们可以对所选的 ODBC 数据源运行 SQL 查询：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000AD000000A9FCF375CC.png" width="138" height="135" style="display:inline-block; margin:4px;width:3.66cm;height:3.575cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD000000A9FCF375CC.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000016100000145581A5704.png" width="282" height="260" style="display:inline-block; margin:4px;width:7.47cm;height:6.877cm;" class="odt-zoomable" data-zoom-src="images/100000000000016100000145581A5704.png" /></td></tr></table>
 
-<p>系统会提示我们再次选择 ODBC 数据源：</p>
-<p><img src="images/10000000000001C5000000994E49CD26.png" width="362" height="122" style="width:9.59cm;height:3.239cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C5000000994E49CD26.png" /></p>
-<p>选择 ODBC 数据源后，我们可以在其上执行 SQL 命令：</p>
+<h2 id="84-microsoft-query">8.4. <span style="color: #4f81bd"><strong>Microsoft Query</strong></span></h2>
+<p>尽管 MS Query 是随 MS Office 一起提供的，但并不总是存在指向该程序的链接。 它位于 MS Office 的 <em>Office</em> 文件夹中，名称为 <em>MSQRY32.EXE</em>。<em>例如“C:\Program Files\Office 2000\Office\MSQRY32.EXE”</em>。 MS Query 允许使用 SQL 查询语句查询任何 ODBC 数据源。这些查询语句既可以通过图形界面构建，也可以直接通过键盘输入。 由于大多数 Windows 数据库都提供了驱动程序，因此均可通过 MS Query 进行查询。启动 MS Query 后，将显示如下界面：</p>
+<p><img src="images/10000000000001C70000006854343211.png" width="364" height="83" style="width:9.631cm;height:2.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C70000006854343211.png" /></p>
+<p>首先，我们需要指定要查询的数据源 ODBC。为此，我们使用以下选项：<em>Fichier/Nouvelle</em>：</p>
+<p><img src="images/10000000000001C7000000ED130998F5.png" width="364" height="190" style="width:9.631cm;height:5.02cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C7000000ED130998F5.png" /></p>
+<p>我们将使用之前创建的数据源 ODBC。MS Query 随后向我们展示了该数据源的结构：</p>
+<p><img src="images/10000000000001EE000001324CD8E8A3.png" width="347" height="215" style="width:9.19cm;height:5.69cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE000001324CD8E8A3.png" /></p>
+<p>我们使用按钮 [Annuler]，因为如果熟悉 SQL 语言，所提供的向导几乎没有用处。 我们可以针对通过选项 [Fichier / Exécuter SQL] 选定的源 ODBC 发出 SQL 查询：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000AD000000A9FCF375CC.png" width="138" height="135" style="display:inline-block; margin:4px;width:3.66cm;height:3.581cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD000000A9FCF375CC.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000016100000145581A5704.png" width="282" height="260" style="display:inline-block; margin:4px;width:7.47cm;height:6.879cm;" class="odt-zoomable" data-zoom-src="images/100000000000016100000145581A5704.png" /></td></tr></table>
+
+<p>我们还需要选择源文件 ODBC：</p>
+<p><img src="images/10000000000001C5000000994E49CD26.png" width="362" height="122" style="width:9.59cm;height:3.24cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C5000000994E49CD26.png" /></p>
+<p>一旦选定源文件 ODBC，即可对其发出 SQL 指令：</p>
 <p><img src="images/100000000000015F0000011233BE3562.png" width="281" height="219" style="width:7.43cm;height:5.8cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015F0000011233BE3562.png" /></p>
-<p>我们得到以下结果：</p>
-<p><img src="images/10000000000001570000012E8FF0D252.png" width="274" height="242" style="width:7.26cm;height:6.392cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001570000012E8FF0D252.png" /></p>
-<p>欢迎读者创建一个基于 Firebird DBBIBLIO 数据库的 ODBC 数据源，并重复上述示例。</p>
+<p>我们将得到以下结果：</p>
+<p><img src="images/10000000000001570000012E8FF0D252.png" width="274" height="242" style="width:7.26cm;height:6.391cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001570000012E8FF0D252.png" /></p>
+<p>建议读者创建一个名为 ODBC 的源文件，并使用 Firebird 数据库 DBBIBLIO，然后重新运行上述示例。</p>
 
 
 

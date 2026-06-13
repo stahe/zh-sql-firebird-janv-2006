@@ -12,7 +12,7 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/sql-iaoahi.html">
+        <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/sql-uanhongeiaoahi.html">
       
       
         <link rel="prev" href="sql-uanianie.html">
@@ -29,7 +29,7 @@
     
     
       
-        <title>4. SQL 表达式 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
+        <title>4. SQL 语言中的表达式 - 使用Firebird数据库管理系统（DBMS）学习SQL入门</title>
       
     
     
@@ -56,6 +56,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              4. SQL 表达式
+              4. SQL 语言中的表达式
             
           </span>
         </div>
@@ -400,7 +402,7 @@
   <span class="md-ellipsis">
     
   
-    4. SQL 表达式
+    4. SQL 语言中的表达式
   
 
     
@@ -411,14 +413,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="sql-iaoahi.html" class="md-nav__link md-nav__link--active">
+      <a href="sql-uanhongeiaoahi.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL 表达式
+    4. SQL 语言中的表达式
   
 
     
@@ -444,10 +446,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
+  <a href="#41-introduction" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1. 简介
+        4.1. Introduction
       
     </span>
   </a>
@@ -470,12 +472,12 @@
   <a href="#421" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2.1. 包含数值操作数的表达式
+        4.2.1. 操作数为数值类型的表达式
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.2.1. 包含数值操作数的表达式">
+    <nav class="md-nav" aria-label="4.2.1. 操作数为数值类型的表达式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -520,12 +522,12 @@
   <a href="#422" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2.2. 包含字符操作数的表达式
+        4.2.2. 具有字符类型操作数的表达式
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.2.2. 包含字符操作数的表达式">
+    <nav class="md-nav" aria-label="4.2.2. 具有字符类型操作数的表达式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -554,7 +556,7 @@
   <a href="#4223" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2.2.3. 比较两个字符串
+        4.2.2.3. 两个字符串的比较
       
     </span>
   </a>
@@ -565,7 +567,7 @@
   <a href="#4224-like" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2.2.4. LIKE 运算符
+        4.2.2.4. 运算符 LIKE
       
     </span>
   </a>
@@ -603,7 +605,7 @@
   <a href="#424" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2.4. 包含布尔操作数的表达式
+        4.2.4. 布尔运算符表达式
       
     </span>
   </a>
@@ -631,7 +633,7 @@
   <a href="#431" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3.1. 具有数值参数的函数
+        4.3.1. 具有数值类型参数的函数
       
     </span>
   </a>
@@ -696,14 +698,14 @@
   
   
     <li class="md-nav__item">
-      <a href="aoi-sql.html" class="md-nav__link">
+      <a href="sql-uanehenuiei.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. 高级 SQL
+    6. SQL 语言的深入解析
   
 
     
@@ -723,14 +725,14 @@
   
   
     <li class="md-nav__item">
-      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+      <a href="ingahuuangenuani.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. 管理对数据的并发访问
+    7. 并发数据访问管理
   
 
     
@@ -750,14 +752,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link">
+      <a href="ei-firebird-nhuanginghiong-odbc-uonghengu.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+    8. 为 [Firebird] 安装并使用 ODBC 驱动程序
   
 
     
@@ -787,26 +789,25 @@
 
 
 
-<h1 id="4-sql">4. <span style="color: #365f91">SQL 表达式</span></h1>
-<h2 id="41">4.1. <span style="color: #4f81bd">简介</span></h2>
-<p>在大多数 SQL 命令中，都可以使用表达式。以 SELECT 命令为例：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>语法
+<h1 id="4-sql">4. <span style="color: #365f91">SQL 语言中的表达式</span></h1>
+<h2 id="41-introduction">4.1. <span style="color: #4f81bd">Introduction</span></h2>
+<p>在大多数 SQL 命令中，可以使用表达式。以 SELECT 命令为例：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>syntaxe
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>SELECT</b><i> 表达式1, 表达式2, </i>... <b>FROM</b><i> 表</i></div><div style="margin:0 0 0.5em 0"><b>WHERE</b><i> 表达式</i></div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>SELECT </b><i>expr1, expr2, </i>... <b>from </b><i>table</i></div><div style="margin:0 0 0.5em 0"><b>WHERE </b><i>expression</i></div></td></tr></table>
 
-<p>SELECT 语句会筛选出满足 <em>expression</em> 条件的行，并显示每行中 <em>expr1、expr2</em>、... 的值。</p>
+<p>SELECT 筛选满足 <em>expression</em> 条件的行，并为每行显示 <em>expri</em> 的值。</p>
 <p><strong>示例</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">prix</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">186</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
 </code></pre></div>
-<p>在本节中，我们将解释表达式的概念。一个基本表达式的形式为： </p>
-<p><strong>操作数1</strong> <em>运算符</em> <strong>操作数2</strong></p>
-<div class="highlight"><pre><span></span><code>或
-</code></pre></div>
+<p>本节旨在阐明表达式的概念。一个基本表达式具有如下形式： </p>
+<p><strong>操作数1</strong> <em>opérateur</em> <strong>操作数2</strong></p>
+<p>或</p>
 <p><strong>函数</strong>(<em>参数</em>)</p>
 <p><strong>示例</strong></p>
-<p>在表达式中   <em>GENRE = &#x27;ROMAN&#x27;</em> </p>
+<p>在表达式   中，<em>GENRE = &#x27;ROMAN&#x27;</em> </p>
 <ul>
   <li>GENRE    是操作数1
   </li>
@@ -816,15 +817,15 @@
   </li>
 </ul>
 
-<p>在表达式 <strong>upper</strong><em>(genre)</em> 中 </p>
+<p>在表达式 <em>upper(genre)</em> 中 </p>
 <ul>
   <li><b>upper</b> 是一个函数
   </li>
-  <li>&#x27;genre&#x27; 是该函数的参数。
+  <li>类型是该函数的参数。
   </li>
 </ul>
 
-<p>我们将首先介绍包含运算符的表达式，然后介绍 Firebird 中可用的函数。 </p>
+<p>我们将首先处理包含运算符的表达式，然后介绍 Firebird 中可用的函数。 </p>
 <h2 id="42">4.2. <span style="color: #4f81bd">包含运算符的表达式</span></h2>
 <p>我们将根据操作数的类型对包含运算符的表达式进行分类：</p>
 <ul>
@@ -834,289 +835,290 @@
   </li>
   <li>日期
   </li>
-  <li>布尔或逻辑
+  <li>布尔值或逻辑值
   </li>
 </ul>
-<h3 id="421">4.2.1. <span style="color: #4f81bd">包含数值操作数的表达式</span></h3>
+
+<h3 id="421">4.2.1. <span style="color: #4f81bd">操作数为数值类型的表达式</span></h3>
 <h4 id="4211">4.2.1.1. <span style="color: #4f81bd">运算符列表</span></h4>
-<p>设 <em>number1</em>、<em>number2</em> 和 <em>number3</em> 均为数字。可以使用以下运算符：</p>
+<p>设 <em>nombre1</em>、<em>nombre2</em>、<em>nombre3</em> 为若干数字。可使用的运算符如下：</p>
 <p>关系运算符</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>number1 &gt; number2
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>nombre1 &gt; nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 大于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>number1 &gt;= number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">：数1 大于 数2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>nombre1 &gt;= nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 大于或等于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>number1 &lt; number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数字1 大于或等于数字2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nombre1 &lt; nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 小于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>number1 &lt;= number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1小于数值2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>nombre1 &lt;= nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 小于或等于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>number1 = number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1小于或等于数值2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nombre1 = nombre2 
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 等于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>number1 ≠ number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1 等于 数值2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>nombre1 != nombre2 
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 不等于 number2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>number1 ≠ number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1 不同于 数值2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>nombre1 &lt;&gt; nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 与</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>number1 介于 number2 和 number3 之间
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 同上</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>nombre1 BETWEEN nombre2 AND nombre3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 位于 [number2, number3] 范围内</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>number1 IN (数字列表)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1在区间内[nombre2,nombre3]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>nombre1 IN (liste de nombres)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 属于数字列表</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>number1 IS NULL
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数字1属于数字列表</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>nombre1 IS NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 没有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>number1 不是空值
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数字1没有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>nombre1 IS NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: number1 有一个值</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 数值1有值</div></td></tr></table>
 
 <p><strong>算术运算符</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>number1 + number2
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>nombre1 + nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 加法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>number1 - number2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 加法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>nombre1 - nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 减法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>数字1 * 数字2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 减法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>nombre1 * nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 乘法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>数字1 / 数字2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 乘法</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>nombre1 / nombre2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 除法</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 除法</div></td></tr></table>
 
 <h4 id="4212">4.2.1.2. <span style="color: #4f81bd">关系运算符</span></h4>
-<p>关系运算符关系表达式表示一种关系，该关系要么为真，要么为假。因此，此类表达式的结果是一个布尔值或逻辑值。</p>
+<p>一个关系表达式表示一种关系，该关系为真或假。因此，此类表达式的结果是一个布尔值或逻辑值。</p>
 <p><strong>示例</strong>：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
 </code></pre></div>
-<p><img src="images/1000000000000088000000340447F341.png" width="109" height="42" style="width:2.879cm;height:1.101cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000088000000340447F341.png" /></p>
+<p><img src="images/1000000000000088000000340447F341.png" width="109" height="42" style="width:2.879cm;height:1.099cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000088000000340447F341.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">150</span>
 </code></pre></div>
-<p><img src="images/10000000000000A700000089774425EA.png" width="133" height="109" style="width:3.528cm;height:2.895cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000A700000089774425EA.png" /></p>
+<p><img src="images/10000000000000A700000089774425EA.png" width="133" height="110" style="width:3.528cm;height:2.898cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000A700000089774425EA.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">210</span><span class="p">)</span>
 </code></pre></div>
-<p><img src="images/1000000000000092000000362EBD5C84.png" width="117" height="43" style="width:3.089cm;height:1.143cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000092000000362EBD5C84.png" /></p>
+<p><img src="images/1000000000000092000000362EBD5C84.png" width="117" height="43" style="width:3.089cm;height:1.138cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000092000000362EBD5C84.png" /></p>
 <h4 id="4213">4.2.1.3. <span style="color: #4f81bd">算术运算符</span></h4>
-<p>我们对算术表达式已经很熟悉。它们表示对数值数据进行的计算。我们已经遇到过此类表达式：假设存储在 BIBLIO 文件记录中的价格是税前价格。我们希望显示每本书的含税价格，增值税税率为 18.6%：</p>
+<p>算术表达式对我们来说并不陌生。它表示对数值数据进行的计算。 我们之前已经遇到过此类表达式：假设文件 BIBLIO 中记录的价格为不含税价格。我们希望以 18.6% 的税率 TVA 显示每只股票及其价格 TTC：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">TITRE</span><span class="p">,</span><span class="w"> </span><span class="n">PRIX</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">186</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">BIBLIO</span>
 </code></pre></div>
-<p>如果价格需要上涨 3%，则命令将变为</p>
+<p>如果价格需要上涨3%，则命令应为</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="w">    </span><span class="k">UPDATE</span><span class="w"> </span><span class="n">BIBLIO</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">PRIX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PRIX</span><span class="o">*</span><span class="mi">1</span><span class="p">.</span><span class="mi">03</span>
 </code></pre></div>
-<p>一个表达式可以包含多个算术运算符，以及函数和括号。这些元素将按照不同的优先级进行处理：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>函数
+<p>一个表达式中可能包含多个算术运算符，此外还有函数和括号。这些元素根据不同的优先级进行处理：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">1</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>fonctions
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;---- 最高优先级</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;---- 优先级更高</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">2</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>()
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>* 和 /
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>* et /
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">4</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>+ 和 -
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">4</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>+ et -
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">&lt;---- 优先级较低</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">&lt;---- 优先级较低</div></td></tr></table>
 
-<p>当表达式中出现两个优先级相同的运算符时，最左边的运算符优先计算。</p>
+<p>当表达式中存在两个优先级相同的运算符时，将首先计算表达式中最左侧的那个。</p>
 <p><strong>示例</strong></p>
-<p>表达式 PRICE*RATE+TAXES 将被计算为 (PRICE*RATE)+TAXES。这是因为乘法运算符优先。表达式 PRICE*RATE/100 将被计算为 (PRICE*RATE)/100。</p>
-<h3 id="422">4.2.2. <span style="color: #4f81bd">包含字符操作数的表达式</span></h3>
+<p>表达式 PRIX*TAUX+TAXES 将被计算为 (PRIX*TAUX)+TAXES。实际上，乘法运算符将首先被应用。 表达式 PRIX*TAUX/100 将被计算为 (PRIX*TAUX)/100。</p>
+<h3 id="422">4.2.2. <span style="color: #4f81bd">具有字符类型操作数的表达式</span></h3>
 <h4 id="4221">4.2.2.1. <span style="color: #4f81bd">运算符列表</span></h4>
-<p>可以使用以下运算符：</p>
-<p>设 <em>string1、string2、string3</em> 和 string <em>pattern</em> 分别为</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>string1 &gt; string2
+<p>可用的运算符如下：</p>
+<p>设<em>字符串1、字符串2、字符串3为</em>字符串<em>示例</em></p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>chaine1 &gt; chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 大于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>string1 &gt;= string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">：字符串1大于字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>chaine1 &gt;= chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 大于或等于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>string1 &lt; string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1大于等于字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>chaine1 &lt; chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 小于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>string1 &lt;= string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1小于字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>chaine1 &lt;= chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 小于或等于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>string1 = string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1 小于或等于字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>chaine1 = chaine2 
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 等于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>string1 != string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1 等于 字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>chaine1 != chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 不等于 string2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>string1 ≠ string2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1 不同于 字符串2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>chaine1 &lt;&gt; chaine2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 相同</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>string1 介于 string2 和 string3 之间
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 同上</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>chaine1 BETWEEN chaine2 AND chaine3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 位于 [string2, string3] 范围内</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>string1 属于字符串列表
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1在区间内[chaine2,chaine3]</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>chaine1 IN liste de chaines
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 属于字符串列表</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>string1 IS NULL
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1属于字符串列表</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>chaine1 IS NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 没有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>string1 非空
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1没有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>chaine1 IS NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: channel1 具有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>string1 像模式一样
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1有值</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>chaine1 LIKE modèle
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: string1 匹配 pattern</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 字符串1 符合模板</div></td></tr></table>
 
 <p>连接运算符</p>
-<p><em>string1 || string2</em>    ：将<em>字符串2</em>与<em>字符串1</em>连接</p>
+<p><em>字符串1 || 字符串2</em>    : <em>chaine2</em> 与 <em>chaine1</em> 连接</p>
 <h4 id="4222">4.2.2.2. <span style="color: #4f81bd">关系运算符</span></h4>
-<p>使用 &lt;、&lt;= 等运算符比较字符串是什么意思？</p>
-<p>每个字符都被编码为一个整数。比较两个字符时，实际上是在比较它们的整数编码。所使用的编码遵循字典的自然排序：</p>
+<p>使用 &lt;、&lt;= 等运算符比较字符串意味着什么？</p>
+<p>每个字符都由一个整数编码。比较两个字符时，实际上是比较它们的整数编码。所采用的编码遵循字典的自然顺序：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>blanc&lt;..&lt; 0 &lt; 1 &lt; ...&lt; 9 &lt; ...&lt; A &lt; B &lt;... &lt; Z &lt; ... &lt; a &lt; b &lt; ... &lt; z
 </code></pre></div>
 <p>数字排在字母之前，大写字母排在小写字母之前。</p>
-<h4 id="4223">4.2.2.3. <span style="color: #4f81bd">比较两个字符串</span></h4>
-<p>考虑关系 &#x27;CAT&#x27; &lt; &#x27;DOG&#x27;。它是真还是假？为了进行此比较，数据库管理系统（DBMS）会根据字符的整数编码，逐个字符地比较这两个字符串。一旦发现两个字符不同，则包含较小字符的字符串被视为小于另一个字符串。在我们的示例中，&#x27;CAT&#x27; 与 &#x27;DOG&#x27; 进行比较。我们得到以下连续结果：</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>    &#39;CHAT&#39;    &#39;CHIEN&#39;
+<h4 id="4223">4.2.2.3. <span style="color: #4f81bd">两个字符串的比较</span></h4>
+<p>假设关系 &#x27;CHAT&#x27; &lt; &#x27;CHIEN&#x27;。该关系是真还是假？为了进行此比较，SGBD 会基于整数编码对两个字符串进行逐字符比较。 一旦发现两个字符不同，则拥有较小字符的字符串被视为小于另一个字符串。在我们的示例中，&#x27;CHAT&#x27; 与 &#x27;CHIEN&#x27; 进行比较。我们得到以下连续结果：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>     &#39;CHAT    &#39; &#39;CHIEN&#39;
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>----------------------------
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>    &#39;C&#39;    =    &#39;C&#39;
 <a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>    &#39;H&#39;    =    &#39;H&#39;
-<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>    &#39;A&#39;    &lt;    &#39;I&#39;
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>     &#39;A    &#39;     &lt; &#39;I&#39;
 </code></pre></div>
-<p>经过这次最后的比较，字符串“CAT”被判定比字符串“DOG”短。因此，<em>关系“CAT” &lt;</em> “DOG”为真。 </p>
-<p>现在让我们比较 &#x27;CHAT&#x27; 和 &#x27;chat&#x27;。</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>    &#39;CHAT&#39;    &#39;chat&#39;
+<p>经过最后一次比较，字符串 &#x27;CHAT&#x27; 被判定比字符串 &#x27;CHIEN&#x27; 更短。因此，关系 <em>&#x27;CHAT&#x27; &lt; &#x27;CHIEN&#x27;</em> 为真。 </p>
+<p>现在比较 &#x27;CHAT&#x27; 和 &#x27;chat&#x27;。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>     &#39;CHAT    &#39; &#39;chat&#39;
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>--------------------------
-<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>    &#39;C&#39;    &lt;    &#39;c&#39;
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>     &#39;C    &#39;     &lt; &#39;c&#39;
 </code></pre></div>
 <p>经过此比较，关系 &#x27;CHAT&#x27; &lt; &#x27;chat&#x27; 被判定为真。</p>
 <p><strong>示例</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
-<p><img src="images/100000000000007A000000AAD562DF38.png" width="97" height="136" style="width:2.579cm;height:3.595cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
+<p><img src="images/100000000000007A000000AAD562DF38.png" width="97" height="136" style="width:2.579cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">titre</span><span class="p">)</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;L&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;M&#39;</span>
 </code></pre></div>
-<p><img src="images/100000000000007800000046F9D8BDAF.png" width="96" height="56" style="width:2.538cm;height:1.48cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000046F9D8BDAF.png" /></p>
-<h4 id="4224-like">4.2.2.4. <span style="color: #4f81bd">LIKE 运算符</span></h4>
-<p>LIKE 运算符的使用方法如下：<em>字符串</em> <strong>LIKE</strong> <em>模式</em></p>
-<p>如果<em>字符串与模式</em>匹配，则条件为真。模式是一个字符串，其中可能包含两个通配符：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p><img src="images/100000000000007800000046F9D8BDAF.png" width="96" height="56" style="width:2.538cm;height:1.478cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007800000046F9D8BDAF.png" /></p>
+<h4 id="4224-like">4.2.2.4. <span style="color: #4f81bd"><strong>运算符 LIKE</strong></span></h4>
+<p>运算符 LIKE 的使用方法如下：<em>chaîne</em> <strong>LIKE</strong> <em>modèle</em></p>
+<p>若 <em>chaîne</em> 与 <em>modèle</em> 匹配，则该关系成立。后者是一个字符串，其中可能包含两个通配符：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>%
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表示任意字符序列</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">它表示任意字符序列</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>_
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表示任意单个字符</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">表示任意 1 个字符</div></td></tr></table>
 
 <p><strong>示例</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
-<p><img src="images/100000000000007A000000AAD562DF38.png" width="97" height="136" style="width:2.579cm;height:3.595cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
+<p><img src="images/100000000000007A000000AAD562DF38.png" width="97" height="136" style="width:2.579cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000007A000000AAD562DF38.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;M%&#39;</span><span class="p">;</span>
 </code></pre></div>
-<p><img src="images/100000000000006600000035B50B937F.png" width="82" height="42" style="width:2.159cm;height:1.122cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006600000035B50B937F.png" /></p>
+<p><img src="images/100000000000006600000035B50B937F.png" width="82" height="42" style="width:2.159cm;height:1.118cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006600000035B50B937F.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span><span class="p">;</span>
 </code></pre></div>
-<p><img src="images/100000000000005A00000037EB0C4057.png" width="72" height="44" style="width:1.909cm;height:1.168cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000005A00000037EB0C4057.png" /></p>
+<p><img src="images/100000000000005A00000037EB0C4057.png" width="72" height="44" style="width:1.909cm;height:1.159cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000005A00000037EB0C4057.png" /></p>
 <h4 id="4225">4.2.2.5. <span style="color: #4f81bd">连接运算符</span></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">SQL</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">titre</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s1">&#39;]&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="k">upper</span><span class="p">(</span><span class="n">titre</span><span class="p">)</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;L_ %&#39;</span>
 </code></pre></div>
 <p><img src="images/1000000000000072000000334D87104D.png" width="91" height="41" style="width:2.408cm;height:1.078cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000072000000334D87104D.png" /></p>
 <h3 id="423">4.2.3. <span style="color: #4f81bd">包含日期类型操作数的表达式</span></h3>
-<p>设 <em>date1、date2 和 date3</em> 均为日期。可使用以下运算符：</p>
+<p>设 <em>date1、date2、date3</em> 均为日期。可使用的运算符如下：</p>
 <p><strong>关系运算符</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>date1 &lt; date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 早于 date2 时为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">若 date1 早于 date2，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>date1 &lt;= date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 早于或等于 date2 时，该条件为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">若 date1 小于或等于 date2，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>date1 &gt; date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 晚于 date2 时，该条件为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 晚于 date2，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>date1 &gt;= date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 等于或晚于 date2 时，该条件为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">当日期1大于等于日期2时，该条件成立</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>date1 = date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 和 date2 完全相同时，该条件为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>date1 ≠ date2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">当 date1 和 date2 相同时为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>date1 &lt;&gt; date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 和 date2 不同时，该条件为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>date1 ≠ date2
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 和 date2 不同，则为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>date1 != date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">等同于</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">同上</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>date1 BETWEEN date2 AND date3
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 date1 介于 date2 和 date3 之间时为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>date1 IN (日期列表)
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 位于 date2 和 date3 之间，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>date1 IN (liste de dates)
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">如果 date1 在日期列表中，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 在日期列表中，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>date1 IS NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">如果 date1 没有值，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 没有值，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a>date1 IS NOT NULL
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">如果 date1 有值，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>date1 LIKE 模式
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 有值，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>date1 LIKE modèle
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">如果 date1 匹配该模式，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>ALL、ANY、EXISTS
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">如果 date1 符合模式，则为真</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>ALL,ANY,EXISTS
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;">&nbsp;</td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
 <p><strong>算术运算符</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>日期1 - 日期2
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>date1 - date2
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: date1 与 date2 之间的天数</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>日期1 - 数字
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">：date1 与 date2 之间的天数</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a>date1 - nombre
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 满足 date1 - date2 = 该数字的 date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>日期1 + 数字
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 满足 date1-date2=n 的 date2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a>date1 + nombre
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">: 日期2，使得日期2 - 日期1 = 数值</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">: 满足 date2-date1=n 的 date2</div></td></tr></table>
 
 <p><strong>示例</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
-<p><img src="images/1000000000000041000000ABDCCBC35A.png" width="52" height="137" style="width:1.378cm;height:3.625cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000041000000ABDCCBC35A.png" /></p>
+<p><img src="images/1000000000000041000000ABDCCBC35A.png" width="52" height="137" style="width:1.378cm;height:3.618cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000041000000ABDCCBC35A.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a><span class="w">   </span><span class="k">where</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="s1">&#39;01.01.1988&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="s1">&#39;31.12.1988&#39;</span><span class="p">;</span>
 </code></pre></div>
-<p><img src="images/100000000000006000000022FC599FB9.png" width="96" height="34" style="width:2.538cm;height:0.9cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006000000022FC599FB9.png" /></p>
+<p><img src="images/100000000000006000000022FC599FB9.png" width="96" height="34" style="width:2.538cm;height:0.898cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000006000000022FC599FB9.png" /></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">achat</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="k">where</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="n">achat</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">char</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;1988&#39;</span>
 </code></pre></div>
-<p><img src="images/1000000000000097000000273B1A2937.png" width="151" height="39" style="width:3.993cm;height:1.032cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000097000000273B1A2937.png" /></p>
-<p>图书馆里的书有多旧？</p>
+<p><img src="images/1000000000000097000000273B1A2937.png" width="151" height="39" style="width:3.993cm;height:1.03cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000097000000273B1A2937.png" /></p>
+<p>图书馆藏书的年代？</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="k">cast</span><span class="p">(</span><span class="s1">&#39;now&#39;</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">)</span><span class="o">-</span><span class="n">achat</span><span class="w"> </span><span class="ss">&quot;age(jours)&quot;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 </code></pre></div>
-<p><img src="images/10000000000000B8000000AB71AF4F61.png" width="147" height="137" style="width:3.888cm;height:3.612cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B8000000AB71AF4F61.png" /></p>
-<h3 id="424">4.2.4. <span style="color: #4f81bd">包含布尔操作数的表达式</span></h3>
-<p>请记住，布尔值或逻辑值有两种可能的取值：true 或 false。逻辑操作数通常是关系表达式的结果。</p>
-<p>设 <em>boolean1</em> 和 <em>boolean2</em> 是两个布尔值。可能的运算符有三种，按优先级排序如下：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic">boolean1 </span><span style="font-weight:bold">AND </span><span style="font-style:italic">boolean2</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 <i>boolean1 </i>和 <i>boolean2</i> 均为真时，该表达式为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic">boolean1 </span><span style="font-weight:bold">OR </span><span style="font-style:italic">boolean2</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">当 <i>boolean1 </i>或 <i>boolean2</i> 其中一个为真时，结果为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">NOT </span><span style="font-style:italic">boolean1</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">其值为 <i>boolean1</i> 值的反值。</div></td></tr></table>
+<p><img src="images/10000000000000B8000000AB71AF4F61.png" width="147" height="137" style="width:3.888cm;height:3.618cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000B8000000AB71AF4F61.png" /></p>
+<h3 id="424">4.2.4. <span style="color: #4f81bd">布尔运算符表达式</span></h3>
+<p>需要提醒的是，布尔值或逻辑值只有两种可能的取值：真或假。逻辑操作数通常是关系表达式的结果。</p>
+<p>设 <em>booléen1</em> 和 <em>booléen2</em> 为两个布尔值。有三种可能的运算符，其优先级顺序如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic">booléen1</span> <span style="font-weight:bold">AND</span> <span style="font-style:italic">booléen2</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">当 <i>booléen1 </i>和 <i>booléen2</i> 均为真时，该表达式为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic">booléen1</span> <span style="font-weight:bold">OR</span> <span style="font-style:italic">booléen2</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">当 <i>booléen1 </i>或 <i>booléen2 </i>为真时，该表达式为真。</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">NOT</span> <span style="font-style:italic">booléen1</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">的值为 <i>booléen1</i> 值的反值。</div></td></tr></table>
 
 <p><strong>示例</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">desc</span>
 </code></pre></div>
 <p><img src="images/10000000000000DE000000AA98BAEE8A.png" width="178" height="136" style="width:4.699cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DE000000AA98BAEE8A.png" /></p>
-<p>我们正在查找价格在某个范围内的书籍：</p>
+<p>搜索价格介于以下两个数值之间的书籍：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a><span class="w">     </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="o">&gt;=</span><span class="mi">130</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="o">&lt;=</span><span class="mi">170</span>
 </code></pre></div>
-<p><img src="images/10000000000000BB00000025D046B587.png" width="187" height="37" style="width:4.946cm;height:0.979cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BB00000025D046B587.png" /></p>
+<p><img src="images/10000000000000BB00000025D046B587.png" width="187" height="37" style="width:4.946cm;height:0.977cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000BB00000025D046B587.png" /></p>
 <p>反向搜索：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a><span class="w">     </span><span class="k">where</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">130</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="o">&gt;</span><span class="mi">170</span>
@@ -1128,74 +1130,75 @@
 <a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">prix</span><span class="o">&gt;</span><span class="mi">200</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">100</span>
 <a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">asc</span>
 </code></pre></div>
-<p><img src="images/10000000000000E10000006817271824.png" width="180" height="83" style="width:4.759cm;height:2.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E10000006817271824.png" /></p>
+<p><img src="images/10000000000000E10000006817271824.png" width="180" height="83" style="width:4.759cm;height:2.198cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E10000006817271824.png" /></p>
 <p>使用括号来控制运算符的优先级：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">titre</span><span class="p">,</span><span class="n">genre</span><span class="p">,</span><span class="n">prix</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">biblio</span>
 <a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">genre</span><span class="o">=</span><span class="s1">&#39;ROMAN&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="p">(</span><span class="n">prix</span><span class="o">&gt;</span><span class="mi">200</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">prix</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">)</span>
 <a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">  </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">prix</span><span class="w"> </span><span class="k">asc</span>
 </code></pre></div>
-<p><img src="images/10000000000000DF0000004659081CB8.png" width="178" height="56" style="width:4.718cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DF0000004659081CB8.png" /></p>
+<p><img src="images/10000000000000DF0000004659081CB8.png" width="178" height="56" style="width:4.718cm;height:1.478cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000DF0000004659081CB8.png" /></p>
 <h2 id="43-firebird">4.3. <span style="color: #4f81bd">Firebird 的预定义函数</span></h2>
-<p>Firebird 提供了预定义函数。这些函数无法直接在 SQL 语句中使用。您必须先运行 SQL 脚本 <strong>&lt;firebird&gt;\UDF\ib_udf.</strong>sql，其中 &lt;firebird&gt; 指 Firebird 数据库管理系统的安装目录：</p>
-<p><img src="images/10000000000000E4000000833335D76D.png" width="182" height="105" style="width:4.828cm;height:2.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000833335D76D.png" /></p>
-<p>在 IBExpert 中，操作步骤如下：</p>
+<p>Firebird 提供了预定义函数。这些函数无法直接在 SQL 命令中使用。 首先需执行脚本 SQL <strong>&lt;firebird&gt;\UDF\</strong>ib_udf.sql，其中 &lt;firebird&gt; 指 Firebird 的安装目录：</p>
+<p><img src="images/10000000000000E4000000833335D76D.png" width="182" height="105" style="width:4.828cm;height:2.768cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000833335D76D.png" /></p>
+<p>对于 IBExpert，我们按以下步骤操作：</p>
 <ul>
-  <li>我们通过 [Tools/Script Executive] 选项调用 [Script Executive] 工具：
+  <li>我们使用通过 [Tools/ Script Executive] 选项生成的 [Script Excecutive] 工具：
   </li>
 </ul>
 
-<p><img src="images/10000000000000F0000000AA275DBAED.png" width="192" height="136" style="width:5.078cm;height:3.597cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F0000000AA275DBAED.png" /></p>
+<p><img src="images/10000000000000F0000000AA275DBAED.png" width="192" height="136" style="width:5.078cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F0000000AA275DBAED.png" /></p>
 <ul>
-  <li>打开该工具后，我们加载脚本 &lt;firebird&gt;\UDF\ib_udf.sql：
+  <li>工具准备就绪后，我们加载脚本 &lt;firebird&gt;\UDF\ib_udf.sql：
   </li>
 </ul>
 
-<p><img src="images/10000000000001CC0000005F3722CDD5.png" width="368" height="76" style="width:9.738cm;height:2.011cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000005F3722CDD5.png" /></p>
+<p><img src="images/10000000000001CC0000005F3722CDD5.png" width="368" height="76" style="width:9.738cm;height:2.009cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CC0000005F3722CDD5.png" /></p>
 <ul>
-  <li>然后执行该脚本：
+  <li>然后执行脚本：
   </li>
 </ul>
 
-<p><img src="images/1000000000000232000000D8F6B5C758.png" width="337" height="130" style="width:8.918cm;height:3.427cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000232000000D8F6B5C758.png" /></p>
-<p>完成上述操作后，Firebird 的预定义函数即可在运行脚本时所连接的数据库中使用。要查看这些函数，只需转到数据库资源管理器，并点击已导入函数的该数据库对应的 [UDF] 节点：</p>
-<p><img src="images/100000000000009B0000011312E88160.png" width="124" height="220" style="width:3.279cm;height:5.817cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000009B0000011312E88160.png" /></p>
-<p>以上是该数据库可用的函数。要测试这些函数，创建一个单行表会很方便。我们将其命名为 TEST：</p>
+<p><img src="images/1000000000000232000000D8F6B5C758.png" width="337" height="130" style="width:8.918cm;height:3.429cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000232000000D8F6B5C758.png" /></p>
+<p>完成上述操作后，Firebird 的预定义函数即可在脚本执行时所连接的数据库中使用。要查看这一点，只需进入数据库浏览器，并点击导入函数的数据库中的 [UDF] 节点：</p>
+<p><img src="images/100000000000009B0000011312E88160.png" width="124" height="220" style="width:3.279cm;height:5.819cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000009B0000011312E88160.png" /></p>
+<p>上图显示了该数据库中可用的函数。为了测试这些函数，创建一个单行表会比较方便。我们将该表命名为 TEST：</p>
 <p><img src="images/100000000000008A0000005622B803A9.png" width="110" height="69" style="width:2.917cm;height:1.819cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000008A0000005622B803A9.png" /></p>
-<p>并按以下方式定义（右键单击“表”/“新建表”）：</p>
-<p>现在向该表中添加一行数据：</p>
+<p>并按以下方式定义（右键单击“Tables”/“New Table”）：</p>
+<p>在该表中添加一行：</p>
 <p><img src="images/100000000000020700000074B5AF90E7.png" width="415" height="93" style="width:10.989cm;height:2.455cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020700000074B5AF90E7.png" /></p>
 <p><img src="images/1000000000000179000000786AD08B5F.png" width="302" height="96" style="width:7.978cm;height:2.538cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000179000000786AD08B5F.png" /></p>
-<p>现在，让我们打开 SQL 编辑器（F12），并执行以下 SQL 语句：</p>
+<p>现在进入编辑器 SQL（F12），并发出以下命令 SQL：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">test</span>
 </code></pre></div>
-<p>该语句使用了预定义的 cos（余弦）函数。上述命令会针对 TEST 表中的每一行计算 <em>cos(0)</em>，实际上仅针对单行进行计算。因此，它仅显示 <em>cos(0)</em> 的值<em>：</em></p>
+<p>该命令使用了预定义函数 cos（余弦）。上述命令会对表 TEST 的每一行计算 cos(0)，实际上仅针对一行。因此，最终仅显示 <em>cos(0)</em> 的值<em>：</em></p>
 <p><img src="images/10000000000000390000002315445C4E.png" width="57" height="35" style="width:1.506cm;height:0.924cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000390000002315445C4E.png" /></p>
-<p>UDF（用户定义函数）是用户可以创建的函数，网络上可以找到各种UDF库。在此，我们仅介绍Firebird（2005）可下载版本中提供的一部分UDF。我们根据其参数的主要类型或其作用对它们进行分类：</p>
+<p>UDF（用户定义函数）是用户可以创建的函数，因此可以在网上找到 UDF 函数库。本文仅介绍 Firebird 可下载版本（2005）中提供的一部分函数。 我们将这些函数按其参数的主要类型或功能进行分类：</p>
 <ul>
-  <li>具有数值参数的函数
+  <li>具有数值型参数的函数
   </li>
-  <li>具有字符串类型参数的函数
+  <li>字符串类型参数函数
   </li>
 </ul>
-<h3 id="431">4.3.1. <span style="color: #4f81bd">具有数值参数的函数</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">abs</span><span style="font-style:italic">(number)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">number 的绝对值</div><div style="margin:0 0 0.5em 0">abs(-15) = 15</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">ceil</span><span style="font-style:italic">(number)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">大于或等于<i>该数的</i>最小整数</div><div style="margin:0 0 0.5em 0">ceil(15.7) = 16</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">floor</span><span style="font-style:italic">(number)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">小于或等于 <i>number</i> 的最大整数</div><div style="margin:0 0 0.5em 0">floor(14.3) = 14</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;font-style:italic">div</span><span style="font-style:italic">(number1, number2)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>number1</i> 除以 <i>number2 </i>的整数除法商（商为整数）</div><div style="margin:0 0 0.5em 0">div(7,3)=2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">mod</span><span style="font-style:italic">(number1, number2)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>number1</i> 除以 <i>number2 </i>的整数除法余数（商为整数）</div><div style="margin:0 0 0.5em 0">mod(7,3)=1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">sign</span><span style="font-style:italic">(number)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">若 <i>number </i>&lt; 0，则返回 -1</div><div style="margin:0 0 0.5em 0">若 number=0，则返回 0</div><div style="margin:0 0 0.5em 0">若 <i>number </i>&gt; 0，则返回 +1</div><div style="margin:0 0 0.5em 0">sign(-6) = -1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">sqrt</span><span style="font-style:italic">(number)</span></span></span>
-</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">若 <i>number </i>&gt;= 0，则取 <i>number</i> 的平方根</div><div style="margin:0 0 0.5em 0">若 <i>number </i>&lt; 0，则返回 -1</div><div style="margin:0 0 0.5em 0">sqrt(16) = 4</div></td></tr></table>
+
+<h3 id="431">4.3.1. <span style="color: #4f81bd">具有数值类型参数的函数</span></h3>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">abs</span><span style="font-style:italic">(nombre)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">数的绝对值</div><div style="margin:0 0 0.5em 0">abs(-15)=15</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">ceil</span><span style="font-style:italic">(nombre)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">不小于 <i>nombre</i> 的最小整数</div><div style="margin:0 0 0.5em 0">ceil(15.7)=16</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">floor</span><span style="font-style:italic">(nombre)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">不大于 <i>nombre</i> 的最大整数</div><div style="margin:0 0 0.5em 0">floor(14.3)=14</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;font-style:italic">div</span><span style="font-style:italic">(nombre1,nombre2)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>nombre1</i> 除以 <i>nombre2 </i>的整数商（商为整数）</div><div style="margin:0 0 0.5em 0">div(7,3)=2</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">mod</span><span style="font-style:italic">(nombre1,nombre2)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>nombre1</i> 除以 <i>nombre2 </i>的整数除法余数（商为整数）</div><div style="margin:0 0 0.5em 0">mod(7,3)=1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">sign</span><span style="font-style:italic">(nombre)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">-1，若 <i>nombre</i>&lt;0</div><div style="margin:0 0 0.5em 0">若 nombre=0，则为 0</div><div style="margin:0 0 0.5em 0">若 <i>nombre</i>&gt;0，则为 +1</div><div style="margin:0 0 0.5em 0">sign(-6)=-1</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">sqrt</span><span style="font-style:italic">(nombre)</span></span></span>
+</code></pre></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>nombre</i> 的平方根，若 <i>nombre </i>≥ 0</div><div style="margin:0 0 0.5em 0">-1，若 <i>nombre</i>&lt;0</div><div style="margin:0 0 0.5em 0">sqrt(16)=4</div></td></tr></table>
 
 <h3 id="432">4.3.2. <span style="color: #4f81bd">带字符串参数的函数</span></h3>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i><b>ascii_char</b></i><i>(number)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">ASCII 码 字符<i> 编号</i></div><div style="margin:0 0 0.5em 0">ascii_char(65) = &#x27;A&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>lower</b><i>(string)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">将<i>字符串</i>转换为小写</div><div style="margin:0 0 0.5em 0">lower(&#x27;INFO&#x27;)=&#x27;info&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ltrim</b><i>(string)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">左截取 - 删除<i>字符串</i>中文字前面的空格：</div><div style="margin:0 0 0.5em 0">ltrim(&#x27;  kitten&#x27;)=&#x27;kitten&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>replace</b><i>(string1, string2, string3)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">将<i>字符串1</i>中的<i>字符串2</i>替换为<i>字符串3</i>。</div><div style="margin:0 0 0.5em 0">replace(&#x27;猫和狗&#x27;,&#x27;猫&#x27;,&#x27;**&#x27;)=&#x27;**和**&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>rtrim</b><i>(string1, string2)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">右截断 - 与 ltrim 相同，但作用于右侧</div><div style="margin:0 0 0.5em 0">rtrim(&#x27;cat  &#x27;)=&#x27;cat&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>substr</b><i>(string, p, q)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>字符串</i>从位置 <i>p</i> 开始到位置 <i>q</i> 结束的子字符串<i>。</i></div><div style="margin:0 0 0.5em 0">substr(&#x27;kitten&#x27;,3,5)=&#x27;to&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>ascii_val</b><i>(字符)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>字符</i>的 ASCII 码</div><div style="margin:0 0 0.5em 0">ascii_val(&#x27;A&#x27;)=65</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>strlen(</b><i>字符串)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><i>字符串</i>中的字符数</div><div style="margin:0 0 0.5em 0">strlen(&#x27;kitten&#x27;)=6</div></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i><b>ascii_char</b></i><i>(数字)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">字符代码 ASCII <i>nombre</i></div><div style="margin:0 0 0.5em 0">ascii_char(65)=&#x27;A&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>lower</b><i>(字符串)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">将 <i>chaine</i> 转换为小写</div><div style="margin:0 0 0.5em 0">lower(&#x27;INFO&#x27;)=&#x27;info&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>ltrim</b><i>(字符串)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">左截取 - 删除 <i>chaine</i> 文本前面的空格：</div><div style="margin:0 0 0.5em 0">ltrim(&#x27;  小猫&#x27;)=&#x27;小猫&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>replace</b><i>(字符串1,字符串2,字符串3)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">将 <i>chaine2</i> 替换为 <i>chaine3</i>，位于 <i>chaine1</i> 中。</div><div style="margin:0 0 0.5em 0">replace(&#x27;猫和狗&#x27;,&#x27;猫&#x27;,&#x27;**&#x27;)=&#x27;**和**&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>rtrim</b><i>(字符串1,字符串2)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">右截断 - 与 ltrim 相同，但从右侧截断</div><div style="margin:0 0 0.5em 0">rtrim(&#x27;猫  &#x27;)=&#x27;猫&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>substr</b><i>(字符串,p,q)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>chaine</i> 的子字符串，起始位置为 <i>p</i>，结束位置为 <i>q.</i></div><div style="margin:0 0 0.5em 0">substr(&#x27;chaton&#x27;,3,5)=&#x27;ato&#x27;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>ascii_val</b><i>(字符)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ASCII 的代码（源自 <i>caractère）</i></div><div style="margin:0 0 0.5em 0">ascii_val(&#x27;A&#x27;)=65</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><b>strlen(</b><i>字符串)</i></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0"><i>chaine</i>的字符数</div><div style="margin:0 0 0.5em 0">strlen(&#x27;chaton&#x27;)=6</div></td></tr></table>
 
 
 

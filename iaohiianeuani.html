@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://stahe.github.io/zh-sql-firebird-janv-2006/iaohiianeuani.html">
       
       
-        <link rel="prev" href="sql-iaoahi.html">
+        <link rel="prev" href="sql-uanhongeiaoahi.html">
       
       
-        <link rel="next" href="aoi-sql.html">
+        <link rel="next" href="sql-uanehenuiei.html">
       
       
         
@@ -56,6 +56,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -384,14 +386,14 @@
   
   
     <li class="md-nav__item">
-      <a href="sql-iaoahi.html" class="md-nav__link">
+      <a href="sql-uanhongeiaoahi.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. SQL 表达式
+    4. SQL 语言中的表达式
   
 
     
@@ -485,7 +487,7 @@
   <a href="#52" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5.2. 两个表之间的连接操作
+        5.2. 两张表之间的连接操作
       
     </span>
   </a>
@@ -507,14 +509,14 @@
   
   
     <li class="md-nav__item">
-      <a href="aoi-sql.html" class="md-nav__link">
+      <a href="sql-uanehenuiei.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. 高级 SQL
+    6. SQL 语言的深入解析
   
 
     
@@ -534,14 +536,14 @@
   
   
     <li class="md-nav__item">
-      <a href="uaniuihuueingaangen.html" class="md-nav__link">
+      <a href="ingahuuangenuani.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7. 管理对数据的并发访问
+    7. 并发数据访问管理
   
 
     
@@ -561,14 +563,14 @@
   
   
     <li class="md-nav__item">
-      <a href="nhuangehiong-firebird-e-odbc-uonghengu.html" class="md-nav__link">
+      <a href="ei-firebird-nhuanginghiong-odbc-uonghengu.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. 安装和使用 [Firebird] 的 ODBC 驱动程序
+    8. 为 [Firebird] 安装并使用 ODBC 驱动程序
   
 
     
@@ -598,41 +600,41 @@
 
 
 
-<h1 id="5">5. <span style="color: #365f91">表之间的关系</span></h1>
+<h1 id="5">5. <span style="color: #365f91"><strong>表之间的关系</strong></span></h1>
 <h2 id="51">5.1. <span style="color: #4f81bd">外键</span></h2>
-<p>关系型数据库是由一系列通过关系相互关联的表组成的集合。让我们以之前的 [BIBLIO] 表为例，该表具有以下结构：</p>
-<p><img src="images/100000000000014D0000008AB26B6EA2.png" width="266" height="110" style="width:7.049cm;height:2.921cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000014D0000008AB26B6EA2.png" /></p>
-<p>其内容示例如下：</p>
+<p>关系型数据库是由通过关系相互关联的表组成的集合。我们以之前的表 [BIBLIO] 为例，其结构如下：</p>
+<p><img src="images/100000000000014D0000008AB26B6EA2.png" width="266" height="110" style="width:7.049cm;height:2.917cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000014D0000008AB26B6EA2.png" /></p>
+<p>内容示例如下：</p>
 <p><img src="images/1000000000000200000000AAB5E71811.png" width="410" height="136" style="width:10.839cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000200000000AAB5E71811.png" /></p>
-<p>您可能需要这些作品的作者信息，例如他们的<em>名字</em>、姓氏、<em>出生日期和国籍</em>。让我们创建这样一个表。右键单击 [DBBIBLIO / Tables]，然后选择 [New Table] 选项：</p>
-<p><img src="images/10000000000001500000018E88305495.png" width="269" height="318" style="width:7.108cm;height:8.421cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001500000018E88305495.png" /></p>
-<p>现在，让我们创建以下 [AUTHORS] 表：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000008C0000006539F73B1A.png" width="112" height="81" style="display:inline-block; margin:4px;width:2.958cm;height:2.134cm;" class="odt-zoomable" data-zoom-src="images/100000000000008C0000006539F73B1A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000145000000673D89D830.png" width="260" height="82" style="display:inline-block; margin:4px;width:6.877cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/1000000000000145000000673D89D830.png" /></td></tr></table>
+<p>我们可能需要获取这些作品不同作者的信息，例如其 <em>nom</em> 和 prénom，以及其<em>出生日期 nationalité</em>。让我们创建这样一张表。 右键单击 [DBBIBLIO / Tables]，然后选择 [New Table] 选项：</p>
+<p><img src="images/10000000000001500000018E88305495.png" width="269" height="318" style="width:7.108cm;height:8.419cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001500000018E88305495.png" /></p>
+<p>现在构建以下 [AUTEURS] 表：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000008C0000006539F73B1A.png" width="112" height="81" style="display:inline-block; margin:4px;width:2.958cm;height:2.138cm;" class="odt-zoomable" data-zoom-src="images/100000000000008C0000006539F73B1A.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000145000000673D89D830.png" width="260" height="82" style="display:inline-block; margin:4px;width:6.877cm;height:2.178cm;" class="odt-zoomable" data-zoom-src="images/1000000000000145000000673D89D830.png" /></td></tr></table>
 
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>id
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">表的主键——用于唯一标识一行</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>姓
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">表的主键——用于唯一标识一行</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>nom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">作者姓氏</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>名字
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">作者姓名</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>prénom
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">作者的名字（如适用）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>出生日期
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">作者的名字（如有）</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>date_naissance
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">出生日期</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>国籍
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">出生日期</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>nationalite
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">原籍国</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">其原籍国</div></td></tr></table>
 
-<p>[AUTHORS] 表的内容可能如下：</p>
-<p><img src="images/10000000000001770000009CA8D7412F.png" width="300" height="125" style="width:7.938cm;height:3.302cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001770000009CA8D7412F.png" /></p>
-<p>让我们回到 [BIBLIO] 表及其内容：</p>
+<p>表 [AUTEURS] 的内容可能如下：</p>
+<p><img src="images/10000000000001770000009CA8D7412F.png" width="300" height="125" style="width:7.938cm;height:3.298cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001770000009CA8D7412F.png" /></p>
+<p>让我们回到表 [BIBLIO] 及其内容：</p>
 <p><img src="images/1000000000000200000000AAB5E71811.png" width="410" height="136" style="width:10.839cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000200000000AAB5E71811.png" /></p>
-<p>在该表的 [AUTHOR] 列中，不再需要输入作者姓名。相反，最好输入 [AUTHORS] 表中分配给他们的 ID 号。 让我们创建一个名为 [BOOKS] 的新表。为此，我们将使用<a href="#bibliosql"><u><span style="color: #0563c1">第 3.14</span></u></a> 节中创建的 [biblio.sql] 脚本<a href="#bibliosql"><u><span style="color: #0563c1">。</span></u></a>我们通过 [脚本执行器，Ctrl-F12] 工具运行此脚本：</p>
-<p><img src="images/10000000000001CE000000C03DB2BA7D.png" width="370" height="154" style="width:9.779cm;height:4.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CE000000C03DB2BA7D.png" /></p>
-<p>我们将创建 BIBLIO 表的脚本进行修改，以适应 BOOKS 表：</p>
+<p>在该表的 [AUTEUR] 字段中，不再需要填写作者姓名。更推荐填写其在 [AUTEURS] 表中的编号（ID）。因此，我们创建一个名为 [LIVRES] 的新表。 创建该表时，我们将使用<a href="sql-uanianie.html#bibliosql"><u><span style="color: #0563c1">第3.14</span></u></a>节中创建的脚本[biblio.sql]。我们使用工具[Script Executive, Ctrl-F12]加载该脚本：</p>
+<p><img src="images/10000000000001CE000000C03DB2BA7D.png" width="370" height="153" style="width:9.779cm;height:4.059cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001CE000000C03DB2BA7D.png" /></p>
+<p>我们将表创建脚本 BIBLIO 进行修改，使其与表 LIVRES 的脚本保持一致：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
@@ -693,130 +695,130 @@
 <a id="__codelineno-5-23" name="__codelineno-5-23"></a>
 <a id="__codelineno-5-24" name="__codelineno-5-24"></a>
 <a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="cm">/******************************************************************************/</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="cm">/****                          Unique Constraints                          ****/</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a><span class="cm">/****                                                     唯一约束 ****/</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27"></a><span class="cm">/******************************************************************************/</span>
 <a id="__codelineno-5-28" name="__codelineno-5-28"></a>
 <a id="__codelineno-5-29" name="__codelineno-5-29"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LIVRES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">UNQ1_LIVRES</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">TITRE</span><span class="p">);</span>
 <a id="__codelineno-5-30" name="__codelineno-5-30"></a>
 <a id="__codelineno-5-31" name="__codelineno-5-31"></a>
 <a id="__codelineno-5-32" name="__codelineno-5-32"></a><span class="cm">/******************************************************************************/</span>
-<a id="__codelineno-5-33" name="__codelineno-5-33"></a><span class="cm">/****                             Primary Keys                             ****/</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a><span class="cm">/****                                                           主键 ****/</span>
 <a id="__codelineno-5-34" name="__codelineno-5-34"></a><span class="cm">/******************************************************************************/</span>
 <a id="__codelineno-5-35" name="__codelineno-5-35"></a>
 <a id="__codelineno-5-36" name="__codelineno-5-36"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">LIVRES</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">PK_LIVRES</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<p>我们仅对更改部分进行说明：</p>
+<p>我们仅对变更部分进行说明：</p>
 <ul>
-  <li>第 4 行：表中的 [AUTHOR] 列变为整型。该数字引用了先前创建的 [AUTHORS] 表中的某位作者。
+  <li>第 4 行：表中的字段 [AUTEUR] 改为整数类型。该编号引用了先前构建的表 [AUTEURS] 中的某位作者。
   </li>
-  <li>第11–19行：作者姓名已被其作者ID取代。
+  <li>第11-19行：作者姓名已被其作者编号取代。
   </li>
-  <li>第 29 行：约束名称已更改。它之前名为 [UNQ1_BIBLIO]，现在名为 [UNQ1_LIVRES]。该名称可以是任意内容，但最好具有实际意义。此处并未做到这一点。数据库中针对不同字段和不同表的约束必须通过不同的名称加以区分。 请注意，第29行的约束要求表内标题必须唯一。
+  <li>第29行：约束的名称已更改。它以前名为[ UNQ1_BIBLIO ]，现在名为[ UNQ1_LIVRES ]。该名称可以是任意名称，但最好具有实际意义。此处未做此方面的努力。 数据库中不同字段、不同表上的约束必须通过不同的名称加以区分。需要提醒的是，第29行的约束要求表中标题必须唯一。
   </li>
-  <li>第 36 行：更改主键 ID 约束的名称。
+  <li>第36行：更改主键约束的名称为ID。
   </li>
 </ul>
 
-<p>让我们运行此脚本。如果成功，我们将得到以下新的 [BOOKS] 表：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000008500000076777FB9B3.png" width="107" height="95" style="display:inline-block; margin:4px;width:2.819cm;height:2.501cm;" class="odt-zoomable" data-zoom-src="images/100000000000008500000076777FB9B3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001E5000000ABADDE5D06.png" width="388" height="137" style="display:inline-block; margin:4px;width:10.268cm;height:3.62cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E5000000ABADDE5D06.png" /></td></tr></table>
+<p>执行此脚本。若执行成功，我们将获得如下新的表 [LIVRES]：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000008500000076777FB9B3.png" width="107" height="94" style="display:inline-block; margin:4px;width:2.819cm;height:2.498cm;" class="odt-zoomable" data-zoom-src="images/100000000000008500000076777FB9B3.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001E5000000ABADDE5D06.png" width="388" height="137" style="display:inline-block; margin:4px;width:10.268cm;height:3.618cm;" class="odt-zoomable" data-zoom-src="images/10000000000001E5000000ABADDE5D06.png" /></td></tr></table>
 
-<p>有人可能会疑惑，最终我们是否真的获得了什么。确实，[BOOKS] 表列出的只是作者编号而非姓名。由于作者数量多达数千，将一本书与其作者建立关联似乎很困难。幸运的是，SQL 可以帮到我们。它允许我们同时查询多个表。在此示例中，我们将展示一个 SQL 查询，用于检索图书馆中书籍的书名及其作者的信息。 让我们使用 SQL 编辑器（F12）执行以下 SQL 语句：</p>
+<p>我们不禁要问，这次修改是否真的有所改善。事实上，表 [LIVRES] 中显示的是作者编号而非姓名。由于作者数量多达数千，一本书与其作者的关联似乎难以建立。 所幸SQL语句能为我们提供帮助。它允许我们同时查询多个表。在此示例中，我们展示查询语句SQL，它能帮助我们获取图书馆藏书的书名及其对应的作者信息。 使用编辑器 SQL (F12) 发出以下命令 SQL：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">LIVRES</span><span class="p">.</span><span class="n">titre</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">nom</span><span class="p">,</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">prenom</span><span class="p">,</span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">date_naissance</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">LIVRES</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">AUTEURS</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">LIVRES</span><span class="p">.</span><span class="n">AUTEUR</span><span class="o">=</span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">ID</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AUTEURS</span><span class="p">.</span><span class="n">nom</span><span class="w"> </span><span class="k">asc</span>
 </code></pre></div>
-<p>现在解释这个 SQL 查询还为时过早。我们稍后会再回来讨论。该查询的结果如下：</p>
-<p><img src="images/1000000000000164000000AA7F9D92F7.png" width="285" height="136" style="width:7.539cm;height:3.6cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000164000000AA7F9D92F7.png" /></p>
-<p>每本书都已正确地与作者及其相关信息进行了匹配。</p>
-<p>让我们总结一下刚才所做的工作：</p>
+<p>目前尚无法解释该 SQL 命令。我们将稍后对此进行说明。该查询的结果如下：</p>
+<p><img src="images/1000000000000164000000AA7F9D92F7.png" width="285" height="136" style="width:7.539cm;height:3.598cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000164000000AA7F9D92F7.png" /></p>
+<p>每本书都已正确地与作者及其相关信息关联起来。</p>
+<p>总结一下我们刚才所做的工作：</p>
 <ul>
-  <li>我们有两张表，分别包含不同类型的信息：
+  <li>我们有两张收集不同类型信息的表：
     <ul>
-      <li>AUTHORS 表包含关于作者的信息
+      <li>AUTEURS表收集了关于作者的信息
       </li>
-      <li>BOOKS 表包含图书馆购买的书籍信息
+      <li>表 LIVRES 收集图书馆购买的书籍信息
       </li>
     </ul>
   </li>
-  <li>这两个表之间存在关联。一本书必须有一位作者，甚至可能有多位作者。本文暂不讨论这种情况。在 [BOOKS] 表中，[AUTHOR] 字段引用了 [AUTHORS] 表中的一行。<b>这种关系被称为“关联</b>”。
+  <li>这两个表相互关联。一本书必然有一位作者，甚至可能有多位作者。此处未考虑这种情况。 表 [LIVRES] 中的字段 [AUTEUR] 引用了表 [AUTEURS] 中的某一行。这被称为<b>关系</b>。
   </li>
 </ul>
 
-<p>[BOOKS] 表与 [AUTHORS] 表之间的关系实际上是一种约束：[BOOKS] 表中的每一行必须拥有一个在 [AUTHORS] 表中存在的作者 ID。 如果 [BOOKS] 表中某行拥有的作者 ID 在 [AUTHORS] 表中不存在，我们将面临一种异常情况，即无法找到该书的作者。</p>
-<p>数据库管理系统（DBMS）能够确保该约束始终得到满足。为此，我们将向 [BOOKS] 表添加一个约束：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000009E000000EA2C064F16.png" width="126" height="187" style="display:inline-block; margin:4px;width:3.339cm;height:4.944cm;" class="odt-zoomable" data-zoom-src="images/100000000000009E000000EA2C064F16.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000AD0000009065CA70B9.png" width="138" height="115" style="display:inline-block; margin:4px;width:3.658cm;height:3.044cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD0000009065CA70B9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000FE000000EB317A31FD.png" width="203" height="188" style="display:inline-block; margin:4px;width:5.378cm;height:4.976cm;" class="odt-zoomable" data-zoom-src="images/10000000000000FE000000EB317A31FD.png" /></td></tr></table>
+<p>将表 [LIVRES] 与表 [AUTEURS] 关联的关系实际上是一种约束： 表 [LIVRES] 中的每一行都必须拥有一个在表 [AUTEURS] 中存在的作者编号。 如果 [LIVRES] 表中某行记录的作者编号在 [AUTEURS] 表中不存在，就会出现异常情况，导致无法查找到该书的作者。</p>
+<p>SGBD 表能够确保该约束始终成立。为此，我们将向 [LIVRES] 表添加一个约束：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000009E000000EA2C064F16.png" width="126" height="187" style="display:inline-block; margin:4px;width:3.339cm;height:4.948cm;" class="odt-zoomable" data-zoom-src="images/100000000000009E000000EA2C064F16.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000AD0000009065CA70B9.png" width="138" height="115" style="display:inline-block; margin:4px;width:3.658cm;height:3.048cm;" class="odt-zoomable" data-zoom-src="images/10000000000000AD0000009065CA70B9.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000FE000000EB317A31FD.png" width="203" height="188" style="display:inline-block; margin:4px;width:5.378cm;height:4.969cm;" class="odt-zoomable" data-zoom-src="images/10000000000000FE000000EB317A31FD.png" /></td></tr></table>
 
-<p>连接 [BOOKS] 表中 [AUTHOR] 列与 [AUTHORS] 表中 [ID] 字段的关联称为外键关系。在上方的向导中，[BOOKS] 表中的 [AUTHOR] 字段被称为“外键”。 定义外键意味着表 [T1] 中列 [c1] 的值必须存在于表 [T2] 的列 [c2] 中。列 [c1] 被称为表 T1 在表 [T2] 列 [c2] 上的“外键”。 列 [c2] 通常是表 [T2] 的主键，但这并非强制要求。</p>
-<p>我们如下定义表 [BOOKS] 针对表 [AUTHORS] 的 [ID] 字段的外键 [AUTHOR]：</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003F9000000C501ADE2AD.png" width="509" height="98" style="display:inline-block; margin:4px;width:13.455cm;height:2.605cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F9000000C501ADE2AD.png" /></td></tr></table>
+<p>将表 [LIVRES] 中的字段 [AUTEUR] 与表 [AUTEURS] 中的字段 [ID] 关联的链接称为<strong>外键</strong>链接。 在上述向导中，表 [LIVRES] 中的字段 [AUTEUR] 被称为“外键”或“foreign key”。 定义外键意味着：表 [T1] 中列 [c1] 的值必须存在于表 [T2] 的列 [c2] 中。 表 [c1] 的列 [c1] 被称为表 T1 针对表 [T2] 的列 [c2] 的“外键”。 列 [c2] 通常是表 [T2] 的主键，但这并非强制要求。</p>
+<p>我们将表 [LIVRES] 的外键 [AUTEUR] 定义为表 [AUTEURS] 的字段 [ID]，定义方式如下：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003F9000000C501ADE2AD.png" width="509" height="99" style="display:inline-block; margin:4px;width:13.455cm;height:2.607cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F9000000C501ADE2AD.png" /></td></tr></table>
 
 <ol>
-  <li>约束名称：free
+  <li>约束名称：任意
   </li>
-  <li>“外键”列，即此处的 [BOOKS] 表的 [AUTHOR] 列
+  <li>“外键”列，此处为表 [LIVRES] 中的列 [AUTEUR]
   </li>
-  <li>被外键引用的表。在此，[BOOKS] 表中的 [AUTHOR] 列必须与 [AUTHORS] 表中的 [ID] 列中的某个值相对应。因此，[AUTHORS] 表是被引用的表。
+  <li>被外键引用的表。此处，表 [LIVRES] 中的列 [AUTEUR] 必须在表 [AUTEURS] 的列 [ID] 中具有对应值。 因此，被引用的表是 [AUTEURS]。
   </li>
-  <li>外键引用的列。此处为 [AUTHORS] 表的 [ID] 列。
+  <li>外键引用的列。此处为表 [AUTEURS] 中的列 [ID]。
   </li>
 </ol>
 
 <p>我们验证此约束：</p>
-<p><img src="images/10000000000001E900000095302F1B8B.png" width="391" height="119" style="width:10.349cm;height:3.154cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E900000095302F1B8B.png" /></p>
-<p>如果一切顺利，则被接受：</p>
-<p><img src="images/10000000000001EE0000010B27B969F6.png" width="395" height="214" style="width:10.458cm;height:5.652cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE0000010B27B969F6.png" /></p>
-<p>这个新的外键约束会产生什么后果？使用 SQL 编辑器（F12），让我们尝试向 BOOKS 表插入一行数据，其中作者 ID 不存在：</p>
-<p><img src="images/10000000000001E2000000C16CA79B35.png" width="385" height="154" style="width:10.199cm;height:4.083cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E2000000C16CA79B35.png" /></p>
-<p>上述 [INSERT] 操作试图插入一本作者 ID 不存在（100）的书。查询执行失败。相关的错误消息表明违反了外键约束“FK_BOOKS_AUTHORS”。这就是我们刚刚定义的那个。</p>
-<h2 id="52">5.2. <span style="color: #4f81bd">两个表之间的连接操作</span></h2>
-<p>仍留在 [DBBIBLIO] 数据库（或任何其他数据库）中，让我们创建两个名为 TA 和 TB 的测试表，并按以下方式定义它们：</p>
+<p><img src="images/10000000000001E900000095302F1B8B.png" width="391" height="119" style="width:10.349cm;height:3.149cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E900000095302F1B8B.png" /></p>
+<p>如果一切正常，该约束将被接受：</p>
+<p><img src="images/10000000000001EE0000010B27B969F6.png" width="395" height="213" style="width:10.458cm;height:5.648cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE0000010B27B969F6.png" /></p>
+<p>这个新的外键约束会产生什么影响？使用编辑器 SQL（F12），尝试向表 LIVRES 中插入一行，其中作者编号不存在：</p>
+<p><img src="images/10000000000001E2000000C16CA79B35.png" width="385" height="155" style="width:10.199cm;height:4.089cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001E2000000C16CA79B35.png" /></p>
+<p>上述操作 [INSERT] 尝试插入一本作者编号（100）不存在的书。该查询执行失败。 相关的错误消息指出，外键约束“FK_LIVRES_AUTEURS”被违反。这就是我们刚刚定义的那个约束。</p>
+<h2 id="52">5.2. <span style="color: #4f81bd">两张表之间的连接操作</span></h2>
+<p>仍在数据库 [DBBIBLIO]（或其他任意数据库）中，创建两个名为 TA 和 TB 的测试表，其定义如下：</p>
 <p><strong>表 TA</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000012E00000034EE43AFB1.png" width="241" height="42" style="display:inline-block; margin:4px;width:6.389cm;height:1.101cm;" class="odt-zoomable" data-zoom-src="images/100000000000012E00000034EE43AFB1.png" /><div style="margin:0 0 0.5em 0">- ID：表 TA 的主键</div><div style="margin:0 0 0.5em 0">- DATA：任意数据</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000005600000046ADC07D03.png" width="69" height="56" style="display:inline-block; margin:4px;width:1.819cm;height:1.482cm;" class="odt-zoomable" data-zoom-src="images/100000000000005600000046ADC07D03.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000012E00000034EE43AFB1.png" width="241" height="42" style="display:inline-block; margin:4px;width:6.389cm;height:1.099cm;" class="odt-zoomable" data-zoom-src="images/100000000000012E00000034EE43AFB1.png" /><div style="margin:0 0 0.5em 0">- ID：表 TA 的主键</div><div style="margin:0 0 0.5em 0">- DATA：任意数据</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000005600000046ADC07D03.png" width="69" height="56" style="display:inline-block; margin:4px;width:1.819cm;height:1.478cm;" class="odt-zoomable" data-zoom-src="images/100000000000005600000046ADC07D03.png" /></td></tr></table>
 
 <p><strong>表 TB</strong></p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000014000000045D0BD93DD.png" width="256" height="55" style="display:inline-block; margin:4px;width:6.768cm;height:1.459cm;" class="odt-zoomable" data-zoom-src="images/100000000000014000000045D0BD93DD.png" /><div style="margin:0 0 0.5em 0">- ID：TB表的主键</div><div style="margin:0 0 0.5em 0">- IDTA：TB 表的外键，引用 TA 表的 ID 列。因此，TA 表 IDTA 列中的值必须存在于 TA 表的 ID 列中</div><div style="margin:0 0 0.5em 0">- VALUE：任意数据</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000000A000000045234CFE2D.png" width="128" height="55" style="display:inline-block; margin:4px;width:3.388cm;height:1.461cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A000000045234CFE2D.png" /></td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000014000000045D0BD93DD.png" width="256" height="55" style="display:inline-block; margin:4px;width:6.768cm;height:1.459cm;" class="odt-zoomable" data-zoom-src="images/100000000000014000000045D0BD93DD.png" /><div style="margin:0 0 0.5em 0">- ID：表 TB 的主键</div><div style="margin:0 0 0.5em 0">- IDTA：表 TB 的外键，该外键引用表 TA 的列 ID。 因此，表 TA 中 IDTA 列的某个值必须存在于表 TA 的 ID 列中</div><div style="margin:0 0 0.5em 0">- VALEUR：任意数据</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000000A000000045234CFE2D.png" width="128" height="55" style="display:inline-block; margin:4px;width:3.388cm;height:1.459cm;" class="odt-zoomable" data-zoom-src="images/10000000000000A000000045234CFE2D.png" /></td></tr></table>
 
-<p>在 SQL 编辑器（F12）中，我们将执行同时使用 TA 和 TB 表的 SQL 语句。</p>
+<p>在编辑器 SQL（F12）中， 我们将发出 SQL 命令，同时利用 TA 和 TB 这两张表。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">TA</span><span class="p">,</span><span class="w">  </span><span class="n">TB</span>
 </code></pre></div>
 <p><img src="images/10000000000000F2000000ADA94486D3.png" width="193" height="138" style="width:5.119cm;height:3.658cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000F2000000ADA94486D3.png" /></p>
-<p>该 SQL 语句使用 FROM 关键字来引用 TA 和 TB 两个表。FROM TA, TB 操作将导致创建一个新的临时表，其中 TA 表的每一行都会与 TB 表的每一行进行连接。因此，如果 TA 表有 NA 行，TB 表有 NB 行，则生成的表将有 NA × NB 行。如上图所示。 此外，每行都包含来自这两个表的列。以 [SELECT <em>col1</em>, <em>col2</em>, ... FROM ...] 形式指定的列顺序表明了应包含哪些列。在此，* 关键字表示请求生成表中的所有列。上述 SQL 语句生成的表有时被称为表 TA 和 TB 的<strong>笛卡尔积</strong>。</p>
-<p>在上文中，表 TA 的每一行都与表 TB 的每一行进行了关联。通常，我们希望将 TB 中的某一行与表 TA 中与其存在关联关系的一行进行关联。这种关联关系通常以外键约束的形式体现。本例即属此类。对于表 TA 中的某一行，我们可以将其与表 TB 中满足关系 TB.IDTA=TA.ID 的行进行关联。查询此关系有多种方法：</p>
+<p>命令 SQL 在关键字 FROM 之后，涉及两个表 TA 和 TB。 操作 FROM TA, TB 将导致临时创建一个新表，其中表 TA 的每一行都将与表 TB 的每一行建立关联。 因此，如果表 TA 有 NA 行，表 TB 有 NB 行， 则生成的表将包含 NA × NB 行。上图截图即展示了这一情况。此外，每行都包含两张表的列。 在 [SELECT col1, col2, ... FROM ...] 查询中指定的 <em>coli</em> 列即为需要保留的列。此处关键字 * 表示需要结果表中的所有列。 有时会说，前一个查询 SQL 的结果表是表 TA 和 TB 的<strong>笛卡尔积</strong>。</p>
+<p>在上文中，表 TA 的每一行都与表 TB 的每一行进行了配对。 通常，我们希望将 TA 表中的一行，与其相关的 TB 表中的行进行关联。这种关系通常表现为外键约束。本例即属此类。 对于表 TA 中的某一行，我们可以关联表 TB 中满足关系 TB.IDTA=TA.ID 的行。实现此查询有多种方法：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span>
 </code></pre></div>
-<p>上述 SQL 语句与前一个类似，但有两点不同：</p>
+<p>前面的 SQL 命令与前一个类似，但有两点不同：</p>
 <ul>
-  <li>TA 与 TB 的笛卡尔积结果行通过 WHERE 子句进行过滤，该子句仅将满足关系 TB.IDTA=TA.ID 的 TB 表行与 TA 表中的行相关联
+  <li>笛卡尔积 TA × TB 的结果行，通过一个 WHERE 子句进行过滤，该子句将 WHERE 表中的一行， 且仅筛选出满足关系 TB.IDTA=TA.ID 的 TB 表中的行
   </li>
-  <li>仅通过 [T.col] 语法请求特定列，其中 T 是表名，col 是该表中的列名。此语法可消除两张表中存在同名列时可能产生的歧义。当不存在此类歧义时，可使用 [col] 语法，无需指定该列所属的表。
+  <li>仅查询特定列时，使用语法 [T.col]，其中 T 表示表名，col 表示该表中列名。此语法可消除两张表存在同名列时可能产生的歧义。 当不存在这种歧义时，可以使用语法 [col]，无需指定该列所属的表。
   </li>
 </ul>
 
-<p>结果如下：</p>
-<p><img src="images/10000000000000CA000000467C36DE6B.png" width="162" height="56" style="width:4.277cm;height:1.482cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA000000467C36DE6B.png" /></p>
-<p>使用以下 SQL 语句也可获得相同结果：</p>
+<p>所得结果如下：</p>
+<p><img src="images/10000000000000CA000000467C36DE6B.png" width="162" height="56" style="width:4.277cm;height:1.478cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA000000467C36DE6B.png" /></p>
+<p>通过以下命令 SQL 也可获得相同结果：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">inner</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="n">TB</span><span class="p">.</span><span class="n">idta</span>
 </code></pre></div>
-<p>术语 [inner join] 衍生出了“内连接”这一名称，用于指代两张表之间的此类操作。我们将看到，还有一种“外连接”。在内连接中，查询中表的顺序对结果没有影响：<strong>FROM TA inner join TB</strong> 等同于 <strong>FROM TB inner join TA</strong>。</p>
-<p>前面的 SQL 语句仅将表 TB 中至少有一行引用的表 TA 中的行包含在结果集中。因此，TA 中的行 [3, data3] 不会出现在结果中，因为它没有被 TB 中的任何一行引用。您可能希望获取 TA 中的所有行，无论它们是否被 TB 中的行引用。在这种情况下，您需要在两个表之间使用<strong>左外连接</strong>：</p>
+<p>术语 [inner join] 衍生出了“内部连接”这一名称，用于指代两张表之间的此类操作。我们还将看到“外部连接”的存在。在内部连接中，查询中表的顺序不会影响结果： <strong>FROM TA inner join TB</strong> 与 <strong>FROM TB inner join TA</strong>。</p>
+<p>前面的查询 SQL 仅将 TA 表中被 TB 表中至少一行引用的行放入结果表中。 因此，TA 表中的 [3, data3] 行不会出现在结果中，因为它未被 TB 表中的任何一行引用。 如果需要获取 TA 表中的所有行（无论是否被 TB 表中的某行引用），则需对这两个表使用<strong>外部连接</strong>：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span>
 </code></pre></div>
-<p><img src="images/10000000000000CA0000005831DE623C.png" width="162" height="70" style="width:4.277cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA0000005831DE623C.png" /></p>
-<p>这里我们使用<strong>了一个左外连接</strong>。要理解“FROM TA left outer join TB”这一术语，可以想象一个连接操作，其中 TA 表位于左侧，TB 表位于右侧。左外连接的结果集中包含左侧表的所有行，即使其中某些行不满足连接条件。该连接条件不一定是外键约束，尽管这是最常见的情况。</p>
+<p><img src="images/10000000000000CA0000005831DE623C.png" width="162" height="70" style="width:4.277cm;height:1.857cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000CA0000005831DE623C.png" /></p>
+<p>这里是一个“左外连接”（<strong>left outer join</strong>）。要理解“FROM TA left outer join TB”这一术语， 可以设想一个左侧为表 TA、右侧为表 TB 的连接。 左侧表中的所有行都会出现在左外连接的结果中，即使那些未满足连接关系的行也是如此。这种连接关系不一定是外键约束，尽管这是最常见的情况。</p>
 <p>按以下顺序：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SQL</span><span class="o">&gt;</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">TB</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">outer</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">TA</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">TA</span><span class="p">.</span><span class="n">ID</span><span class="o">=</span><span class="w"> </span><span class="n">TB</span><span class="p">.</span><span class="n">IDTA</span>
 </code></pre></div>
-<p>TB 表位于外连接的“左侧”。因此，TB 表中的所有行都会出现在结果集中：</p>
+<p>在外部连接中，TB 表位于“左侧”。因此，结果中将包含 TB 表的所有行：</p>
 <p><img src="images/10000000000000C9000000461F95A28D.png" width="161" height="56" style="width:4.247cm;height:1.478cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000C9000000461F95A28D.png" /></p>
-<p>与内连接不同，此处的表顺序很重要。此外还有右外连接：</p>
+<p>与内部连接不同，表的顺序在此起着关键作用。此外还存在右外连接：</p>
 <ul>
-  <li>FROM TA LEFT OUTER JOIN TB 等同于 FROM TB RIGHT OUTER JOIN TA：TA 表位于左侧
+  <li>FROM TA left outer join TB 等同于 FROM TB right outer join TA：表 TA 位于左侧
   </li>
-  <li>FROM TB LEFT OUTER JOIN TA 等同于 FROM TA RIGHT OUTER JOIN TB：TB 表位于左侧
+  <li>FROM TB 左外连接 TA 等同于 FROM TA 右外连接 TB：TB表位于左侧
   </li>
 </ul>
 
-<p>现在我们已经掌握了同时查询多个表的基础知识，可以继续学习更复杂的数据库查询了。</p>
+<p>既然已经了解了同时操作多个表的基础知识，我们就可以探讨数据库中更复杂的查询操作了。</p>
 
 
 
